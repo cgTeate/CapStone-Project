@@ -43,22 +43,34 @@ public class CapstoneprojectApplication {
 				address,
 				LocalDateTime.now()
 			);
-		Query query = new Query();
-		query.addCriteria(Criteria.where("email").is(email));
-
-		List<Customer> customers = mongoTemplate.find(query, Customer.class);
-
-		if(customers.size() > 1){
-			throw new IllegalStateException("found many students with email " + email);
-		}
-
-		if(customers.isEmpty()){
-			System.out.println("Inserting student " + customer);
-			repository.insert(customer);
-		} else{
-			System.out.println(customer + " already exists");
-		}
+		//usingMongoTemplateAndQuery(repository, mongoTemplate, email, customer);
+		repository.findCustomerByEmail(email)
+				.ifPresentOrElse(c -> {
+					System.out.println(c + " already exists");
+				}, ()-> {System.out.println("Inserting customer " + customer);
+				repository.insert(customer);
+			});
+		
 		};
 	}
+
+	// private void usingMongoTemplateAndQuery(CustomerRepository repository, MongoTemplate mongoTemplate, String email,
+	// 		Customer customer) {
+	// 	Query query = new Query();
+	// 	query.addCriteria(Criteria.where("email").is(email));
+
+	// 	List<Customer> customers = mongoTemplate.find(query, Customer.class);
+
+	// 	if(customers.size() > 1){
+	// 		throw new IllegalStateException("found many students with email " + email);
+	// 	}
+
+	// 	if(customers.isEmpty()){
+	// 		System.out.println("Inserting student " + customer);
+	// 		repository.insert(customer);
+	// 	} else{
+	// 		System.out.println(customer + " already exists");
+	// 	}
+	// }
 
 }
