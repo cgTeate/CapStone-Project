@@ -29,7 +29,7 @@ public class CapstoneprojectApplication {
 		return args -> {
 			Address address = new Address(
 				"United States",
-				"Kansas",
+				"Topeka",
 				"66621"
 			);
 			String email = "calvin.teate@washburn.edu";
