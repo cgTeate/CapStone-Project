@@ -22,9 +22,9 @@ public class WebsiteUser {
     @Indexed(unique = true)
     private String email;
     private String password;
-    private LocalDate dob;
-    @Transient
-    private Integer age;
+    //private LocalDate dob;
+    //@Transient
+    //private Integer age;
     private String phoneNumber;
     private Gender gender;
     private Address address;
@@ -35,23 +35,23 @@ public class WebsiteUser {
     public WebsiteUser() {
     }
 
-    public WebsiteUser(String firstName, String lastName, String username, String email, String password, LocalDate dob,
+    public WebsiteUser(String firstName, String lastName, String username, String email, String password,
          String phoneNumber, Gender gender, Address address, LocalDateTime created) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
-        this.dob = dob;
+        //this.dob = dob;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.address = address;
         this.created = created;
     }
 
-    public Integer getAge() {
-        return Period.between(this.dob, LocalDate.now()).getYears();
-    }
+    // public Integer getAge() {
+    //     return Period.between(this.dob, LocalDate.now()).getYears();
+    // }
 
 
     
