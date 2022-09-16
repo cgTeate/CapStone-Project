@@ -36,14 +36,13 @@ public class WebsiteUser {
     }
 
     public WebsiteUser(String firstName, String lastName, String username, String email, String password, LocalDate dob,
-            Integer age, String phoneNumber, Gender gender, Address address, LocalDateTime created) {
+         String phoneNumber, Gender gender, Address address, LocalDateTime created) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.password = password;
         this.dob = dob;
-        this.age = age;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
         this.address = address;

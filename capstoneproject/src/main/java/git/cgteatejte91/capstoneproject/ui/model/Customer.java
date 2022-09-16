@@ -9,8 +9,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 public class Customer extends WebsiteUser{
 
     public Customer(String firstName, String lastName, String username, String email, String password, LocalDate dob,
-            Integer age, String phoneNumber, Gender gender, Address address, LocalDateTime created) {
-        super(firstName, lastName, username, email, password, dob, age, phoneNumber, gender, address, created);
+             String phoneNumber, Gender gender, Address address, LocalDateTime created) {
+        super(firstName, lastName, username, email, password, dob, phoneNumber, gender, address, created);
     }
 
 
