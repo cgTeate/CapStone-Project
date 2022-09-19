@@ -1,9 +1,20 @@
 import Head from 'next/head'
+import { useEffect } from 'react'
 import Header from '../components/Header'
 import Register from '../components/Register'
 import RegistrationForm from '../components/RegistrationForm'
 
+import { getAllCust, getUserData } from './api/client'
+//import { customerHandler } from './api/CustomerData'
+
 export default function Home() {
+  // useEffect(()=>{
+  //     fetch("/api/customers")
+    
+  // }, [])
+
+    getUserData().then(console.log)
+    
   return (
     <div >
       <Head>
@@ -14,11 +25,13 @@ export default function Home() {
 
       {/* Header */}
 
-      {/* <Header/> */}
+      <Header/>
        {/* Registration Form */}
        
       {/* <RegistrationForm/> */}
-      <Register/>
+      {/* <Register/> */}
+
+    {/* Return Customer info */}
 
     </div>
   )

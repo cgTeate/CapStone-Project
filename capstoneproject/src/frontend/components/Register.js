@@ -274,13 +274,13 @@ autoComplete="off"
         name="dob"
         label="Date of Birth"
         tooltip="What do you want others to call you?"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your nickname!',
-            whitespace: true,
-          },
-        ]}
+        // rules={[
+        //   {
+        //     required: true,
+        //     message: 'Please input your nickname!',
+        //     whitespace: true,
+        //   },
+        // ]}
       >
         <Space direction="vertical" size={12}>
             {/* <DatePicker defaultValue={moment('2015/01/01', dateFormat)} format={dateFormat} /> */}
