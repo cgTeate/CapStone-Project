@@ -1,20 +1,27 @@
 import Head from 'next/head'
-import { useEffect } from 'react'
+import { useState,useEffect } from 'react'
 import Header from '../components/Header'
 import Register from '../components/Register'
 import RegistrationForm from '../components/RegistrationForm'
-
-import { getAllCust, getUserData } from './api/client'
+import { getUserData } from './api/client'
 //import { customerHandler } from './api/CustomerData'
 
 export default function Home() {
-  // useEffect(()=>{
-  //     fetch("/api/customers")
-    
-  // }, [])
 
-    getUserData().then(console.log)
-    
+  const [customers, setCustomers] = useState([]);
+
+  const fetchCustomers = () =>
+      getUserData()
+        .then(data => {
+            console.log(data);
+            setCustomers(data);
+        })
+
+  useEffect(()=>{
+   console.log("component is mounted");
+   fetchCustomers();
+  }, []);
+
   return (
     <div >
       <Head>
@@ -32,7 +39,7 @@ export default function Home() {
       {/* <Register/> */}
 
     {/* Return Customer info */}
-
+      <h1>{customers.length}</h1>
     </div>
   )
 }
