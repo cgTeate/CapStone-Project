@@ -118,7 +118,16 @@ export default function SidebarAntD() {
     }
     return <Table 
         dataSource={customers.data} 
-        columns={columns} />;
+        columns={columns} 
+        bordered
+        title={() => 'Customers'}
+        pagination={{
+          pageSize: 50,
+        }}
+        scroll={{
+          y: 240,
+        }}
+        />;
   }
 
   return (
@@ -169,7 +178,7 @@ export default function SidebarAntD() {
             textAlign: 'center',
           }}
         >
-          Ant Design ©2018 Created by Ant UED
+          By Calvin Teater, Jay Edwards
         </Footer>
       </Layout>
     </Layout>
