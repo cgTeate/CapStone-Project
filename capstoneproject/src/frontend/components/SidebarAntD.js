@@ -2,7 +2,7 @@ import {
     DesktopOutlined, FileOutlined, LoadingOutlined, PieChartOutlined, TeamOutlined,
     UserOutlined
 } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, Spin, Table} from 'antd';
+import { Breadcrumb, Empty, Layout, Menu, Spin, Table} from 'antd';
 import { useEffect, useState } from 'react';
 import { getUserData} from '../pages/api/client'
 
@@ -112,6 +112,7 @@ export default function SidebarAntD() {
         .then(data => {
             //console.log(data);
             setCustomers(data);
+            setFetching(false);
         })
 
   useEffect(()=>{
@@ -130,7 +131,7 @@ export default function SidebarAntD() {
       return <Spin indicator={antIcon} />;
     }
     if(customers.length <=0){
-      return "no data available";
+      return <Empty/>;
     }
     return <Table 
         dataSource={customers.data} 
@@ -143,6 +144,7 @@ export default function SidebarAntD() {
         scroll={{
           y: 240,
         }}
+        rowKey={(customer)=> customer.id}
         />;
   }
 
