@@ -2,11 +2,73 @@ import {
     DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined,
     UserOutlined
 } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu } from 'antd';
+import { Breadcrumb, Layout, Menu, Table} from 'antd';
 import { useEffect, useState } from 'react';
 import { getUserData} from '../pages/api/client'
 
 const { Header, Content, Footer, Sider } = Layout;
+
+/**
+   * * Defines the structure for what is to return on the client
+   * 
+   */
+const columns = [
+  {
+    title: 'Id',
+    dataIndex: 'id',
+    key: 'id',
+  },
+  {
+    title: 'First Name',
+    dataIndex: 'firstName',
+    key: 'firstName',
+  },
+  {
+    title: 'Last Name',
+    dataIndex: 'lastName',
+    key: 'lastName',
+  },
+  {
+    title: 'Username',
+    dataIndex: 'username',
+    key: 'username',
+  },
+  {
+    title: 'Email',
+    dataIndex: 'email',
+    key: 'email',
+  },
+  {
+    title: 'Password',
+    dataIndex: 'password',
+    key: 'password',
+  },
+  // {
+  //   title: 'Date of Birth',
+  //   dataIndex: 'dob',
+  //   key: 'dob',
+  // },
+  {
+    title: 'PhoneNumber',
+    dataIndex: 'phoneNumber',
+    key: 'phoneNumber',
+  },
+  {
+    title: 'Gender',
+    dataIndex: 'gender',
+    key: 'gender',
+  },
+  {
+    title: 'Addres',
+    dataIndex: 'address',
+    key: 'address',
+  },
+  {
+    title: 'Account Created',
+    dataIndex: 'created',
+    key: 'created',
+  },
+];
 
 function getItem(label, key, icon, children) {
   return {
@@ -31,7 +93,7 @@ const items = [
 
 export default function SidebarAntD() {
 
-    const [customer, setCustomers] = useState([]);
+    const [customers, setCustomers] = useState([]);
     const [collapsed, setCollapsed] = useState(false)
 
   const fetchCustomers = () =>
@@ -46,8 +108,17 @@ export default function SidebarAntD() {
    fetchCustomers();
   }, []);
 
-  if(customer.length <=0){
-    return "no data";
+  /**
+   * * datasource is what returns the data from the backend
+   * 
+   */
+  const renderCustomers = () =>{
+    if(customers.length <=0){
+      return "no data available";
+    }
+    return <Table 
+        dataSource={customers.data} 
+        columns={columns} />;
   }
 
   return (
@@ -90,7 +161,7 @@ export default function SidebarAntD() {
               minHeight: 360,
             }}
           >
-            Bill is a cat.
+            {renderCustomers()}
           </div>
         </Content>
         <Footer
@@ -102,14 +173,6 @@ export default function SidebarAntD() {
         </Footer>
       </Layout>
     </Layout>
-    
- {/* {customer.length <= 0 ? <h1>No Data</h1> : customer?.data.map((customer, index) => {
-      return <h1 key={index}>{customer.firstName} {customer.lastName}</h1>
-    })
-    } */}
-
-
- 
     </div>
   )
 }
