@@ -47,10 +47,10 @@ export default function Home() {
       {/* <Register/> */}
 
     {/* Return Customer info */}
-    {customer.length <= 0 ? <h1>No Data</h1> : customer?.data.map((customer, index) => {
+    {/* {customer.length <= 0 ? <h1>No Data</h1> : customer?.data.map((customer, index) => {
       return <h1 key={index}>{customer.firstName} {customer.lastName}</h1>
     })
-    }
+    } */}
     
       
     </div>
