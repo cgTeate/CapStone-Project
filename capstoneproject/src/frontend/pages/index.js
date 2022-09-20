@@ -1,29 +1,10 @@
 import Head from 'next/head'
-import { useState,useEffect } from 'react'
 import Header from '../components/Header'
 import Register from '../components/Register'
 import RegistrationForm from '../components/RegistrationForm'
-import { getUserData } from './api/client'
+import SidebarAntD from '../components/SidebarAntD'
 
 export default function Home() {
-
-  const [customer, setCustomers] = useState([]);
-
-  const fetchCustomers = () =>
-      getUserData()
-        .then(data => {
-            //console.log(data);
-            setCustomers(data);
-        })
-
-  useEffect(()=>{
-   console.log("component is mounted");
-   fetchCustomers();
-  }, []);
-
-  // if(customer.length <=0){
-  //   return "no data";
-  // }
     
     // console.log(Object.keys(customer));
     // console.log(Object.values(customer));
@@ -40,17 +21,15 @@ export default function Home() {
 
       {/* Header */}
 
-      <Header/>
+      {/* <Header/> */}
+
        {/* Registration Form */}
        
       {/* <RegistrationForm/> */}
       {/* <Register/> */}
 
     {/* Return Customer info */}
-    {customer.length <= 0 ? <h1>No Data</h1> : customer?.data.map((customer, index) => {
-      return <h1 key={index}>{customer.firstName} {customer.lastName}</h1>
-    })
-    }
+    <SidebarAntD/>
     
       
     </div>
