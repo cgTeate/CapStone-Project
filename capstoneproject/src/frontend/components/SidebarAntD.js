@@ -1,8 +1,8 @@
 import {
-    DesktopOutlined, FileOutlined, PieChartOutlined, TeamOutlined,
+    DesktopOutlined, FileOutlined, LoadingOutlined, PieChartOutlined, TeamOutlined,
     UserOutlined
 } from '@ant-design/icons';
-import { Breadcrumb, Layout, Menu, Table} from 'antd';
+import { Breadcrumb, Layout, Menu, Spin, Table} from 'antd';
 import { useEffect, useState } from 'react';
 import { getUserData} from '../pages/api/client'
 
@@ -70,6 +70,15 @@ const columns = [
   },
 ];
 
+const antIcon = (
+  <LoadingOutlined
+    style={{
+      fontSize: 24,
+    }}
+    spin
+  />
+);
+
 function getItem(label, key, icon, children) {
   return {
     key,
@@ -94,7 +103,9 @@ const items = [
 export default function SidebarAntD() {
 
     const [customers, setCustomers] = useState([]);
-    const [collapsed, setCollapsed] = useState(false)
+    const [collapsed, setCollapsed] = useState(false);
+    //show the icon while it's fetching our data
+    const[fetching, setFetching] = useState(true);
 
   const fetchCustomers = () =>
       getUserData()
@@ -110,9 +121,14 @@ export default function SidebarAntD() {
 
   /**
    * * datasource is what returns the data from the backend
+   * * If not fetching, we check whether we have any data: 
+   * * If no data we display no data, if there is data we display the actual data
    * 
    */
   const renderCustomers = () =>{
+    if(fetching){
+      return <Spin indicator={antIcon} />;
+    }
     if(customers.length <=0){
       return "no data available";
     }
