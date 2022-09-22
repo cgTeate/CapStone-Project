@@ -18,7 +18,7 @@ import lombok.ToString;
 
 @ToString
 @Data
-@Document
+@Document()
 public class WebsiteUser {
     @Id
     private String id;
