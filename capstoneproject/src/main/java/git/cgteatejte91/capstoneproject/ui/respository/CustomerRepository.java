@@ -1,5 +1,6 @@
 package git.cgteatejte91.capstoneproject.ui.respository;
 
+import org.bson.types.ObjectId;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Optional;
@@ -9,7 +10,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
-import git.cgteatejte91.capstoneproject.ui.model.Customer;
+import git.cgteatejte91.capstoneproject.ui.model.User.Customer;
 
 @Repository
 public interface CustomerRepository extends MongoRepository<Customer,String>{

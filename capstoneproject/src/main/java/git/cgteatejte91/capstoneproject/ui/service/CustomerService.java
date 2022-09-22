@@ -10,7 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import git.cgteatejte91.capstoneproject.ui.model.Customer;
+import git.cgteatejte91.capstoneproject.ui.model.User.Customer;
 import git.cgteatejte91.capstoneproject.ui.respository.CustomerRepository;
 import lombok.AllArgsConstructor;
 
