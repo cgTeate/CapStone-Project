@@ -36,14 +36,12 @@ public class Product{
     private String description;
     private String colorway;
     private String designer;
-    private GridFSFile productImage;
+    //private GridFSFile productImage;
     @Transient
     private Integer age;
 
-
-
     public Product(String productName, String brand, float retailPrice, float resellPrice, float size,
-            LocalDate releaseDate, String description, String colorway, String designer, GridFSFile productImage) {
+            LocalDate releaseDate, String description, String colorway, String designer) {
         this.productName = productName;
         this.brand = brand;
         this.retailPrice = retailPrice;
@@ -53,7 +51,6 @@ public class Product{
         this.description = description;
         this.colorway = colorway;
         this.designer = designer;
-        this.productImage = productImage;
     }
 
     public Integer getAgeOfProduct() {

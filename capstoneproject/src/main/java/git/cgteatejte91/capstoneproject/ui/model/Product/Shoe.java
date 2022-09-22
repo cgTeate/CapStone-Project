@@ -11,11 +11,10 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Document()
 public class Shoe extends Product{
-
+    
     public Shoe(String productName, String brand, float retailPrice, float resellPrice, float size,
-            LocalDate releaseDate, String description, String colorway, String designer, GridFSFile productImage) {
-        super(productName, brand, retailPrice, resellPrice, size, releaseDate, description, colorway, designer,
-                productImage);
+            LocalDate releaseDate, String description, String colorway, String designer) {
+        super(productName, brand, retailPrice, resellPrice, size, releaseDate, description, colorway, designer);
     }
     
 }
