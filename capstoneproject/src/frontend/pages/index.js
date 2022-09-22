@@ -3,6 +3,7 @@ import Header from '../components/Header'
 import Register from '../components/Register'
 import RegistrationForm from '../components/RegistrationForm'
 import SidebarAntD from '../components/SidebarAntD'
+import Slider from '../components/Slider'
 
 export default function Home() {
     
@@ -20,16 +21,16 @@ export default function Home() {
       </Head> 
 
       {/* Header */}
+      <Header/>
 
-      {/* <Header/> */}
-
+      {/*<Slider/>*}
        {/* Registration Form */}
        
       {/* <RegistrationForm/> */}
       {/* <Register/> */}
 
     {/* Return Customer info */}
-    <SidebarAntD/>
+    {/* <SidebarAntD/> */}
     
       
     </div>
