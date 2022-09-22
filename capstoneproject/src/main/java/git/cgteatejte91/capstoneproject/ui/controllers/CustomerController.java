@@ -50,7 +50,4 @@ public class CustomerController {
         @RequestParam(required = false) String email){
             customerService.updateCustomer(customerId, firstName, lastName, email);
         }
-
-
-    
 }
