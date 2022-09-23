@@ -4,6 +4,8 @@ import Register from '../components/Register'
 import RegistrationForm from '../components/RegistrationForm'
 import SidebarAntD from '../components/SidebarAntD'
 import Slider from '../components/Slider'
+import ProductHome from '../components/kicksHome'
+import apparelHome from '../components/apparelHome'
 
 export default function Home() {
     
@@ -24,6 +26,10 @@ export default function Home() {
       <Header/>
       {/**/}
       <Slider/>
+
+      <ProductHome/>
+
+      <apparelHome/>
        {/* Registration Form */}
        
       {/* <RegistrationForm/> */}
