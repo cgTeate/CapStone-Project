@@ -5,7 +5,7 @@ import { MagnifyingGlassIcon, PlusCircleIcon } from '@heroicons/react/24/outline
     color: "black",
     //backgroundColor: "Gray",
     padding: "30px",
-    fontFamily: "Times New Roman",
+    fontFamily: "Garamond",
     fontSize: "50px",
     fontWeight: "bold",
   };

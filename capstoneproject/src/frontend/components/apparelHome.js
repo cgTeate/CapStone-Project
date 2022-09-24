@@ -3,11 +3,11 @@ import { Flex, Spacer } from '@chakra-ui/react'
 
 const ProductImages = [];
 
-export default function apparelHome()
+export default function ApparelHome()
 {
     const apparelHome = {
         imageUrl: '',
-        size: L,
+        size: 2,
         title: '',
         formattedPrice: '',
     };
