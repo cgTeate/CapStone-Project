@@ -1,11 +1,13 @@
 import Head from 'next/head'
 import Header from '../components/Header'
+import Login from '../components/login'
 import Register from '../components/Register'
 import RegistrationForm from '../components/RegistrationForm'
 import SidebarAntD from '../components/SidebarAntD'
 import Slider from '../components/Slider'
 import ProductHome from '../components/kicksHome'
-import apparelHome from '../components/apparelHome'
+import ApparelHome from '../components/apparelHome'
+import {Stack, VStack} from '@chakra-ui/react'
 
 export default function Home() {
     
@@ -13,8 +15,11 @@ export default function Home() {
     // console.log(Object.values(customer));
     // const customerKeys = Object.keys(customer);
     // console.log("Keys", customerKeys);
-
+// divider={<StackDivider borderColor='gray.200' />}
+      // spacing={4}
+      // align='stretch'
   return (
+
     <div >
       <Head>
         <title>Hype Heads Full Stack App</title>
@@ -22,14 +27,23 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head> 
 
-      {/*  */}
-      <Header/>
-      {/**/}
-      <Slider/>
+      {/* <Header/> */}
+      
+      
+      
 
-      <ProductHome/>
+      <Login/>
+      {/*<Slider/>*/}
+      
 
-      <apparelHome/>
+
+      
+      {/*<ProductHome/>*/}
+      
+      {/*<VStack> */}
+      {/*<ApparelHome/>*/}
+      
+      {/*</VStack>*/}
        {/* Registration Form */}
        
       {/* <RegistrationForm/> */}

@@ -1,81 +1,45 @@
-import { Button, Checkbox, Form, Input } from 'antd';
+import {Flex, Heading, Input } from "@chakra-ui/react";
 
+const Home = () => 
+{
+  //const {toggleColorMode} = useColorMode()
 
-export default function RegistrationForm() {
-    const onFinish = (values) => {
-      console.log('Success:', values);
-    };
-  
-    const onFinishFailed = (errorInfo) => {
-      console.log('Failed:', errorInfo);
-    };
   return (
-    <div className="flex justify-center space-x-7 mt-20">
-       <Form
-      name="basic"
-      labelCol={{
-        span: 8, 
-      }}
-      wrapperCol={{
-        span: 16,
-      }}
-      initialValues={{
-        remember: true,
-      }}
-      onFinish={onFinish}
-      onFinishFailed={onFinishFailed}
-      autoComplete="off"
-    >
-      
-      <Form.Item
-        label="Username"
-        name="username"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your username!',
-          },
-        ]}
-      >
-        <Input className="border"/>
-      </Form.Item>
+    <Flex height={"100vh"} alignItems={"center"} justifyContent={"center"}> 
+      <Flex
+        direction={"column"}
+        background={"gray.100"}
+        p={12}
+        rounded={6}
+        position={'relative'}
+        >
+          <Heading mb={6}>Log In</Heading>
 
-      <Form.Item
-        label="Password"
-        name="password"
-        rules={[
-          {
-            required: true,
-            message: 'Please input your password!',
-          },
-        ]}
-      >
-        <Input.Password />
-      </Form.Item>
+          <Input
+            placeholder="Username or Email"
+            variant ={"filled"}
+            mb={3}
+            type = "email"
+          />
 
-      <Form.Item
-        name="remember"
-        valuePropName="checked"
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Checkbox> Remember Me </Checkbox>
-      </Form.Item>
+          <Input
+            placeholder="*************"
+            variant ={"filled"}
+            type = "password"
+            mb={6}
+          />
 
-      <Form.Item
-        wrapperCol={{
-          offset: 8,
-          span: 16,
-        }}
-      >
-        <Button type="primary" htmlType="submit">
-          Submit
-        </Button>
-      </Form.Item>
-    </Form>
-    </div>
-  )
+          <Button colorScheme={"black"}> Submit </Button>
+
+          <Box
+            position={"absolute"}
+            top={2}
+            right={2}
+            cursor={"pointer"}
+          >
+          </Box>
+        </Flex>
+    </Flex>
+    )
 
 }
