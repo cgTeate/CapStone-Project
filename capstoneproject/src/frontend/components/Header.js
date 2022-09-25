@@ -7,14 +7,14 @@ import { MagnifyingGlassIcon, PlusCircleIcon } from '@heroicons/react/24/outline
     padding: "30px",
     fontFamily: "Garamond",
     fontSize: "50px",
-    fontWeight: "bold",
+    // fontWeight: "bold",
   };
   return (
    
     <header className="sticky top-0 bg-white">
     <div className="flex justify-between p-5 text-sm text-gray-700flex space-x-4">
       <div id="logo" class="fl_left">
-        <h1 style={mystyle}>HypeHeads</h1>
+        <h1 style={mystyle}>HYPE HEADS</h1>
       </div>
       <div className="relative mt-2">
           <div className="absolute top-2 middle-2">
