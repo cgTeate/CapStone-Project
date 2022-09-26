@@ -1,49 +1,7 @@
-import {Flex, Heading, Input, Button, Box, Stack, Checkbox, Link, ExternalLinkIcon} from "@chakra-ui/react";
+import {Flex, Heading, Input, Button, Box, Stack, Checkbox, Link,ButtonGroup} from "@chakra-ui/react";
 import { Divider } from "antd";
 
-// const Home = [];
-//   //const {toggleColorMode} = useColorMode()
-// export default function login()
-// {
-//   return (
-//     <Flex height={"100vh"} alignItems={"center"} justifyContent={"center"}> 
-//       <Flex
-//         direction={"column"}
-//         background={"gray.100"}
-//         p={12}
-//         rounded={6}
-//         position={'relative'}
-//         >
-//           <Heading mb={6}>Log In</Heading>
 
-//           <Input
-//             placeholder="Username or Email"
-//             variant ={"filled"}
-//             mb={3}
-//             type = "email"
-//           />
-
-//           <Input
-//             placeholder="*************"
-//             variant ={"filled"}
-//             type = "password"
-//             mb={6}
-//           />
-
-//           <Button colorScheme={"black"}> Submit </Button>
-
-//           <Box
-//             position={"absolute"}
-//             top={2}
-//             right={2}
-//             cursor={"pointer"}
-//           >
-//           </Box>
-//         </Flex>
-//     </Flex>
-//     )
-
-// }
 export default function login()
 {
   return (
@@ -108,15 +66,15 @@ export default function login()
           </Stack>
         </Box>
         
-        <Checkbox defaultChecked fontFamily={"Garamond"}>REMEBER ME</Checkbox>
-        <Divider />
+        <Checkbox defaultChecked fontFamily={"Garamond"} colorScheme='blue'>
+          REMEBER ME</Checkbox><br/>
+        
         <Link fontFamily={"Garamond"}>
           FORGOT PASSWORD
         </Link>
         <Divider orientation='horizontal'/>
         <Button 
-          colorScheme='black' 
-          size='lg' 
+          colorScheme='blue' 
           fontFamily={"Garamond"}
           variant='solid'> Submit 
         </Button> 
