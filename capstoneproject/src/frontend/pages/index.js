@@ -1,4 +1,5 @@
 import Head from 'next/head'
+import ChakraRegister from '../components/ChakraRegister'
 import Header from '../components/Header'
 import Register from '../components/Register'
 import RegistrationForm from '../components/RegistrationForm'
@@ -28,7 +29,7 @@ export default function Home() {
        
       {/* <RegistrationForm/> */}
       {/* <Register/> */}
-
+      <ChakraRegister/>
     {/* Return Customer info */}
     {/* <SidebarAntD/> */}
     
