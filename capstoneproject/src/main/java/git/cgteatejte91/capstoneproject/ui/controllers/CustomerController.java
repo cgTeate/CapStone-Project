@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import git.cgteatejte91.capstoneproject.ui.model.Customer;
+import git.cgteatejte91.capstoneproject.ui.model.User.Customer;
 import git.cgteatejte91.capstoneproject.ui.service.CustomerService;
 import lombok.AllArgsConstructor;
 
@@ -50,7 +50,4 @@ public class CustomerController {
         @RequestParam(required = false) String email){
             customerService.updateCustomer(customerId, firstName, lastName, email);
         }
-
-
-    
 }

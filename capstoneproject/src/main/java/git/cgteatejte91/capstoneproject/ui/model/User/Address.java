@@ -1,4 +1,4 @@
-package git.cgteatejte91.capstoneproject.ui.model;
+package git.cgteatejte91.capstoneproject.ui.model.User;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
