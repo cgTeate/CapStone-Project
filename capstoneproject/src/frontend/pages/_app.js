@@ -1,8 +1,14 @@
 import '../styles/globals.css'
 import 'antd/dist/antd.css';
+import {theme} from '../styles/theme'
+import { ChakraProvider } from '@chakra-ui/react'
 
 function MyApp({ Component, pageProps }) {
-  return <Component {...pageProps} />
+  return (
+    <ChakraProvider theme={theme}>
+      <Component {...pageProps} />
+    </ChakraProvider>
+  )
 }
 
 export default MyApp

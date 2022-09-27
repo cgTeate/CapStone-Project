@@ -1,10 +1,27 @@
 import {Flex, Heading, Input, Button, Box, Stack, Checkbox, Link,ButtonGroup} from "@chakra-ui/react";
 import { Divider } from "antd";
+import {useFormik} from "formik";
+import { userSchema } from "../Validations/UserValidation";
+
 
 
 export default function login()
 {
-  return (
+  const formik = useFormik({
+  initialVlaues:{
+    email:"",
+    password: "",
+  },
+})
+  const createUser = async (event) => {
+    event.preventDefault()
+    let formData = {
+      email: event.target[0].value,
+      password: event.target[1].value
+    };
+    const isValid = await userSchema(formData);
+  }
+  return (<form onSubmit={createUser}>
     <Flex 
       height={"100vh"} 
       alignItems={"center"} 
@@ -45,7 +62,8 @@ export default function login()
           noOfLines={1}
         >
           
-        </Box>
+        </Box>\
+      
       <Stack spacing={4}>
         
            <Input
@@ -54,6 +72,8 @@ export default function login()
             mb={6}
             type = "email"
             size = 'lg'
+            value={formik.values}
+            onChange={formik.handleChange}
           />
         
         
@@ -62,6 +82,8 @@ export default function login()
             variant ={"filled"}
             type = "password"
             mb={6}
+            value={formik.values}
+            onChange={formik.handleChange}
           />
           </Stack>
         </Box>
@@ -77,11 +99,10 @@ export default function login()
           colorScheme='blue' 
           fontFamily={"Garamond"}
           variant='solid'> Submit 
-        </Button> 
-        
+        </Button>  
       </Box>
+      </Flex> 
       </Flex>
-      </Flex>
-      
+      </form>
   )
 }
