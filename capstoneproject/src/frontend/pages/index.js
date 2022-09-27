@@ -1,3 +1,4 @@
+
 import Head from 'next/head'
 import ChakraRegister from '../components/ChakraRegister'
 import Header from '../components/Header'
