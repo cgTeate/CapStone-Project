@@ -62,7 +62,7 @@ export default function login()
           noOfLines={1}
         >
           
-        </Box>\
+        </Box>
       
       <Stack spacing={4}>
         

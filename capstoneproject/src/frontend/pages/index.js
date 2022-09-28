@@ -3,7 +3,9 @@ import Head from 'next/head'
 import ChakraRegister from '../components/ChakraRegister'
 import Header from '../components/Header'
 import Login from '../components/login'
+import SellerReg from '../components/SellerReg'
 import Register from '../components/Register'
+import KicksMain from '../components/KicksMain'
 import RegistrationForm from '../components/RegistrationForm'
 import SidebarAntD from '../components/SidebarAntD'
 import Slider from '../components/Slider'
@@ -29,16 +31,16 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head> 
 
-      {/*  */}
-      <Header/>
+      {/* */}
+      <Header/> 
       
-      <Login/>
-
+      <KicksMain/>
       {/**/}
+      {/*<Login/> */}
       {/*<Slider/>*/}
       
-
-
+        {/*<SellerReg/>*/}
+        
       
       {/*<ProductHome/>*/}
       
@@ -50,7 +52,7 @@ export default function Home() {
        
       {/* <RegistrationForm/> */}
       {/* <Register/> */}
-      <ChakraRegister/>
+      {/*<ChakraRegister/>*/}
     {/* Return Customer info */}
     {/* <SidebarAntD/> */}
     
