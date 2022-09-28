@@ -1,4 +1,5 @@
 import { MagnifyingGlassIcon, PlusCircleIcon } from '@heroicons/react/24/outline';
+import { Link, Route, Switch } from "react-router-dom";cd 
 
  export default function Header() {
   const mystyle = {
