@@ -1,4 +1,10 @@
 import { MagnifyingGlassIcon, PlusCircleIcon } from '@heroicons/react/24/outline';
+import { Link, Route, Switch } from "react-router-dom"; 
+import ApparelHome from './apparelHome';
+import Login from '../components/login'
+import SellerReg from '../components/SellerReg'
+import Register from '../components/Register'
+import KicksMain from '../components/Kicks
 import { Link, Route, Switch } from "react-router-dom";
 
  export default function Header() {
@@ -29,14 +35,35 @@ import { Link, Route, Switch } from "react-router-dom";
         </div>
 
         <div className="flex space-x-4 items-center"> 
-          <a href="">Home</a>
-              <a className="drop" href="#">Kicks</a>
-              <a class="drop" href="#">Apparel</a>           
-              <a class="drop" href="#">Live Bidding</a>
-             <br></br> <a class="drop" href="#">FAQS</a>
-              <br></br><a class="drop" href="#">Sign Up</a>
-              <br></br><a class="drop" href="#">Sell</a>
+              <li>
+                <Link to="../components/login">Home</Link>
+              </li>
+              <li>
+                <Link to="/kicksMain">Kicks</Link>
+              </li>
+              <li>
+                <Link to="/apparelHome">Apparel</Link>
+              </li>
+              <li>
+                <Link to="/">Live Bidding</Link>
+              </li>  
+              <li>
+                <Link to="/">FAQS</Link>
+              </li>       
+              <li>
+                <Link to="/Register">Sign Up</Link>
+              </li> 
+              <li>
+                <Link to="/SellerReg">Sell</Link>
+              </li> 
         </div>
+        <Route path="../components/login"><Login /></Route>
+        <Route path="/kicksMain"><KicksMain /></Route>
+        <Route path="apparelHome"><ApparelHome /></Route>
+        <Route path="/"></Route>
+        <Route path="/"></Route>
+        <Route path="/Register"><Register /></Route>
+        <Route path="/SellerReg"><SellerReg /></Route>
     </div>
     </header>
   )
