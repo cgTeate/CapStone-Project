@@ -4,7 +4,8 @@ import ApparelHome from './apparelHome';
 import Login from '../components/login'
 import SellerReg from '../components/SellerReg'
 import Register from '../components/Register'
-import KicksMain from '../components/KicksMain'
+import KicksMain from '../components/Kicks
+import { Link, Route, Switch } from "react-router-dom";
 
  export default function Header() {
   const mystyle = {
