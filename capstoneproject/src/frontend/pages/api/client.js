@@ -11,6 +11,31 @@ export const getUserData = async () => {
     }
 };
 
+export const addSellerData = async () => {
+    try {
+        const res = await axios.post(`${url}/api/customers`,
+        {
+            firstName: firstname,
+            lastName: lastname,
+            username: username,
+            email: email,
+            password: password,
+            gender: gender,
+            address:{
+                country: country,
+                city: city,
+                postCode: postcode,
+            }
+        },
+        
+        );
+        console.log(res.data)
+    } catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
+};
+
 // export const getAllCust = () =>
 //     axios.get("http://localhost:8080/api/customers")
 
