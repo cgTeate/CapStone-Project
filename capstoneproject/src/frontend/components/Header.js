@@ -1,11 +1,10 @@
 import { MagnifyingGlassIcon, PlusCircleIcon } from '@heroicons/react/24/outline';
-import { Link, Route, Switch } from "react-router-dom"; 
 import ApparelHome from './apparelHome';
 import Login from '../components/login'
 import SellerReg from '../components/SellerReg'
 import Register from '../components/Register'
-import KicksMain from '../components/Kicks
-import { Link, Route, Switch } from "react-router-dom";
+import KicksMain from '../components/KicksMain'
+import Link from 'next/link';
 
  export default function Header() {
   const mystyle = {
@@ -35,35 +34,15 @@ import { Link, Route, Switch } from "react-router-dom";
         </div>
 
         <div className="flex space-x-4 items-center"> 
-              <li>
-                <Link to="../components/login">Home</Link>
-              </li>
-              <li>
-                <Link to="/kicksMain">Kicks</Link>
-              </li>
-              <li>
-                <Link to="/apparelHome">Apparel</Link>
-              </li>
-              <li>
-                <Link to="/">Live Bidding</Link>
-              </li>  
-              <li>
-                <Link to="/">FAQS</Link>
-              </li>       
-              <li>
-                <Link to="/Register">Sign Up</Link>
-              </li> 
-              <li>
-                <Link to="/SellerReg">Sell</Link>
-              </li> 
+              <a href=""><Link href="/homePage">Home</Link></a>
+              <a className="drop" href="#"><Link href="/kicks">Kicks</Link></a>
+              <a class="drop" href="#"><Link href ="/apparel">Apparel</Link></a>           
+              <a class="drop" href="#"><Link href = "/">Live Bidding</Link></a>
+              <br></br> <a class="drop" href="#"><Link href ="/FAQSPage">FAQS</Link></a>
+              <br></br><a class="drop" href="#"><Link href = "/LoginPage">Log In</Link></a>
+              <br></br><a class="drop" href="#"><Link href ="/SellerPage">Sell</Link></a>
         </div>
-        <Route path="../components/login"><Login /></Route>
-        <Route path="/kicksMain"><KicksMain /></Route>
-        <Route path="apparelHome"><ApparelHome /></Route>
-        <Route path="/"></Route>
-        <Route path="/"></Route>
-        <Route path="/Register"><Register /></Route>
-        <Route path="/SellerReg"><SellerReg /></Route>
+        
     </div>
     </header>
   )
