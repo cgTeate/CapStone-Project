@@ -1,6 +1,7 @@
 import React from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
+import SellerReg from '../components/SellerReg'
 
 export default function homePage()
 {
@@ -13,9 +14,7 @@ export default function homePage()
               <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header/>
-            <ApparelHome/>
-            <ApparelHome/>
-            <ApparelHome/>
+            <SellerReg/>
         </div>
     )
 }

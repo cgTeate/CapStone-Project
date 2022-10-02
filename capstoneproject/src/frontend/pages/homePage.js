@@ -1,6 +1,9 @@
 import React from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
+import Slider from '../components/Slider'
+import ProductHome from '../components/kicksHome'
+import ApparelHome from '../components/apparelHome'
 
 export default function homePage()
 {

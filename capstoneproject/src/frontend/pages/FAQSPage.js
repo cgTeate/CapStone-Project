@@ -2,7 +2,7 @@ import React from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
 
-export default function homePage()
+export default function FAQSPage()
 {
 
     return (
@@ -13,9 +13,11 @@ export default function homePage()
               <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header/>
-            <ProductHome/>
-            <ProductHome/>
-            <ProductHome/>
+            <div>FAQS Page</div>
         </div>
     )
 }
+
+
+ 
+ 

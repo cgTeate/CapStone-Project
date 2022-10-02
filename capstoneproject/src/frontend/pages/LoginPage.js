@@ -1,8 +1,9 @@
 import React from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
-
-export default function FAQSPage()
+import Login from '../components/login'
+ 
+export default function homePage()
 {
 
     return (
@@ -13,11 +14,7 @@ export default function FAQSPage()
               <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header/>
-            
+            <Login/>
         </div>
     )
 }
-
-
- 
- 

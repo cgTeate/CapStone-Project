@@ -35,8 +35,8 @@ import Link from 'next/link';
 
         <div className="flex space-x-4 items-center"> 
               <a href=""><Link href="/homePage">Home</Link></a>
-              <a className="drop" href="#"><Link href="/kicks">Kicks</Link></a>
-              <a class="drop" href="#"><Link href ="/apparel">Apparel</Link></a>           
+              <a  href=""><Link href="/KicksPage">Kicks</Link></a>
+              <a class="drop" href="#"><Link href ="/ApparelPage">Apparel</Link></a>           
               <a class="drop" href="#"><Link href = "/">Live Bidding</Link></a>
               <br></br> <a class="drop" href="#"><Link href ="/FAQSPage">FAQS</Link></a>
               <br></br><a class="drop" href="#"><Link href = "/LoginPage">Log In</Link></a>
