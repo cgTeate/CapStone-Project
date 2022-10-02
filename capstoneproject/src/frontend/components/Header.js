@@ -1,4 +1,10 @@
 import { MagnifyingGlassIcon, PlusCircleIcon } from '@heroicons/react/24/outline';
+import ApparelHome from './apparelHome';
+import Login from '../components/login'
+import SellerReg from '../components/SellerReg'
+import Register from '../components/Register'
+import KicksMain from '../components/KicksMain'
+import Link from 'next/link';
 
  export default function Header() {
   const mystyle = {
@@ -28,14 +34,15 @@ import { MagnifyingGlassIcon, PlusCircleIcon } from '@heroicons/react/24/outline
         </div>
 
         <div className="flex space-x-4 items-center"> 
-          <a href="">Home</a>
-              <a className="drop" href="#">Kicks</a>
-              <a class="drop" href="#">Apparel</a>           
-              <a class="drop" href="#">Live Bidding</a>
-             <br></br> <a class="drop" href="#">FAQS</a>
-              <br></br><a class="drop" href="#">Sign Up</a>
-              <br></br><a class="drop" href="#">Sell</a>
+              <a href=""><Link href="/homePage">Home</Link></a>
+              <a  href=""><Link href="/KicksPage">Kicks</Link></a>
+              <a class="drop" href="#"><Link href ="/ApparelPage">Apparel</Link></a>           
+              <a class="drop" href="#"><Link href = "/">Live Bidding</Link></a>
+              <br></br> <a class="drop" href="#"><Link href ="/FAQSPage">FAQS</Link></a>
+              <br></br><a class="drop" href="#"><Link href = "/LoginPage">Log In</Link></a>
+              <br></br><a class="drop" href="#"><Link href ="/SellerPage">Sell</Link></a>
         </div>
+        
     </div>
     </header>
   )
