@@ -12,6 +12,7 @@ import Slider from '../components/Slider'
 import ProductHome from '../components/kicksHome'
 import ApparelHome from '../components/apparelHome'
 import {Stack, VStack} from '@chakra-ui/react'
+import HomePage from './homePage'
 import { Router, Route, Routes } from 'react-router-dom'
 
 export default function Home() {
@@ -33,8 +34,9 @@ export default function Home() {
             </Head>
              {/* <Router> */}
             <div>
-            {/* */}
-            <Header/>   
+            {/*<Header/> */}
+               
+            <HomePage/>
             {/* <Routes> */}
               {/* <Route path="../components/login"><Login /></Route>
               <Route path="/kicksMain"><KicksMain /></Route>
