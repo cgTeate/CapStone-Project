@@ -33,7 +33,7 @@ export default function RegistrationForm() {
         rules={[
           {
             required: true,
-            message: 'Please input your firstname!',
+            message: 'Please input your first name!',
           },
         ]}
       >
@@ -46,7 +46,7 @@ export default function RegistrationForm() {
         rules={[
           {
             required: true,
-            message: 'Please input your lastname!',
+            message: 'Please input your last name!',
           },
         ]}
       >
@@ -78,7 +78,7 @@ export default function RegistrationForm() {
       >
         <Input.Password />
       </Form.Item>
-        
+
         
       <Form.Item
         name="remember"
