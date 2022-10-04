@@ -11,23 +11,29 @@ export const getUserData = async () => {
     }
 };
 
-export const addSellerData = async () => {
+export async function addSellerData (values) {
     try {
-        const res = await axios.post(`${url}/api/customers`,
+        const res = await fetch(`${url}/api/customers`,
         {
-            firstName: firstname,
-            lastName: lastname,
-            username: username,
-            email: email,
-            password: password,
-            gender: gender,
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body:
+          JSON.stringify({
+            firstName: values.firstname,
+            lastName: values.lastname,
+            username: values.username,
+            email: values.email,
+            password: values.password,
+            phoneNumber: values.phonenumber,
+            dob: values.dob,
+            gender: values.gender,
             address:{
-                country: country,
-                city: city,
-                postCode: postcode,
-            }
-        },
-        
+                country: values.address.country,
+                city: values.address.city,
+                postCode: values.address.postcode,
+                    }
+            }),
+        }
         );
         console.log(res.data)
     } catch (err) {
@@ -35,6 +41,7 @@ export const addSellerData = async () => {
         console.error(err);
     }
 };
+
 
 // export const getAllCust = () =>
 //     axios.get("http://localhost:8080/api/customers")

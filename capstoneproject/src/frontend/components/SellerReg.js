@@ -1,74 +1,103 @@
+import React from 'react';
 import {
   Box,
   Button,
   Checkbox,
   Flex,
-  Form,
+  
   FormControl,
   FormErrorMessage, FormGroup, FormHelperText, FormLabel, HStack, Input, Radio, RadioGroup, Select, Tooltip, VStack
 } from "@chakra-ui/react";
-import React from 'react';
-
-
-  import { Field, Formik } from 'formik';
+  
+import { Field, Formik, Form } from 'formik';
 import { addSellerData } from "../pages/api/client";
 
-
 export default function RegistrationForm() {
-    const onFinish = (values) => {
-      console.log('Success:', values);
-    };
-  
-    const onFinishFailed = (errorInfo) => {
-      console.log('Failed:', errorInfo);
-    };
 
-
-    const dateRegExp = /^\d{4}-\d{2}-\d{2}$/i
-      const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/
+      const dateRegExp = /^\d{4}-\d{2}-\d{2}$/i
+      const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/i
       const emailRegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
       const passwordRegExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i
       const confirmpasswordRegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/
       const postcodeRegExp = /^[0-9]{5}(?:-[0-9]{4})?$/i
 
-const addSellers = () => {
-    addSellerData()
-}
+      const validateEmail = (value) => {
+        if (!emailRegExp.test(value)) { 
+          return "Invalid email address"; 
+        } 
+      }
+
+      const validatePassword = (value) => {
+        if (value.length < 6) {
+          return "Password should be over 6 characters.";
+        }
+        else if (!passwordRegExp.test(value)) { 
+           return "Password Must Contain 6 Characters, One Uppercase, One Lowercase, One Number and one special case Character"; 
+        } 
+      }
+
+      const validateDOB = (value) => {
+        if (!dateRegExp.test(value)) { 
+          return "Invalid date format"; 
+        } 
+      }
+
+      const validatePhoneNumber = (value) => {
+        if (!phoneRegExp.test(value)) { 
+          return "Phone number is not valid"; 
+        } 
+      }
+
+      const validatePostcode = (value) => {
+        if (!postcodeRegExp.test(value)) { 
+          return "Invalid ZIP code"; 
+        } 
+      }
+
+    const initialValues = 
+    {
+      firstname:"",
+      lastname:"",
+      username:"",
+      email: "",
+      password: "",
+      phonenumber: "",
+      dob: "",
+      gender: "",
+      address:{
+        country: "",
+        city: "",
+        postcode:"",   
+      }
+  }
+  
+  const onSubmit = async (values) => {
+      alert(JSON.stringify(values, null, 2));
+    {await addSellerData(values)}
+    console.log(values)
+    }
 
   return (
     <div className="flex justify-center space-x-7 mt-20">
      <Flex bg="gray.100" align="bottom" justify="center" h="100vh">
       <Box bg="white" p={6} rounded="md" w={64}>
         <Formik
-          initialValues={{
-            firstname:"",
-            lastname:"",
-            username:"",
-            email: "",
-            password: "",
-            gender: "",
-            country: "",
-            city: "",
-            postcode:"",
-          }}
-          onSubmit={(values) => {
-            alert(JSON.stringify(values, null, 2));
-            {addSellers(values)}
-          }}
+          initialValues={initialValues}
+          onSubmit={onSubmit}
         >
-          {({ handleSubmit, errors, touched }) => (
+          {({ handleChange, handleSubmit, errors, touched, values}) => (
             <form onSubmit={handleSubmit}>
               <VStack spacing={4} align="flex-start">
-
-
                 <FormControl isRequired>
                   <FormLabel htmlFor="firstname">First Name</FormLabel>
                   <Field
-                    as={Input}
-                    id="firstname"
-                    name="firstname"
-                    type="text"
-                    variant="filled"
+                     as={Input}
+                     id="firstname"
+                     name="firstname"
+                     type="text"
+                     onChange={handleChange}
+                     value={values.firstname}
+                     variant="filled"
                   />
                 </FormControl>
                 <FormControl isRequired>
@@ -78,16 +107,20 @@ const addSellers = () => {
                     id="lastname"
                     name="lastname"
                     type="text"
+                    onChange={handleChange}
+                    value={values.lastname}
                     variant="filled"
                   />
                 </FormControl>
                 <FormControl isRequired>
-                  <FormLabel htmlFor="email">Username</FormLabel>
+                  <FormLabel htmlFor="username">Username</FormLabel>
                   <Field
                     as={Input}
                     id="username"
                     name="username"
                     type="username"
+                    onChange={handleChange}
+                    value={values.username}
                     variant="filled"
                   />
                 </FormControl>
@@ -98,12 +131,10 @@ const addSellers = () => {
                     id="email"
                     name="email"
                     type="email"
+                    onChange={handleChange}
+                    value={values.email}
                     variant="filled"
-                    validate={(value) => {
-                        if (!emailRegExp.test(value)) { 
-                          return "Invalid email address"; 
-                        } 
-                      }}
+                    validate={validateEmail}
                   />
                   <FormErrorMessage>{errors.email}</FormErrorMessage>
                 </FormControl>
@@ -115,109 +146,115 @@ const addSellers = () => {
                     id="password"
                     name="password"
                     type="password"
+                    onChange={handleChange}
+                    value={values.password}
                     variant="filled"
-                    validate={(value) => {
-                      if (value.length < 6) {
-                        return "Password should be over 6 characters.";
-                      }
-                      else if (!passwordRegExp.test(value)) { 
-                         return "Password Must Contain 6 Characters, One Uppercase, One Lowercase, One Number and one special case Character"; 
-                      } 
-                    }}
+                    validate={validatePassword}
                   />
                   <FormErrorMessage>{errors.password}</FormErrorMessage>
                 </FormControl>
-
-                <FormControl isInvalid={!!errors.confirmpassword && touched.confirmpassword} isRequired>
-                  <FormLabel htmlFor="password">Confirm Password</FormLabel>
+        
+                <FormControl isInvalid={!!errors.dob && touched.dob} isRequired>
+                  <FormLabel htmlFor="dob">Date of Birth</FormLabel>
                   <Field
                     as={Input}
-                    id="confirmpassword"
-                    name="confirmpassword"
-                    type="password"
+                    id="dob"
+                    name="dob"
+                    type="text"
                     variant="filled"
-                    validate={(value) => {
-                      if (value=="") {
-                        return "Please confirm your password";
-                      }
-                      else if (value!=password.value) {
-                        return "Passwords do not match!";
-                      }
-                    }}
+                    onChange={handleChange}
+                    value={values.dob}
+                    validate={validateDOB}
                   />
-                  <FormErrorMessage>{errors.confirmpassword}</FormErrorMessage>
+                  <FormErrorMessage>{errors.dob}</FormErrorMessage>
                 </FormControl>
 
-            <FormControl as='fieldset' isRequired>
-            <FormLabel as='legend'>Gender</FormLabel>
-            <Field as={RadioGroup} 
-            id="gender"
-            name="gender"
-            type="radiogroup"
-            variant="filled"
-            >
-                <Field as={Radio} 
-                id="mgender"
-                value="male"
-                variant="filled"
-                >Male</Field>
-                <Field as={Radio} 
-                id="fgender"
-                value="female"
-                variant="filled"
-                >Female</Field>
-                <Field as={Radio} 
-                id="ogender"
-                value="other"
-                variant="filled"
-                >Other</Field>
-            </Field>
-            </FormControl>
+                <FormControl isInvalid={!!errors.phonenumber && touched.phonenumber} isRequired>
+                  <FormLabel htmlFor="phonenumber">Phone Number</FormLabel>
+                  <Field
+                    as={Input}
+                    id="phonenumber"
+                    name="phonenumber"
+                    type="text"
+                    onChange={handleChange}
+                    value={values.phonenumber}
+                    variant="filled"
+                    validate={validatePhoneNumber}
+                  />
+                  <FormErrorMessage>{errors.phonenumber}</FormErrorMessage>
+                </FormControl>
 
-
+                <FormControl as='fieldset' isRequired>
+                <FormLabel as='legend'>Gender</FormLabel>
+                <Field as={RadioGroup} 
+                  id="gender"
+                  name="gender"
+                  type="radiogroup"
+                  onChange={handleChange}
+                  value={values.gender}
+                  variant="filled"
+                >
+                  <Field as={Radio} 
+                  id="mgender"
+                  value="MALE"
+                  variant="filled"
+                  >Male</Field>
+                  <Field as={Radio} 
+                  id="fgender"
+                  value="FEMALE"
+                  variant="filled"
+                  >Female</Field>
+                  <Field as={Radio} 
+                  id="ogender"
+                  value="OTHER"
+                  variant="filled"
+                  >Other</Field>
+                  </Field>
+                </FormControl>
 
                 <FormControl isInvalid={!!errors.postcode && touched.postcode} isRequired>
                 <FormLabel>Current Address</FormLabel>
 
-                <Field as={Select} id="country"
-                name="country"
+                <Field as={Select} id="address.country"
+                name="address.country"
                 type="country" placeholder='Select Country'
+                onChange={handleChange}
+                value={values.address.country}
                 >
-                <option value="united states">United States</option>
-                <option value="philippines">Philippines</option>
-                <option value="vietnam">Vietnam</option>
-                <option value="nigeria">Nigeria</option>
-                <option value="panama">Panama</option>
+                <option value="United States">United States</option>
+                <option value="Philippines">Philippines</option>
+                <option value="Vietnam">Vietnam</option>
+                <option value="Nigeria">Nigeria</option>
+                <option value="Panama">Panama</option>
                 </Field>
 
-                <Field as={Select} id="city"
-                name="city"
+                <Field as={Select} id="address.city"
+                name="address.city"
                 type="city" placeholder='Select City'
+                onChange={handleChange}
+                value={values.address.city}
                 >
-                <option value="topeka">Topeka</option>
-                <option value="lawrence">Lawrence</option>
-                <option value="kansas city">Kansas City</option>
-                <option value="manila">Manila</option>
-                <option value="cebu">Cebu</option>
+                <option value="Topeka">Topeka</option>
+                <option value="Lawrence">Lawrence</option>
+                <option value="Kansas City">Kansas City</option>
+                <option value="Manila">Manila</option>
+                <option value="Cebu">Cebu</option>
                 </Field>
 
                 <Field
                 as={Input}
-                id="postcode"
+                id="address.postcode"
                 placeholder="Enter zipcode"
-                name="postcode"
+                name="address.postcode"
                 type="postcode"
+                onChange={handleChange}
+                value={values.address.postcode}
                 variant="filled"
-                validate={(value) => {
-                    if (!postcodeRegExp.test(value)) { 
-                      return "Invalid ZIP code"; 
-                    } 
-                  }}
+                validate={validatePostcode}
                 />
                 <FormErrorMessage>{errors.postcode}</FormErrorMessage>
                 </FormControl>
-                
-
+              
                 <Button type="submit" colorScheme="green" w="full">
                   Register
                 </Button>
