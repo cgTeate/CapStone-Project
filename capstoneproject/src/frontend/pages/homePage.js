@@ -17,7 +17,9 @@ export default function homePage()
             </Head>
             <Header/>
             <Slider/>
+            <p>Kicks</p>
             <ProductHome/>
+            <p>Apparel</p>
             <ApparelHome/>
         </div>
     )

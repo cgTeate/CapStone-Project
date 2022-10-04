@@ -14,8 +14,17 @@ export default function homePage()
               <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header/>
+            <p>Air Jordan</p>
             <ProductHome/>
+            <p>New Balance</p>
             <ProductHome/>
+            <p>Nike</p>
+            <ProductHome/>
+            <p>Converse</p>
+            <ProductHome/>
+            <p>UGG</p>
+            <ProductHome/>
+            <p>Vans</p>
             <ProductHome/>
         </div>
     )

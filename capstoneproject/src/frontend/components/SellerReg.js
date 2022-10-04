@@ -79,6 +79,7 @@ export default function RegistrationForm() {
 
   return (
     <div className="flex justify-center space-x-7 mt-20">
+
      <Flex bg="gray.100" align="bottom" justify="center" h="100vh">
       <Box bg="white" p={6} rounded="md" w={64}>
         <Formik
