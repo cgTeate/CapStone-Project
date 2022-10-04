@@ -15,8 +15,17 @@ export default function homePage()
               <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header/>
+            <p>BAPE</p>
             <ApparelHome/>
+            <p>Fear Of God</p>
             <ApparelHome/>
+            <p>Gucci</p>
+            <ApparelHome/>
+            <p>Off-White</p>
+            <ApparelHome/>
+            <p>Supreme</p>
+            <ApparelHome/>
+            <p>Vlone</p>
             <ApparelHome/>
         </div>
     )
