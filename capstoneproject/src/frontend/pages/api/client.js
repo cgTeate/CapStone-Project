@@ -13,7 +13,7 @@ export const getUserData = async () => {
 
 export async function addSellerData (values) {
     try {
-        const res = await fetch(`${url}/api/customers`,
+        const res = await fetch(`${url}/api/sellers`,
         {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
@@ -32,6 +32,26 @@ export async function addSellerData (values) {
                 city: values.address.city,
                 postCode: values.address.postcode,
                     }
+            }),
+        }
+        );
+        console.log(res.data)
+    } catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
+};
+
+export async function checkSeller (values) {
+    try {
+        const res = await fetch(`${url}/api/sellers`,
+        {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body:
+          JSON.stringify({
+            email: values.email,
+            password: values.password,
             }),
         }
         );
