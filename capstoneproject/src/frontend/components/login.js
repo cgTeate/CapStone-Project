@@ -1,28 +1,67 @@
-import {Flex, Heading, Input, Button, Box, Stack, Checkbox, Link,ButtonGroup} from "@chakra-ui/react";
+import {
+  Box, Button, ButtonGroup, Checkbox, Flex, FormControl,
+  FormErrorMessage, FormHelperText, Heading, Input, Link, VStack
+} from "@chakra-ui/react";
 import { Divider } from "antd";
-import {useFormik} from "formik";
+
 import { userSchema } from "../Validations/UserValidation";
 
+  
+import { Field, Form, Formik, useFormik } from 'formik';
 
 
 export default function login()
 {
-  const formik = useFormik({
-  initialVlaues:{
-    email:"",
-    password: "",
-  },
-})
-  const createUser = async (event) => {
-    event.preventDefault()
-    let formData = {
-      email: event.target[0].value,
-      password: event.target[1].value
-    };
-    const isValid = await userSchema(formData);
+  // const createUser = async (e) => {
+  //   e.preventDefault()
+  //   let formData = {
+  //     email: e.target[0].value,
+  //     password: e.target[1].value
+  //   };
+  //   const isValid = await userSchema(formData);
+  // }
+
+      const emailRegExp = /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i
+      const passwordRegExp = /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/i
+
+      const validateEmail = (value) => {
+        if (!emailRegExp.test(value)) { 
+          return "Invalid email address"; 
+        } 
+      }
+
+      const validatePassword = (value) => {
+        if (value.length < 6) {
+          return "Password should be over 6 characters.";
+        }
+        else if (!passwordRegExp.test(value)) { 
+           return "Password Must Contain 6 Characters, One Uppercase, One Lowercase, One Number and one special case Character"; 
+        } 
+      }
+
+  const initialValues = 
+    {
+      email: "",
+      password: "",
   }
-  return (<form onSubmit={createUser}>
-    <Flex 
+
+  const onSubmit = async (values) => {
+    
+    alert(JSON.stringify(values, null, 2));
+  // {await checkSeller(values)}
+  console.log(values)
+  }
+
+  return (
+
+    <Formik
+    initialValues={initialValues}
+    onSubmit={onSubmit}
+  >
+    {({ handleChange, handleSubmit, errors, touched, values}) => (
+      <form onSubmit={handleSubmit}>
+        
+        <Flex 
       height={"100vh"} 
       alignItems={"center"} 
       justifyContent={"center"}>
@@ -63,29 +102,41 @@ export default function login()
         >
           
         </Box>
-      
-      <Stack spacing={4}>
-        
-           <Input
-            placeholder="Username or Email"
-            variant ={"filled"}
-            mb={6}
-            type = "email"
-            size = 'lg'
-            value={formik.values}
-            onChange={formik.handleChange}
-          />
-        
-        
-          <Input
-            placeholder="Password"
-            variant ={"filled"}
-            type = "password"
-            mb={6}
-            value={formik.values}
-            onChange={formik.handleChange}
-          />
-          </Stack>
+        <VStack spacing={4} align="flex-start">
+        <FormControl isInvalid={!!errors.email && touched.email} isRequired>
+                  <Field
+                    as={Input}
+                    placeholder="Username or Email"
+                    mb={6}
+                    size = 'lg'
+                    id="email"
+                    name="email"
+                    type="email"
+                    onChange={handleChange}
+                    value={values.email}
+                    variant="filled"
+                    validate={validateEmail}
+                  />
+                  <FormErrorMessage>{errors.email}</FormErrorMessage>
+                </FormControl>
+
+                <FormControl isInvalid={!!errors.password && touched.password} isRequired>
+                  <Field
+                    as={Input}
+                    placeholder="Password"
+                    mb={6}
+                    size = 'lg'
+                    id="password"
+                    name="password"
+                    type="password"
+                    onChange={handleChange}
+                    value={values.password}
+                    variant="filled"
+                    validate={validatePassword}
+                  />
+                  <FormErrorMessage>{errors.password}</FormErrorMessage>
+                </FormControl>
+        </VStack>
         </Box>
         
         <Checkbox defaultChecked fontFamily={"Garamond"} colorScheme='blue'>
@@ -96,6 +147,7 @@ export default function login()
         </Link>
         <Divider orientation='horizontal'/>
         <Button 
+          type="submit"
           colorScheme='blue' 
           fontFamily={"Garamond"}
           variant='solid'> Submit 
@@ -103,6 +155,13 @@ export default function login()
       </Box>
       </Flex> 
       </Flex>
+        
       </form>
+    )}
+  </Formik>
+  
+
+    
+
   )
 }
