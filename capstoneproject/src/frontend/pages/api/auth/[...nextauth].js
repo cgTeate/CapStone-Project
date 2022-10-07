@@ -1,55 +1,84 @@
-import NextAuth from "next-auth"
-// import Providers from "next-auth/providers"
-import CredentialsProvider from "next-auth/providers/credentials";
-
+import NextAuth from 'next-auth';
+import CredentialsProvider from 'next-auth/providers/credentials';
+const url = process.env.NEXT_PUBLIC_SPRINGBOOT_API_URL
 export default NextAuth({
-  session: {
-    jwt: true
-  },
-providers: [
-  CredentialsProvider({
-    // The name to display on the sign in form (e.g. "Sign in with...")
-    name: "Credentials",
-    // The credentials is used to generate a suitable form on the sign in page.
-    // You can specify whatever fields you are expecting to be submitted.
-    // e.g. domain, username, password, 2FA token, etc.
-    // You can pass any HTML attribute to the <input> tag through the object.
-    credentials: {
-      username: { label: "Username", type: "text", placeholder: "jsmith" },
-      password: {  label: "Password", type: "password" }
-    },
-    async authorize(credentials, req) {
-      // Add logic here to look up the user from the credentials supplied
-      const user = { id: 1, name: "J Smith", email: "jsmith@example.com" }
+  providers: [
+    CredentialsProvider({
+      id: 'credentials',
+      // The name to display on the sign in form (e.g. 'Sign in with...')
+      name: 'HypeHeads',
+      // The credentials is used to generate a suitable form on the sign in page.
+      // You can specify whatever fields you are expecting to be submitted.
+      // e.g. domain, username, password, 2FA token, etc.
+      // You can pass any HTML attribute to the <input> tag through the object.
+      credentials: {
+        email: {
+          label: 'email',
+          type: 'email',
+          placeholder: 'jsmith@example.com',
+        },
+        password: { label: 'Password', type: 'password' },
+      },
+      async authorize(credentials, req) {
+        const payload = {
+          email: credentials.email,
+          password: credentials.password,
+        };
 
-      if (user) {
-        // Any object returned will be saved in `user` property of the JWT
-        return user
-      } else {
-        // If you return null then an error will be displayed advising the user to check their details.
-        return null
+        const res = await fetch(`${url}/api/sellers`, {
+          method: 'POST',
+          body: JSON.stringify(payload),
+          headers: {
+            'Content-Type': 'application/json',
+            'Accept-Language': 'en-US',
+          },
+        });
 
-        // You can also Reject this callback with an Error thus the user will be sent to the error page with the error message as a query parameter
-      }
-    }
-  })
-],
-// providers: [
-//     // OAuth authentication providers
-//     Providers.Google({
-//       clientId: process.env.GOOGLE_ID,
-//       clientSecret: process.env.GOOGLE_SECRET,
-//     }),
-//     Providers.Facebook({
-//       clientId: process.env.FACEBOOK_CLIENT_ID,
-//       clientSecret: process.env.FACEBOOK_CLIENT_SECRET
-//     }),
-//     Providers.GitHub({
-//       clientId: process.env.GITHUB_CLIENT_ID,
-//       clientSecret: process.env.GITHUB_CLIENT_SECRET
-//     })
-//   ],
+        const user = await res.json();
+        if (!res.ok) {
+          throw new Error(user.exception);
+        }
+        // If no error and we have user data, return it
+        if (res.ok && user) {
+          return user;
+        }
+
+        // Return null if user data could not be retrieved
+        return null;
+      },
+    }),
+    // ...add more providers here
+  ],
+  secret: process.env.JWT_SECRET,
   pages: {
-    signIn: '/login'
+    signIn: '/LoginPage',
   },
-})
+  callbacks: {
+    async jwt({ token, user, account }) {
+      if (account && user) {
+        return {
+          ...token,
+          accessToken: user.data.token,
+          refreshToken: user.data.refreshToken,
+        };
+      }
+
+      return token;
+    },
+
+    async session({ session, token }) {
+      session.user.accessToken = token.accessToken;
+      session.user.refreshToken = token.refreshToken;
+      session.user.accessTokenExpires = token.accessTokenExpires;
+
+      return session;
+    },
+  },
+  theme: {
+    colorScheme: 'auto', // "auto" | "dark" | "light"
+    brandColor: '', // Hex color code #33FF5D
+    logo: '/vercel.svg', // Absolute URL to image
+  },
+  // Enable debug messages in the console if you are having problems
+  debug: process.env.NODE_ENV === 'development',
+});
