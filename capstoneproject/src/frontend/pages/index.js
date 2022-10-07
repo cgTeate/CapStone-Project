@@ -12,7 +12,7 @@ import Slider from '../components/Slider'
 import ProductHome from '../components/kicksHome'
 import ApparelHome from '../components/apparelHome'
 import {Stack, VStack} from '@chakra-ui/react'
-import HomePage from './homePage'
+import HomePage from './HomePage'
 import { Router, Route, Routes } from 'react-router-dom'
 
 export default function Home() {
