@@ -3,6 +3,9 @@ import { Flex, Spacer } from '@chakra-ui/react'
 
 const ProductImages = [];
 
+export const getStaticProps = async () => {
+  
+} 
 export default function kicksHome()
 {
     const kicksHome = {

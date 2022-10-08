@@ -3,13 +3,14 @@ const url = process.env.NEXT_PUBLIC_SPRINGBOOT_API_URL
 
 export const getUserData = async () => {
     try {
-        const res = await axios.get(`${url}/api/customers`);
+        const res = await axios.get(`${url}/api/sellers`);
         return res;
     } catch (err) {
         // Handle Error Here
         console.error(err);
     }
 };
+
 
 export async function addSellerData (values) {
     try {
