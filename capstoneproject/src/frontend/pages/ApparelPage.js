@@ -1,4 +1,5 @@
 import React from 'react'
+import { Pagination } from 'antd'
 import Head from 'next/head'
 import Header from '../components/Header'
 import ApparelHome from '../components/apparelHome'
@@ -27,6 +28,7 @@ export default function homePage()
             <ApparelHome/>
             <p>Vlone</p>
             <ApparelHome/>
+            <Pagination defaultCurrent={1} total={5} />
         </div>
     )
 }

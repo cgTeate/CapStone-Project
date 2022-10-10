@@ -1,5 +1,6 @@
 import React from 'react'
 import Head from 'next/head'
+import { Pagination } from 'antd'
 import Header from '../components/Header'
 import ProductHome from '../components/kicksHome'
 
@@ -7,6 +8,7 @@ export default function homePage()
 {
 
     return (
+        
         <div>
             <Head>
               <title>Hype Heads Full Stack App</title>
@@ -26,6 +28,10 @@ export default function homePage()
             <ProductHome/>
             <p>Vans</p>
             <ProductHome/>
+            <Pagination defaultCurrent={1} total={5} />
+            
         </div>
+        
+        
     )
 }
