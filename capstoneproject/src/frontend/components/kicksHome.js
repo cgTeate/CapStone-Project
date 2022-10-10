@@ -93,6 +93,9 @@ export default function kicksHome()
     
             <Box>
               {jordan4.retailPrice}
+              <button className="primary-button" type="button">
+                Add to cart
+              </button>
               <Box as='span' color='gray.600' fontSize='sm'>
               </Box>
             </Box>
@@ -131,6 +134,9 @@ export default function kicksHome()
             <Box as='span' color='gray.600' fontSize='sm'>
             </Box>
           </Box>
+          <button className="primary-button" type="button">
+                Add to cart
+              </button>
         </Box>
         </Box>
         <Spacer/>
@@ -162,10 +168,13 @@ export default function kicksHome()
             </Box>
 
             <Box>
-            {nikeCraft.retailPrice}
+            {nikeCraft.retailPrice}         
             <Box as='span' color='gray.600' fontSize='sm'>
             </Box>
             </Box>
+             <button className="primary-button" type="button">
+                Add to cart
+              </button>
         </Box>
         </Box>
         <Spacer/>
@@ -197,10 +206,13 @@ export default function kicksHome()
           </Box>
   
           <Box>
-            {crocPollex.retailPrice}
+            {crocPollex.retailPrice}      
             <Box as='span' color='gray.600' fontSize='sm'>
             </Box>
           </Box>
+              <button className="primary-button" type="button">
+                Add to cart
+              </button>
         </Box>
       </Box>
       <Spacer/>
@@ -233,9 +245,13 @@ export default function kicksHome()
 
         <Box>
           {jordan1retro.retailPrice}
+         
           <Box as='span' color='gray.600' fontSize='sm'>
           </Box>
         </Box>
+             <button className="primary-button" type="button">
+                Add to cart
+              </button>
       </Box>
     </Box>
     <Spacer/>
@@ -271,6 +287,9 @@ export default function kicksHome()
         <Box as='span' color='gray.600' fontSize='sm'>
         </Box>
       </Box>
+        <button className="primary-button" type="button">
+            Add to cart
+        </button>
     </Box>
   </Box>
         </Flex>

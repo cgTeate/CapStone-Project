@@ -93,6 +93,9 @@ export default function ApparelHome()
               <Box as='span' color='gray.600' fontSize='sm'>
               </Box>
             </Box>
+              <button className="primary-button" type="button">
+                Add to cart
+              </button>
           </Box>
         </Box>
         <Spacer/>
@@ -124,10 +127,13 @@ export default function ApparelHome()
           </Box>
   
           <Box>
-            {patta.retailPrice}
+            {patta.retailPrice}          
             <Box as='span' color='gray.600' fontSize='sm'>
             </Box>
           </Box>
+              <button className="primary-button" type="button">
+                Add to cart
+              </button>
         </Box>
         </Box>
         <Spacer/>
@@ -160,9 +166,13 @@ export default function ApparelHome()
 
             <Box>
             {arc.retailPrice}
+            
             <Box as='span' color='gray.600' fontSize='sm'>
             </Box>
             </Box>
+            <button className="primary-button" type="button">
+                Add to cart
+              </button>
         </Box>
         </Box>
         <Spacer/>
@@ -198,6 +208,9 @@ export default function ApparelHome()
             <Box as='span' color='gray.600' fontSize='sm'>
             </Box>
           </Box>
+          <button className="primary-button" type="button">
+                Add to cart
+              </button>
         </Box>
       </Box>
       <Spacer/>
@@ -229,10 +242,13 @@ export default function ApparelHome()
         </Box>
 
         <Box>
-          {stoneIsland.retailPrice}
+          {stoneIsland.retailPrice}  
           <Box as='span' color='gray.600' fontSize='sm'>
           </Box>
         </Box>
+        <button className="primary-button" type="button">
+                Add to cart
+              </button>
       </Box>
     </Box>
     <Spacer/>
