@@ -93,12 +93,11 @@ export default function kicksHome()
     
             <Box>
               {jordan4.retailPrice}
-              <button className="primary-button" type="button">
-                Add to cart
-              </button>
               <Box as='span' color='gray.600' fontSize='sm'>
               </Box>
-            </Box>
+            </Box><button className="primary-button" type="button">
+                Add to cart
+              </button>
           </Box>
         </Box>
         <Spacer/>
