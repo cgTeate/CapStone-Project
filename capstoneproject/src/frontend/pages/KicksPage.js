@@ -3,6 +3,7 @@ import Head from 'next/head'
 import { Pagination } from 'antd'
 import Header from '../components/Header'
 import ProductHome from '../components/kicksHome'
+import AirJordan from '../components/airJordan'
 
 export default function homePage()
 {
@@ -17,7 +18,7 @@ export default function homePage()
             </Head>
             <Header/>
             <p>Air Jordan</p>
-            <ProductHome/>
+            <AirJordan/>
             <p>New Balance</p>
             <ProductHome/>
             <p>Nike</p>

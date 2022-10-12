@@ -10,7 +10,7 @@ import image3 from "../images/image3.jpg";
 
 
 
-const fadeImages = [image2];
+const fadeImages = [image3];
 
 const fadeProperties = {
   duration: 5000,
