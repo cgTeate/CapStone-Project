@@ -29,15 +29,24 @@ public class SellerController {
     private final SellerService sellerService;
 
     @GetMapping
-    public List<Seller> fetchAllStudents(){
+    public List<Seller> fetchAllSellers(){
         return sellerService.getAllSeller();
     }
 
-    @PostMapping
-    public void registerNewSeller(@RequestBody Seller seller) {
-        sellerService.registerNewSeller(seller);
+    @PostMapping("/login")
+    public void registerNewSeller(
+        @RequestParam(required = true) String email,
+        @RequestParam(required = true) String password){
+        sellerService.checkExistingSeller(email, password); 
     }
+    
 
+    // @PostMapping("/login")
+    // public String checkSeller(@RequestBody Seller seller) {
+    //     return sellerService.checkExistingSeller(seller);
+    // }
+
+    
     @DeleteMapping(path = "{sellerId}")
     public void deleteSeller(@PathVariable("sellerId") String sellerId) {
         sellerService.deleteSeller(sellerId);

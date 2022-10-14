@@ -12,4 +12,6 @@ public interface SellerRepository extends MongoRepository<Seller, String>{
     
     Optional<Seller> findSellerByEmail(String email);
 
+    Optional<Seller> findByEmail(String email);
+
 }

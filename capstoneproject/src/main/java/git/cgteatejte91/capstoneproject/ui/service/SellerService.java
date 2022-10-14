@@ -36,6 +36,39 @@ public class SellerService {
         }
         sellerRepository.save(seller);
     }
+    //post request
+    public String checkExistingSeller(String email, String password) {
+
+        Seller seller = sellerRepository.findByEmail(email)
+                .orElseThrow(() -> new IllegalStateException(
+                    "Seller with " + email + " does not exist"));
+
+                    if(email != null &&
+                    email.length() > 0 && 
+                    !Objects.equals(seller.getEmail(), email)) {
+               Optional<Seller> sellerOptional = sellerRepository
+                        .findSellerByEmail(email);
+                if(sellerOptional.isPresent()) {
+                    throw new IllegalStateException("email taken");
+                }
+                return seller.getEmail();
+            }
+
+                    if(password != null &&
+                    password.length() > 0 && 
+                    !Objects.equals(seller.getPassword(), password)) {
+                return seller.getPassword();
+            }
+
+            
+
+        // Optional<Seller> sellerOptional = sellerRepository
+        //     .findSellerByEmail(seller.getEmail());
+        // if(!sellerOptional.isPresent()) {   
+        //     throw new IllegalStateException("User does not exist");
+        // }
+        return (seller.toString());
+    }
 
     //delete request
     public void deleteSeller(String sellerId) {
