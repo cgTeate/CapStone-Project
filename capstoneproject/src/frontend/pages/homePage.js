@@ -4,9 +4,11 @@ import Header from '../components/Header'
 import Slider from '../components/Slider'
 import ProductHome from '../components/kicksHome'
 import ApparelHome from '../components/apparelHome'
+import { useSession, signIn, signOut } from 'next-auth/react';
 
 export default function homePage()
 {
+    const { data: session } = useSession();
 
     return (
         <div>
@@ -16,6 +18,13 @@ export default function homePage()
               <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header/>
+            <br></br><a className="drop" href="#"><btn 
+              className={`mt-10 text-sm tracking-wide text-gray-100 focus:outline-none focus:shadow-outline hover:shadow-xl active:scale-90 transition duration-150  
+              ${ session?.user?.accessToken ? 'text-red-400' : 'text-green-400'
+             }`}
+             onClick={() => (session?.user?.accessToken ? signOut() : signIn())}
+              >{session?.user?.accessToken ? 'Log Out' : 'Log In'}
+              </btn></a>
             <Slider/>
             <p>Kicks</p>
             <ProductHome/>

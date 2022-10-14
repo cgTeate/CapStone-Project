@@ -3,15 +3,16 @@ import {
   FormErrorMessage, FormHelperText, Heading, Input, Link, VStack
 } from "@chakra-ui/react";
 import { Divider } from "antd";
-
 import { userSchema } from "../Validations/UserValidation";
-
-  
+import { useState } from 'react';
+import { signIn, getCsrfToken } from 'next-auth/react';
+import { useRouter } from 'next/router';
 import { Field, Form, Formik, useFormik } from 'formik';
-
 
 export default function login()
 {
+  const router = useRouter();
+  const [error, setError] = useState(null);
   // const createUser = async (e) => {
   //   e.preventDefault()
   //   let formData = {
@@ -45,11 +46,24 @@ export default function login()
       password: "",
   }
 
-  const onSubmit = async (values) => {
-    
+  const onSubmit = async (values,{ setSubmitting }) => {
     alert(JSON.stringify(values, null, 2));
   // {await checkSeller(values)}
   console.log(values)
+  const res = await signIn('credentials', {
+    redirect: false,
+    email: values.email,
+    password: values.password,
+    callbackUrl: `${window.location.origin}`,
+  });
+   console.log(res)
+  // if (res?.error) {
+  //   setError(res.error);
+  // } else {
+  //   setError(null);
+  // }
+  // if (res.url) router.push(res.url);
+  setSubmitting(false);
   }
 
   return (
@@ -102,7 +116,17 @@ export default function login()
         >
           
         </Box>
+        {/* <input
+                  name="csrfToken"
+                  type="hidden"
+                  defaultValue={csrfToken}
+                />
+
+                <div className="text-red-400 text-md text-center rounded p-2">
+                  {error}
+                </div> */}
         <VStack spacing={4} align="flex-start">
+                
         <FormControl isInvalid={!!errors.email && touched.email} isRequired>
                   <Field
                     as={Input}
@@ -159,9 +183,21 @@ export default function login()
       </form>
     )}
   </Formik>
-  
-
-    
-
   )
 }
+
+// // This is the recommended way for Next.js 9.3 or newer
+// export async function getServerSideProps(context) {
+// //   const session = await getSession(context)
+
+// //   if (session) {
+// //     return {
+// //         redirect: { destination: '/' }
+// //     }
+// // }
+//   return {
+//     props: {
+//       csrfToken: await getCsrfToken(context),
+//     },
+//   };
+// }

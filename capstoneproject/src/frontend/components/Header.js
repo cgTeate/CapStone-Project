@@ -22,7 +22,7 @@ import { useRouter } from 'next/router';
    
     <header className="sticky top-0 bg-white">
     <div className="flex justify-between p-5 text-sm text-gray-700flex space-x-4">
-      <div id="logo" class="fl_left">
+      <div id="logo" className="fl_left">
         <h1 style={mystyle}>HYPE HEADS</h1>
       </div>
       <div className="relative mt-2">
@@ -43,13 +43,13 @@ import { useRouter } from 'next/router';
               <a className="drop" href="#"><Link href = "/">Live Bidding</Link></a>
               <br></br> <a className="drop" href="#"><Link href ="/FAQSPage">FAQS</Link></a>
               <br></br><a className="drop" href="#"><Link href = "/LoginPage">Log In</Link></a>
-              <br></br><a className="drop" href="#"><btn 
+              {/* <br></br><a className="drop" href="#"><btn 
               className={`mt-10 text-sm tracking-wide text-gray-100 focus:outline-none focus:shadow-outline hover:shadow-xl active:scale-90 transition duration-150  
               ${ session?.user?.accessToken ? 'text-red-400' : 'text-green-400'
              }`}
              onClick={() => (session?.user?.accessToken ? signOut() : signIn())}
               >{session?.user?.accessToken ? 'Log Out' : 'Log In'}
-              </btn></a>
+              </btn></a> */}
               <br></br><a className="drop" href="#"><Link href ="/SellerPage">Sell</Link></a>
         </div>
         
