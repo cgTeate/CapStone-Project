@@ -1,12 +1,15 @@
-import { MagnifyingGlassIcon, PlusCircleIcon } from '@heroicons/react/24/outline';
-import ApparelHome from './apparelHome';
-import Login from '../components/login'
-import SellerReg from '../components/SellerReg'
-import Register from '../components/Register'
-import KicksMain from '../components/KicksMain'
-import Link from 'next/link';
+import {
+  MagnifyingGlassIcon,
+  PlusCircleIcon,
+} from "@heroicons/react/24/outline";
+import ApparelHome from "./apparelHome";
+import Login from "../components/login";
+import SellerReg from "../components/SellerReg";
+import Register from "../components/Register";
+import KicksMain from "../components/KicksMain";
+import Link from "next/link";
 
- export default function Header() {
+export default function Header() {
   const mystyle = {
     color: "black",
     //backgroundColor: "Gray",
@@ -16,13 +19,16 @@ import Link from 'next/link';
     // fontWeight: "bold",
   };
   return (
-   
     <header className="sticky top-0 bg-white">
-    <div className="flex justify-between p-5 text-sm text-gray-700flex space-x-4">
-      <div id="logo" class="fl_left">
-        <h1 style={mystyle}>HYPE HEADS</h1>
-      </div>
-      <div className="relative mt-2">
+      <div className="flex justify-between p-5 text-sm text-gray-700flex space-x-4">
+        <div id="logo" class="fl_left">
+          <Link href="/">
+            <a>
+              <h1 style={mystyle}>HYPE HEADS</h1>
+            </a>
+          </Link>
+        </div>
+        <div className="relative mt-2">
           <div className="absolute top-2 middle-2">
             <MagnifyingGlassIcon className="h-5 text-gray-500" />
           </div>
@@ -33,17 +39,47 @@ import Link from 'next/link';
           />
         </div>
 
-        <div className="flex space-x-4 items-center"> 
-              <a href=""><Link href="/homePage">Home</Link></a>
-              <a  href=""><Link href="/KicksPage">Kicks</Link></a>
-              <a class="drop" href="#"><Link href ="/ApparelPage">Apparel</Link></a>           
-              <a class="drop" href="#"><Link href = "/">Live Bidding</Link></a>
-              <br></br> <a class="drop" href="#"><Link href ="/FAQSPage">FAQS</Link></a>
-              <br></br><a class="drop" href="#"><Link href = "/LoginPage">Log In</Link></a>
-              <br></br><a class="drop" href="#"><Link href ="/SellerPage">Sell</Link></a>
+        <div className="flex space-x-4 items-center">
+          <Link href="/homePage">Home</Link>
+          <Link href="/KicksPage">Kicks</Link>
+          <Link href="/ApparelPage">
+            <a class="drop">Apparel</a>
+          </Link>
+
+          <Link href ="/LiveBidding">
+            <a class="drop" href="#">
+              Live Bidding
+            </a>
+          </Link>
+
+          
+       
+          <Link href="/FAQSPage">
+            <a class="drop" href="#">
+              FAQS
+            </a>
+          </Link>
+         
+
+
+
+          <Link href="/LoginPage">
+     
+            <a class="drop" href="#">
+              Log In
+            </a>
+          </Link>
+          
+
+
+          <Link href="/SellerPage">
+         
+            <a class="drop">
+              Sell
+            </a>
+          </Link>
         </div>
-        
-    </div>
+      </div>
     </header>
-  )
+  );
 }
