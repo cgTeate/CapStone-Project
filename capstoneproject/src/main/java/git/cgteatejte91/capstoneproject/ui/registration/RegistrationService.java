@@ -11,7 +11,7 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class RegistrationService {
     private final WebsiteUserService websiteUserService;
-    
+
     public String register(RegistrationRequest request) {
         
         return websiteUserService.signUp(
@@ -25,7 +25,7 @@ public class RegistrationService {
                     request.getPhoneNumber(),
                     request.getGender(), 
                     request.getAddress(), 
-                    null
+                    request.getCreated()
             )
     );
     
