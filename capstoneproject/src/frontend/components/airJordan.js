@@ -1,7 +1,7 @@
+import {Routes, Route, useNavigate} from 'react-router-dom';
 import { Box, Image } from '@chakra-ui/react'
 import { Flex, Spacer } from '@chakra-ui/react'
-
-const ProductImages = [];
+import { useControllableProp, useControllableState } from '@chakra-ui/react'
 
 export const getStaticProps = async () => {
   
