@@ -41,19 +41,17 @@ public class WebsiteUser implements UserDetails{
     @Transient
     private Integer age;
 
-    
-
     public WebsiteUser() {
         created = LocalDateTime.now().toString();
     }
 
     public WebsiteUser(String firstName, String lastName, String email, String password, UserRole role, LocalDate dob,
-         String phoneNumber, Gender gender, Address address, String created) {
+            String phoneNumber, Gender gender, Address address, String created) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.password = password;
-        this.role=role;
+        this.role = role;
         this.dob = dob;
         this.phoneNumber = phoneNumber;
         this.gender = gender;
