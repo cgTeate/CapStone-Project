@@ -12,9 +12,9 @@ export const getUserData = async () => {
 };
 
 
-export async function addSellerData (values) {
+export async function addUserData (values) {
     try {
-        const res = await fetch(`${url}/api/customers`,
+        const res = await fetch(`${url}/api/registration`,
         {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
@@ -22,9 +22,9 @@ export async function addSellerData (values) {
           JSON.stringify({
             firstName: values.firstname,
             lastName: values.lastname,
-            username: values.username,
             email: values.email,
             password: values.password,
+            role: values.usertype,
             phoneNumber: values.phonenumber,
             dob: values.dob,
             gender: values.gender,
@@ -36,7 +36,7 @@ export async function addSellerData (values) {
             }),
         }
         );
-        console.log(res.data)
+        console.log(res)
     } catch (err) {
         // Handle Error Here
         console.error(err);
