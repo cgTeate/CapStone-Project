@@ -48,6 +48,31 @@ const data = {
         releaseDate: "2019-05-11",
         thumbnail:"https://images.stockx.com/360/Air-Jordan-1-Retro-High-Travis-Scott/Images/Air-Jordan-1-Retro-High-Travis-Scott/Lv2/img01.jpg?fm=avif&amp;auto=compress&amp;w=576&amp;dpr=3&amp;updated_at=1635191289",
         },
+        {
+            shoeName: "NikeCraft General Purpose Shoe Tom Sachs Archive Dark Sulfur",
+            brand: "Nike",
+            colorway: "Dark Sulfur/White-Light Cream",
+            retailPrice: "$ 110.00",
+            releaseDate: "2022-09-02",
+            thumbnail:"https://images.stockx.com/images/NikeCraft-General-Purpose-Shoe-Tom-Sachs-Yellow-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1662558895",
+        }, 
+        {
+            shoeName: "Crocs Pollex Clog by Salehe Bembury Tide",
+      brand: "Crocs",
+      colorway: "Turquoise Tonic",
+      retailPrice: "$ 85.00",
+      releaseDate: "2022-09-22",
+      thumbnail:"https://images.stockx.com/images/Crocs-Pollex-Clog-by-Salehe-Bembury-Tide-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1664259289",
+        }, 
+        {
+            shoeName: "adidas Yeezy Boost 350 V2 Flax",
+      brand: "adidas",
+      colorway: "Flax/Flax/Flax",
+      retailPrice: "$ 220.00",
+      releaseDate: "2020-02-22",
+      thumbnail:"https://images.stockx.com/images/adidas-Yeezy-Boost-350-V2-Flax-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1657197541",
+        }, 
+        
     ],
 };
 
