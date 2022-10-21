@@ -28,7 +28,19 @@ export default function ProductScreen() {
       <div className="md:col-span-2">
         <Image 
           src={product.thumbnail}
-          alt=
+          alt={product.shoeName}
+          width={640}
+          height={640}
+          layout="responsive"></Image>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <h1 className="text-lg">{product.shoeName}</h1>
+          </li>
+          <li>{product.description}</li>
+          <li></li>
+        </ul>
       </div>
         </div></>
   )
