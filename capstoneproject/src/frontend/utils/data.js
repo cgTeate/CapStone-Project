@@ -81,6 +81,51 @@ const data = {
       thumbnail:"https://images.stockx.com/images/adidas-Yeezy-Boost-350-V2-Flax-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1657197541",
       description:"The adidas Yeezy Boost 350 V2 ‘Beluga Reflective’ brings back the 2016 colorway with a twist. Like the original ‘Beluga’ release, this pair features a predominantly grey Primeknit upper with an orange side stripe marked with SPLY-350 branding. Interwoven throughout the knit build are reflective fibers that offer enhanced visibility in low-light conditions. The sneaker’s tooling remains unchanged, highlighted by a full-length Boost midsole wrapped in a semi-translucent rubber cage."
         }, 
+        {
+            shoeName: "Air Jordan 4 Retro 'Red Thunder'",
+      brand: "Jordan",
+      colorway: "BLACK/MULTI-COLOR-MULTI-COLOR-CRIMSON",
+      retailPrice: "$ 190.00",
+      releaseDate: "2022-01-15",
+      thumbnail:"https://images.stockx.com/360/Air-Jordan-4-Retro-Red-Thunder/Images/Air-Jordan-4-Retro-Red-Thunder/Lv2/img01.jpg?fm=avif&amp;auto=compress&amp;w=576&amp;dpr=2&amp;updated_at=1641395120&amp;h=384&amp;q=60 2x,",
+      description:"The Air Jordan 4 Retro ‘Red Thunder’, also known as 'Crimson', features familiar color blocking that recalls the coveted ‘Thunder’ colorway, originally released in 2006 and subsequently reissued in 2012. The mid-top sports a black nubuck upper with contrasting pops of crimson in lieu of the older shoe’s Tour Yellow accents. They appear on the sneaker’s molded eyelets, interior tongue, quarter panel, throat and midsole, which packs visible Air-sole cushioning under the heel. Jumpman branding decorates the tongue tag and heel."
+        }, 
+        {
+            shoeName: "Air Jordan 4 Retro 'University Blue'",
+      brand: "Jordan",
+      colorway: "UNIVERSITY BLUE/TECH GREY-WHITE-BLACK",
+      retailPrice: "$ 200.00",
+      releaseDate: "2021-04-28",
+      thumbnail:"https://images.stockx.com/360/Air-Jordan-4-Retro-University-Blue/Images/Air-Jordan-4-Retro-University-Blue/Lv2/img01.jpg?fm=avif&amp;auto=compress&amp;w=576&amp;dpr=2&amp;updated_at=1635344971&amp;h=384&amp;q=60 2x,",
+      description:"The Air Jordan 4 Retro ‘University Blue’ updates the classic silhouette with a suede upper in a familiar hue inspired by Michael Jordan’s UNC alma mater. The bright blue palette is contrasted by a speckled grey finish on the sneaker’s supportive wings and back heel, featuring a raised Jumpman icon in black. Secondary Jumpman branding adorns the woven tongue tag, designed to mimic a jock tag that typically appears on the bottom hem of Jordan jerseys."
+        }, 
+        {
+            shoeName: "Air Jordan 4 Retro OG 'White Cement' 2016",
+      brand: "Jordan",
+      colorway: "WHITE/FIRE RED-BLACK-TECH GREY",
+      retailPrice: "$ 220.00",
+      releaseDate: "2016-02-13",
+      thumbnail:"https://images.stockx.com/360/Air-Jordan-4-Retro-White-Cement-2016/Images/Air-Jordan-4-Retro-White-Cement-2016/Lv2/img01.jpg?fm=avif&amp;auto=compress&amp;w=576&amp;dpr=2&amp;updated_at=1635276861&amp;h=384&amp;q=60 2x,",
+      description:"The Air Jordan 4 Retro OG 'Cement’ 2016 was one of the original four colorways released in 1989. The sneaker features the original White, Fire Red, Black, and Tech Grey colorway, with the speckled Cement Grey accents that give the sneaker its nickname. Released during the 2016 NBA All-Star weekend in Toronto, the sneaker was also retro’d in 1999 and 2012. The 1999 and 2016 retros are the only models that feature the ‘Nike Air’ branding on the heel, just like the 1989 OG sneakers."
+        }, 
+        {
+            shoeName: "Air Jordan 4 Retro 'Cool Grey' 2019",
+      brand: "Jordan",
+      colorway: "COOL GREY/CHROME-DARK CHARCOAL-VARSITY MAIZE",
+      retailPrice: "$ 190.00",
+      releaseDate: "2019-08-01",
+      thumbnail:"https://images.stockx.com/360/Air-Jordan-4-Retro-Cool-Grey-2019/Images/Air-Jordan-4-Retro-Cool-Grey-2019/Lv2/img01.jpg?fm=avif&amp;auto=compress&amp;w=576&amp;dpr=2&amp;updated_at=1634912063&amp;h=384&amp;q=60 2x",
+      description:"Re-released in August 2019, the Air Jordan 4 Retro 'Cool Grey' celebrates the iconic sneaker's 30th anniversary in a true-to-form retro of a 2004 colorway. The Cool Grey nubuck upper is framed with a white midsole that houses a visible Nike Air unit, while black details line the outsole and lace loops. A hint of Varsity Maize appears on the tongue patch, Air bubble and outsole, while a chrome Jumpman logo adorns the back heel."
+        }, 
+        {
+            shoeName: "Air Jordan 4 Retro SE 'What The 4'",
+      brand: "Jordan",
+      colorway: "WHITE/MILITARY BLUE-FIRE RED-BLACK-CEMENT GREY",
+      retailPrice: "$ 200.00",
+      releaseDate: "2019-11-23",
+      thumbnail:"https://images.stockx.com/360/Air-Jordan-4-Retro-What-The/Images/Air-Jordan-4-Retro-What-The/Lv2/img01.jpg?fm=avif&amp;auto=compress&amp;w=576&amp;dpr=2&amp;updated_at=1635191413&amp;h=384&amp;q=60 2x,",
+      description:"Released in November 2019, the Air Jordan 4 Retro SE 'What The 4' takes the original four colorways of the Air Jordan 4 and combines them in a 'What The' format that has been seen on several Nike silhouettes. This original color palette is realized on the entire shoe, with the beloved Varsity Red, Cement Grey and Military Blue that Jordan 4 fans recognize and love. The discordant aesthetic works across the leather uppers, signature lacing wings and Jumpman logos on the tongue and heel to create something familiar yet new."
+        }, 
         
     ],
 };

@@ -1,4 +1,5 @@
 import { useRouter } from 'next/router'
+import Image from 'next/images'
 import Link from 'next/link'
 import Head from 'next/head'
 import Header from '../components/Header'
@@ -22,7 +23,8 @@ export default function ProductScreen() {
     </Head>
     <Header />
       <div className="py-2">
-      <Link href="/homePage">Back To Home</Link>
+      <Link href="/homePage"><a>Back To Home</a>
+      </Link>
       </div>
       <div className="grid md:grid-cols-4 md:gap-3">
       <div className="md:col-span-2">
@@ -38,9 +40,14 @@ export default function ProductScreen() {
           <li>
             <h1 className="text-lg">{product.shoeName}</h1>
           </li>
+          <li>{product.releaseDate}</li>
           <li>{product.description}</li>
-          <li></li>
         </ul>
+      </div>
+      <div className="card p-5">
+        <div className="mb-2 flex justify-between">
+          <div>${product.retailPrice}</div>
+        </div>
       </div>
         </div></>
   )
