@@ -1,13 +1,12 @@
 import React from 'react'
 import Head from 'next/head'
-import { Pagination } from 'antd'
 import Header from '../components/Header'
 import ProductHome from '../components/kicksHome'
 import AirJordan from '../components/airJordan'
-import ProductItem from '../components/productItem'
+import ProductItem from '../components/ProductItem'
 import data from '../utils/data'
 
-export default function homePage({product})
+export default function kicksPage({product})
 {
 
     return (
@@ -19,7 +18,7 @@ export default function homePage({product})
             <Header />
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
                 {data.products.map((product) => (
-                    <ProductItem product={product} key={product.shoeName}></ProductItem>
+                    <ProductItem product={product} key={product.slug}></ProductItem>
                 ))}
             </div></>
    

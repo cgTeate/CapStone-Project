@@ -1,4 +1,8 @@
 import { useRouter } from 'next/router'
+import Image from 'next/images'
+import Link from 'next/link'
+import Head from 'next/head'
+import Header from '../components/Header'
 import React from 'react'
 import data from '../utils/data';
 
@@ -18,8 +22,33 @@ export default function ProductScreen() {
       <link rel="icon" href="/favicon.ico" />
     </Head>
     <Header />
-    <div className="py-2">
-      
-      </div></>
+      <div className="py-2">
+      <Link href="/homePage"><a>Back To Home</a>
+      </Link>
+      </div>
+      <div className="grid md:grid-cols-4 md:gap-3">
+      <div className="md:col-span-2">
+        <Image 
+          src={product.thumbnail}
+          alt={product.shoeName}
+          width={640}
+          height={640}
+          layout="responsive"></Image>
+      </div>
+      <div>
+        <ul>
+          <li>
+            <h1 className="text-lg">{product.shoeName}</h1>
+          </li>
+          <li>{product.releaseDate}</li>
+          <li>{product.description}</li>
+        </ul>
+      </div>
+      <div className="card p-5">
+        <div className="mb-2 flex justify-between">
+          <div>${product.retailPrice}</div>
+        </div>
+      </div>
+        </div></>
   )
 }
