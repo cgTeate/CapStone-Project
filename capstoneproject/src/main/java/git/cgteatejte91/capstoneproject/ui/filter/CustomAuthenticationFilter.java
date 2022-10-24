@@ -9,6 +9,8 @@ import org.springframework.security.core.AuthenticationException;
 
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
@@ -22,20 +24,38 @@ import java.io.IOException;
  */
 @Slf4j
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
-    private final AuthenticationManagerBuilder authenticationManager; // trying to pull this down with the bean
+    private final AuthenticationManager authenticationManager; // trying to pull this down with the bean
 
-    public CustomAuthenticationFilter(AuthenticationManagerBuilder authenticationManager) {
+    public CustomAuthenticationFilter(AuthenticationManager authenticationManager) {
         this.authenticationManager = authenticationManager;
     }
 
-    // @Override
-    // public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
-    //     String email = request.getParameter("email");
-    //     String password = request.getParameter("password");
-    //     log.info("Email is: {}", email); log.info("Password is: {}", password);
-    //     UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, password);
-    //     return authenticationManager.authenticate(authenticationToken);
-    // }
+    @Override
+    public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
+        // String email = request.getParameter("email");
+        // String password = request.getParameter("password");
+        // log.info("Email is: {}", email); log.info("Password is: {}", password);
+        // UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, password);
+        // return authenticationManager.authenticate(authenticationToken);
+        try {
+        UserNameAndPasswordAuthenticationRequest authenticationRequest = new ObjectMapper().readValue(request.getInputStream(), UserNameAndPasswordAuthenticationRequest.class);
+
+
+            Authentication authentication =  new UsernamePasswordAuthenticationToken(
+                authenticationRequest.getUsername(),
+                authenticationRequest.getPassword()
+            );
+
+
+            Authentication authenticate =  authenticationManager.authenticate(authentication);
+            return authenticate;
+
+             } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+
+       
+    }
 
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException {

@@ -31,9 +31,10 @@ public class WebSecurityConfig {
     //WebSecurityConfigurerAdapter deprecated, so changed to below
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
-             http.cors().and().csrf().disable()
-             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-             .authorizeRequests().antMatchers("/api/registration/**").permitAll().and()
+        http.cors().and().csrf().disable()
+        .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
+        .authorizeRequests().antMatchers("/api/registration/**", "/api/login/**").permitAll()
+        .anyRequest().authenticated();
             // .addFilter(customAuthenticationFilter);
 
         // http.authorizeRequests().antMatchers("/api/login/**", "/api/token/refresh/**").permitAll();

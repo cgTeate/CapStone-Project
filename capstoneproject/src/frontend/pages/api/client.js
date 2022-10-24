@@ -10,11 +10,11 @@ export const getUserData = async () => {
         console.error(err);
     }
 };
-
-
 export async function addUserData (values) {
     try {
-        const res = await fetch(`${url}/api/registration`,
+        //for M1 Chip
+        const res = await fetch(`http://localhost:8080/api/registration`,
+        // const res = await fetch(`${url}/api/registration`,
         {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
@@ -37,11 +37,41 @@ export async function addUserData (values) {
         }
         );
         console.log(res)
+
+        if(res.status == 200)
+        {
+            console.log("Registration successful");
+        }
+        else{
+            console.log("Registration failed");
+        }
     } catch (err) {
         // Handle Error Here
         console.error(err);
     }
 };
+
+
+export async function loginUser (values) {
+    try {
+        const res = await fetch(`http://localhost:8080/api/login`,
+        {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body:
+          JSON.stringify({
+            email: values.email,
+            password: values.password,
+            }),
+        }
+        );
+        console.log(res)
+    } catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
+};
+
 
 
 // export const getAllCust = () =>

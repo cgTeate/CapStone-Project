@@ -1,5 +1,6 @@
 package git.cgteatejte91.capstoneproject.ui.service;
 
+import java.util.Objects;
 import java.util.Optional;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -33,6 +34,7 @@ public class WebsiteUserService implements UserDetailsService{
         .isPresent();
         if(userExists){
             throw new IllegalStateException("email already taken"); 
+            // return "email already taken";
         }
         String encodedPassword = bCryptPasswordEncoder.encode(websiteUser.getPassword());
         websiteUser.setPassword(encodedPassword);
@@ -40,5 +42,26 @@ public class WebsiteUserService implements UserDetailsService{
         //TODO: send token
         return "it works";
     }
+
+    public String signIn(WebsiteUser websiteUser){
+        boolean userExists = websiteUserRepository.findByEmail(websiteUser.getEmail()).isPresent();
+        if(!userExists){
+            throw new IllegalStateException("wrong user name");
+        }
+        String encodedPassword = bCryptPasswordEncoder.encode(websiteUser.getPassword());
+        Optional<WebsiteUser> dbPassword = websiteUserRepository.findByPassword(websiteUser.getPassword());
+
+        if(websiteUser.getPassword() != null &&
+                    websiteUser.getPassword().length() > 0 && 
+                    !Objects. equals(encodedPassword, dbPassword)) 
+        {
+            return "it works";
+        }
+        else{
+            throw new IllegalStateException("wrong email or password");
+        }
+        
+    }
+
     
 }
