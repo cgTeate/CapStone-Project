@@ -1,10 +1,10 @@
 import { useRouter } from 'next/router'
-import Image from 'next/images'
 import Link from 'next/link'
 import Head from 'next/head'
-import Header from '../components/Header'
+import Header from '../../components/Header'
 import React from 'react'
-import data from '../utils/data';
+import data from '../../utils/data';
+import { Image } from 'antd'
 
 
 export default function ProductScreen() {
@@ -23,10 +23,10 @@ export default function ProductScreen() {
     </Head>
     <Header />
       <div className="py-2">
-      <Link href="/homePage"><a>Back To Home</a>
+      <Link href="/KicksPage"><a>Back To Kicks</a>
       </Link>
       </div>
-      <div className="grid md:grid-cols-4 md:gap-3">
+       <div className="grid md:grid-cols-4 md:gap-3">
       <div className="md:col-span-2">
         <Image 
           src={product.thumbnail}
@@ -34,6 +34,7 @@ export default function ProductScreen() {
           width={640}
           height={640}
           layout="responsive"></Image>
+      </div>
       </div>
       <div>
         <ul>
@@ -46,9 +47,12 @@ export default function ProductScreen() {
       </div>
       <div className="card p-5">
         <div className="mb-2 flex justify-between">
-          <div>${product.retailPrice}</div>
+          <div>{product.retailPrice}
+          </div>
+          <button className="primary-button w-full">Add to cart</button>
         </div>
       </div>
-        </div></>
+        {/* */}
+        </>
   )
 }

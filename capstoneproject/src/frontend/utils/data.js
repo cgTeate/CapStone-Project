@@ -2,6 +2,7 @@ const data = {
     products: [
         {
             shoeName: "Jordan 4 Retro SE Black Canvas",
+            slug: "Jordan 4 Retro SE Black Canvas",
             brand: "Jordan",
             colorway: "Black/Light Steel Grey/White/Fire Red",
             retailPrice: "$ 210.00",
@@ -11,6 +12,7 @@ const data = {
         },
         {
             shoeName: "Jordan 3 Retro Fire Red (2022)",
+            slug:"Jordan 3 Retro Fire Red (2022)",
             brand: "Jordan",
             colorway: "White/Fire Red/Cement Grey/Black",
             retailPrice: "$ 210.00",
@@ -20,6 +22,7 @@ const data = {
         }, 
         {
             shoeName: "Jordan 1 Retro Low OG Black Dark Powder Blue",
+            slug:"Jordan 1 Retro Low OG Black Dark Powder Blue",
       brand: "Jordan",
       colorway: "White/Dark Powder Blue/Black",
       retailPrice: "$ 130.00",
@@ -29,6 +32,7 @@ const data = {
         }, 
         {
             shoeName: "Air Jordan 1 Retro High OG Pine Green 2.0",
+            slug:"Air Jordan 1 Retro High OG Pine Green 2.0",
         brand: "Jordan",
         colorway: "Black/White-Gym Red-Pine Green",
         retailPrice: "$ 190.00",
@@ -38,6 +42,7 @@ const data = {
         },
         {
             shoeName: "Air Jordan 1 High Retro OG 'Pollen'",
+            slug:"Air Jordan 1 High Retro OG 'Pollen'",
         brand: "Jordan",
         colorway: "Pollen/Black/White",
         retailPrice: "$ 180.00",
@@ -47,6 +52,7 @@ const data = {
         },
         {
             shoeName: "Travis Scott x Air Jordan 1 Retro High OG 'Mocha'",
+            slug: "Travis Scott x Air Jordan 1 Retro High OG 'Mocha'",
         brand: "Jordan",
         colorway: "Sail/Dark Mocha-University Red-Black",
         retailPrice: "$ 1,750.00",
@@ -56,6 +62,7 @@ const data = {
         },
         {
             shoeName: "NikeCraft General Purpose Shoe Tom Sachs Archive Dark Sulfur",
+            slug:"NikeCraft General Purpose Shoe Tom Sachs Archive Dark Sulfur",
             brand: "Nike",
             colorway: "Dark Sulfur/White-Light Cream",
             retailPrice: "$ 110.00",
@@ -65,6 +72,7 @@ const data = {
         }, 
         {
             shoeName: "Crocs Pollex Clog by Salehe Bembury Tide",
+            slug:"Crocs Pollex Clog by Salehe Bembury Tide",
       brand: "Crocs",
       colorway: "Turquoise Tonic",
       retailPrice: "$ 85.00",
@@ -74,6 +82,7 @@ const data = {
         }, 
         {
             shoeName: "adidas Yeezy Boost 350 V2 Flax",
+            slug:"adidas Yeezy Boost 350 V2 Flax",
       brand: "adidas",
       colorway: "Flax/Flax/Flax",
       retailPrice: "$ 220.00",
@@ -83,6 +92,7 @@ const data = {
         }, 
         {
             shoeName: "Air Jordan 4 Retro 'Red Thunder'",
+            slug:"Air Jordan 4 Retro 'Red Thunder'",
       brand: "Jordan",
       colorway: "BLACK/MULTI-COLOR-MULTI-COLOR-CRIMSON",
       retailPrice: "$ 190.00",
@@ -92,6 +102,7 @@ const data = {
         }, 
         {
             shoeName: "Air Jordan 4 Retro 'University Blue'",
+            slug: "Air Jordan 4 Retro 'University Blue'",
       brand: "Jordan",
       colorway: "UNIVERSITY BLUE/TECH GREY-WHITE-BLACK",
       retailPrice: "$ 200.00",
@@ -101,6 +112,7 @@ const data = {
         }, 
         {
             shoeName: "Air Jordan 4 Retro OG 'White Cement' 2016",
+            slug: "Air Jordan 4 Retro OG 'White Cement' 2016",
       brand: "Jordan",
       colorway: "WHITE/FIRE RED-BLACK-TECH GREY",
       retailPrice: "$ 220.00",
@@ -110,6 +122,7 @@ const data = {
         }, 
         {
             shoeName: "Air Jordan 4 Retro 'Cool Grey' 2019",
+            slug:"Air Jordan 4 Retro 'Cool Grey' 2019",
       brand: "Jordan",
       colorway: "COOL GREY/CHROME-DARK CHARCOAL-VARSITY MAIZE",
       retailPrice: "$ 190.00",
@@ -119,6 +132,7 @@ const data = {
         }, 
         {
             shoeName: "Air Jordan 4 Retro SE 'What The 4'",
+            slug:"Air Jordan 4 Retro SE 'What The 4'",
       brand: "Jordan",
       colorway: "WHITE/MILITARY BLUE-FIRE RED-BLACK-CEMENT GREY",
       retailPrice: "$ 200.00",
