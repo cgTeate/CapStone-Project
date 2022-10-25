@@ -2,18 +2,25 @@ import { useRouter } from 'next/router'
 import Link from 'next/link'
 import Head from 'next/head'
 import Header from '../../components/Header'
-import React from 'react'
+import React, { useContext } from 'react'
 import data from '../../utils/data';
 import { Image } from 'antd'
+import { Store } from '../../utils/Store'
 
 
 export default function ProductScreen() {
+  const { state, dispatch } = useContext(Store);
   const {query} = useRouter();
   const { slug } = query;
   const product = data.products.find(x => x.slug === slug);
   if(!product)
   {
     return <div> Product Not Found </div>
+  }
+  const addToCartHandler = () => {
+    const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
+    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity }});
   }
   return (
     <><Head>
@@ -49,7 +56,7 @@ export default function ProductScreen() {
         <div className="mb-2 flex justify-between">
           <div>{product.retailPrice}
           </div>
-          <button className="primary-button w-full">Add to cart</button>
+          <button className="primary-button w-full" onClick={addToCartHandler}>Add to Cart</button>
         </div>
       </div>
         {/* */}
