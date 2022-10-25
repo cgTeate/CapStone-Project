@@ -6,8 +6,12 @@ import KicksHome from '../components/kicksHome'
 import ApparelHome from '../components/apparelHome'
 import KicksPage from './KicksPage'
 import ApparelPage from './ApparelPage'
+import ProductItem from '../components/productItem'
+import ProductItem2 from '../components/productItem2'
+import data from '../utils/data'
+import data2 from '../utils/data2'
 
-export default function Home() {
+export default function Home({product}) {
 
   return (
     
@@ -27,10 +31,20 @@ export default function Home() {
             <Slider/>
             <p>Kicks</p>
             {/* <KicksHome/> */}
-            <KicksPage/>
+            {/* <KicksPage/> */}
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+                {data.products.map((product) => (
+                    <ProductItem product={product} key={product.slug}></ProductItem>
+                ))}
+            </div>
             <div>Apparel</div>
             {/* <ApparelHome/> */}
-            <ApparelPage/>
+            {/* <ApparelPage/> */}
+            <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
+                {data2.products2.map((product2) => (
+                    <ProductItem2 product2={product2} key={product2.Name}></ProductItem2>
+                ))}
+            </div>
       </Layout>
    
   )
