@@ -21,8 +21,14 @@ export default function ProductScreen() {
   const addToCartHandler = () => {
     const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
     const quantity = existItem ? existItem.quantity + 1 : 1;
-    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity }});
-  }
+
+    if (product.countInStock < quantity) {
+      alert('Sorry. Product is out of stock');
+      return;
+    }
+
+    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+  };
   return (
     
     <Layout>
@@ -58,7 +64,12 @@ export default function ProductScreen() {
                <div>Status</div>
                <div>{product.countInStock > 0 ? 'In stock' : 'Out of Stock'}</div>
              </div>
-             <button className="primary-button w-full">Add to cart</button>
+             <button
+               className="primary-button w-full"
+               onClick={addToCartHandler}
+             >
+               Add to cart
+             </button>
            </div>
         </Layout>
   )
