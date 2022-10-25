@@ -44,7 +44,7 @@ export default function Header() {
         </div>
 
         <div className="flex space-x-4 items-center">
-          <Link href="/homePage">Home</Link>
+          <Link href="/">Home</Link>
           <Link href="/KicksPage">Kicks</Link>
           <Link href="/ApparelPage">
             <a class="drop">Apparel</a>

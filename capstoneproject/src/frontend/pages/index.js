@@ -1,6 +1,11 @@
 
 import Head from 'next/head'
 import Layout from '../components/Layout'
+import Slider from '../components/Slider'
+import KicksHome from '../components/kicksHome'
+import ApparelHome from '../components/apparelHome'
+import KicksPage from './KicksPage'
+import ApparelPage from './ApparelPage'
 
 export default function Home() {
 
@@ -19,7 +24,13 @@ export default function Home() {
            
       // </div> 
       <Layout title="Home Page">
-        <div>Home Page</div>
+            <Slider/>
+            <p>Kicks</p>
+            {/* <KicksHome/> */}
+            <KicksPage/>
+            <div>Apparel</div>
+            {/* <ApparelHome/> */}
+            <ApparelPage/>
       </Layout>
    
   )
