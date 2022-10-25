@@ -8,6 +8,7 @@ const data2 = {
       colorway: "burgundy",
       retailPrice: "$ 80.00",
       thumbnail: "https://images.stockx.com/images/drew-house-mascot-ss-tee-burgundy.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1663869959",
+      countInStock: 20,
       releaseDate: "2022-09-22",
         },
         {
@@ -18,6 +19,7 @@ const data2 = {
       colorway: "Oil Green",
       retailPrice: "$ 110.00",
       thumbnail: "https://images.stockx.com/images/Patta-New-Balance-Family-T-shirt-Oil-Green.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1664578556",
+      countInStock: 20,
       releaseDate: "2022-09-30",
         }, 
         {
@@ -28,6 +30,7 @@ const data2 = {
       colorway: "Dimensions",
       retailPrice: "$ 415.00",
       thumbnail: "https://images.stockx.com/images/Arcteryx-x-Beams-Beta-Jacket-Dimensions.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1660118749",
+      countInStock: 20,
       releaseDate: "2022-09-01",
         }, 
         {
@@ -38,6 +41,7 @@ const data2 = {
       colorway: "Multi (Collection 2)",
       retailPrice: "$ 965.00",
       thumbnail: "https://images.stockx.com/images/Gallery-Dept-x-Lanvin-Jogging-Pants-Multi-Collection-2.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1647620080",
+      countInStock: 20,
       releaseDate: "2022-03-15",
         },
         {
@@ -48,6 +52,7 @@ const data2 = {
       colorway: "Sage",
       retailPrice: "$ 283.00",
       thumbnail: "https://images.stockx.com/images/Stone-Island-64120-Brushed-Cotton-Fleece-Hoodie-Sage.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1639596961",
+      countInStock: 20,
       releaseDate: "2022-09-01",
         },
     ],
