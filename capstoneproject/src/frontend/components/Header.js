@@ -8,6 +8,8 @@ import SellerReg from "../components/SellerReg";
 import Register from "../components/Register";
 import KicksMain from "../components/KicksMain";
 import Link from "next/link";
+import { useContext } from "react";
+import { Store } from "../utils/Store";
 
 export default function Header() {
   const mystyle = {
@@ -18,6 +20,8 @@ export default function Header() {
     fontSize: "50px",
     // fontWeight: "bold",
   };
+  const {state, dispatch} = useContext(Store);
+  const { cart } = state;
   return (
     <header className="sticky top-0 bg-white">
       <div className="flex justify-between p-5 text-sm text-gray-700flex space-x-4">
@@ -46,10 +50,15 @@ export default function Header() {
             <a class="drop">Apparel</a>
           </Link>
 
-          <Link href ="/LiveBidding">
-            <a class="drop" href="#">
-              Live Bidding
-            </a>
+          <Link href ="/Cart">
+            <a className="p-2">
+              Cart
+               {cart.cartItems.length > 0 && (
+            <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+              {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
+            </span>
+          )}
+          </a>
           </Link>
 
           

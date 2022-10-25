@@ -22,23 +22,7 @@ export default function kicksPage({product})
                 ))}
             </div></>
    
-        // <div>
-        //    
-        //     <p >Air Jordan</p>
-        //     <AirJordan/>
-        //     <p>New Balance</p>
-        //     <ProductHome/>
-        //     <p>Nike</p>
-        //     <ProductHome/>
-        //     <p>Converse</p>
-        //     <ProductHome/>
-        //     <p>UGG</p>
-        //     <ProductHome/>
-        //     <p>Vans</p>
-        //     <ProductHome/>
-        //     <Pagination defaultCurrent={1} total={5} />
-            
-        // </div>
+       
         
         
     )
