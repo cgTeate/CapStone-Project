@@ -1,9 +1,9 @@
 import React from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
-import Login from '../components/login'
+import Login from '../components/Login'
  
-export default function homePage()
+export default function LoginPage()
 {
 
     return (

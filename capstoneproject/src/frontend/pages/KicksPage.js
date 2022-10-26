@@ -1,13 +1,13 @@
 import React from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
-import ProductHome from '../components/kicksHome'
-import AirJordan from '../components/airJordan'
+import ProductHome from '../components/KicksHome'
+import AirJordan from '../components/AirJordan'
 import ProductItem from '../components/ProductItem'
 import data from '../utils/data'
 import Layout from '../components/Layout'
 
-export default function kicksPage({product})
+export default function KicksPage({product})
 {
 
     return (
