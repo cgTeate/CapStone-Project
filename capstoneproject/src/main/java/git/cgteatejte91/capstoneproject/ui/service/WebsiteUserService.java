@@ -45,16 +45,15 @@ public class WebsiteUserService implements UserDetailsService{
 
     public String signIn(WebsiteUser websiteUser){
         boolean userExists = websiteUserRepository.findByEmail(websiteUser.getEmail()).isPresent();
+        
         if(!userExists){
             throw new IllegalStateException("wrong user name");
         }
-        String encodedPassword = bCryptPasswordEncoder.encode(websiteUser.getPassword());
-        Optional<WebsiteUser> dbPassword = websiteUserRepository.findByPassword(websiteUser.getPassword());
+       String dbpassword;
+       WebsiteUser dbUser = websiteUserRepository.findUserByEmail(websiteUser.getEmail());
+        dbpassword = dbUser.getPassword();
 
-        if(websiteUser.getPassword() != null &&
-                    websiteUser.getPassword().length() > 0 && 
-                    !Objects. equals(encodedPassword, dbPassword)) 
-        {
+        if(bCryptPasswordEncoder.matches(websiteUser.getPassword(),dbpassword)){
             return "it works";
         }
         else{

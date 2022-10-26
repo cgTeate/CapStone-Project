@@ -66,6 +66,13 @@ export async function loginUser (values) {
         }
         );
         console.log(res)
+        if(res.status == 200)
+        {
+            console.log("Login successful");
+        }
+        else{
+            console.log("Incorrect email or password");
+        }
     } catch (err) {
         // Handle Error Here
         console.error(err);
