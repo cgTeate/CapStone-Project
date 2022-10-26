@@ -5,7 +5,7 @@ import Slider from '../components/Slider'
 import ProductHome from '../components/kicksHome'
 import ApparelHome from '../components/apparelHome'
 
-export default function homePage()
+export default function HomePage()
 {
 
     return (

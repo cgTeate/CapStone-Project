@@ -2,11 +2,6 @@ import {
   MagnifyingGlassIcon,
   PlusCircleIcon,
 } from "@heroicons/react/24/outline";
-import ApparelHome from "./apparelHome";
-import Login from "../components/login";
-import SellerReg from "../components/SellerReg";
-import Register from "../components/Register";
-import KicksMain from "../components/KicksMain";
 import Link from "next/link";
 import { useContext } from "react";
 import { Store } from "../utils/Store";
@@ -44,7 +39,7 @@ export default function Header() {
         </div>
 
         <div className="flex space-x-4 items-center">
-          <Link href="/homePage">Home</Link>
+          <Link href="/">Home</Link>
           <Link href="/KicksPage">Kicks</Link>
           <Link href="/ApparelPage">
             <a class="drop">Apparel</a>
@@ -81,7 +76,7 @@ export default function Header() {
           
 
 
-          <Link href="/SellerPage">
+          <Link href="/RegistrationPage">
          
             <a class="drop">
               Sell
