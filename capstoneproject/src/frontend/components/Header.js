@@ -1,9 +1,9 @@
 import {
   MagnifyingGlassIcon,
-  PlusCircleIcon,
+  PlusCircleIcon
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Store } from "../utils/Store";
 
 export default function Header() {
@@ -15,8 +15,12 @@ export default function Header() {
     fontSize: "50px",
     // fontWeight: "bold",
   };
-  const {state, dispatch} = useContext(Store);
+  const { state, dispatch } = useContext(Store);
   const { cart } = state;
+  const [cartItemsCount, setCartItemsCount] = useState(0);
+  useEffect(() => {
+    setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
+  }, []);
   return (
     <header className="sticky top-0 bg-white">
       <div className="flex justify-between p-5 text-sm text-gray-700flex space-x-4">
@@ -45,39 +49,39 @@ export default function Header() {
             <a class="drop">Apparel</a>
           </Link>
 
-          <Link href ="/Cart">
+          <Link href="/Cart">
             <a className="p-2">
               Cart
-               {cart.cartItems.length > 0 && (
-            <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
-              {cart.cartItems.reduce((a, c) => a + c.quantity, 0)}
-            </span>
-          )}
-          </a>
+              {cartItemsCount > 0 && (
+                <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
+                  {cartItemsCount}
+                </span>
+              )}
+            </a>
           </Link>
 
-          
-       
+
+
           <Link href="/FAQSPage">
             <a class="drop" href="#">
               FAQS
             </a>
           </Link>
-         
+
 
 
 
           <Link href="/LoginPage">
-     
+
             <a class="drop" href="#">
               Log In
             </a>
           </Link>
-          
+
 
 
           <Link href="/RegistrationPage">
-         
+
             <a class="drop">
               Sell
             </a>
