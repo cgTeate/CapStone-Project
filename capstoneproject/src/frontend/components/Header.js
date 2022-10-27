@@ -1,10 +1,12 @@
-import {
-  MagnifyingGlassIcon,
-  PlusCircleIcon
-} from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon,PlusCircleIcon} from "@heroicons/react/24/outline";
+//import { signOut, useSession } from 'next-auth/react';
 import Link from "next/link";
+import Cookies from 'js-cookie';
 import { useContext, useEffect, useState } from "react";
 import { Store } from "../utils/Store";
+import { signOut, useSession } from 'next-auth/react';
+import { Menu } from "antd";
+import DropdownLink from "./DropdownLink";
 
 export default function Header() {
   const mystyle = {
@@ -15,12 +17,19 @@ export default function Header() {
     fontSize: "50px",
     // fontWeight: "bold",
   };
+  const { status, data: session } = useSession();
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
   useEffect(() => {
     setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
   }, []);
+
+  const logoutClickHandler = () => {
+    Cookies.remove('cart');
+    dispatch({ type: 'CART_RESET' })
+    signOut({ callbackUrl: '/login' });
+  }
   return (
     <header className="sticky top-0 bg-white">
       <div className="flex justify-between p-5 text-sm text-gray-700flex space-x-4">
@@ -68,16 +77,44 @@ export default function Header() {
             </a>
           </Link>
 
-
-
-
-          <Link href="/LoginPage">
-
-            <a class="drop" href="#">
-              Log In
-            </a>
-          </Link>
-
+          {status === 'loading' ? (
+            'Loading'
+          ) : session?.user ? (
+            <Menu as="div" className="relative inline-block">
+              <Menu.Button className="text-blue-600">
+                {session.user.name}
+              </Menu.Button>
+              <Menu.Items className="absolute right-0 w-56 origin-top-right shadow-lg ">
+                <Menu.Item>
+                  <DropdownLink className="dropdown-link" href="/profile">
+                      Profile
+                  </DropdownLink>
+                </Menu.Item>
+                <Menu.Item>
+                  <DropdownLink
+                    className="dropdown-link"
+                    href="/order-history"
+                  >
+                    Order History
+                  </DropdownLink>
+                </Menu.Item>
+                <Menu.Item>
+                  <a
+                    className="dropdown-link"
+                    href="#"
+                    onClick={logoutClickHandler}
+                    >
+                    Logout
+                    </a>
+                </Menu.Item>
+              </Menu.Items>
+            </Menu>
+          ) : (
+            <Link href="/LoginPage">
+              <a className="p-2">
+              Log In </a>
+            </Link>
+          )}
 
 
           <Link href="/RegistrationPage">
