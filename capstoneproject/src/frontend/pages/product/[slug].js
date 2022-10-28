@@ -1,4 +1,4 @@
-import { Image } from 'antd'
+import { Image,  } from 'antd'
 import Head from 'next/head'
 import Link from 'next/link'
 import Router, { useRouter } from 'next/router'
@@ -6,11 +6,16 @@ import React, { useContext } from 'react'
 import Header from '../../components/Header'
 import Layout from '../../components/Layout'
 import data from '../../utils/data'
-import { Store } from '../../utils/Store'
+// import { Store } from '../../utils/Store'
+import {addProduct, cartRemoveItem, cartReset } from "../../redux/cartSlice";
+import { useSelector, useDispatch } from 'react-redux'
+import { useState } from 'react'
 
 
 export default function ProductScreen() {
-  const { state, dispatch } = useContext(Store);
+  const cart = useSelector((state) => state.cart.products);
+  const dispatch = useDispatch();
+  // const { state, dispatch } = useContext(Store);
   const router = useRouter();
   const { query } = useRouter();
   const { slug } = query;
@@ -18,21 +23,33 @@ export default function ProductScreen() {
   if (!product) {
     return <div> Product Not Found </div>
   }
+  // const [quantity, setQuantity] = useState(1);
+
+  // const handleQuantity = (type) => {
+  //   if (type === "dec") {
+  //     quantity > 1 && setQuantity(quantity - 1);
+  //   } else {
+  //     setQuantity(quantity + 1);
+  //   }
+  // };
+
+
   const addToCartHandler = () => {
-    const existItem = state.cart.cartItems.find((x) => x.slug === product.slug);
-    const quantity = existItem ? existItem.quantity + 1 : 1;
+    // const existItem = cart.products.find((x) => x.slug === product.slug);
+    // const quantity = existItem ? existItem.quantity + 1 : 1;
 
-    if (product.countInStock < quantity) {
-      alert('Sorry. Product is out of stock');
-      return;
-    }
-
-    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
-    router.push('/Cart');
+    // if (product.countInStock < quantity) {
+    //   alert('Sorry. Product is out of stock');
+    //   return;
+    // }
+    dispatch(
+      addProduct({ ...product})
+    );
+    // router.push('/Cart');
   };
   return (
 
-    <Layout>
+    <Layout title={product.name}>
       <div className="py-2">
         <Link href="/KicksPage"><a>Back To Kicks</a>
         </Link>
@@ -65,6 +82,19 @@ export default function ProductScreen() {
           <div>Status</div>
           <div>{product.countInStock > 0 ? 'In stock' : 'Out of Stock'}</div>
         </div>
+        {/* <button
+          className="primary-button w-full"
+          onClick={() => handleQuantity("inc")}
+        >
+          Add Quantity
+        </button>
+        <p>{quantity}</p>
+        <button
+          className="primary-button w-full"
+          onClick={() => handleQuantity("dec")}
+        >
+          Remove Quantity
+        </button> */}
         <button
           className="primary-button w-full"
           onClick={addToCartHandler}
