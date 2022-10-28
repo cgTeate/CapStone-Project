@@ -7,13 +7,13 @@ import Header from '../../components/Header'
 import Layout from '../../components/Layout'
 import data from '../../utils/data'
 // import { Store } from '../../utils/Store'
-import {addProduct, cartRemoveItem, cartReset } from "../../redux/cartSlice";
+import {addProduct,addToCart, cartRemoveItem, cartReset } from "../../redux/cartSlice";
 import { useSelector, useDispatch } from 'react-redux'
 import { useState } from 'react'
 
 
 export default function ProductScreen() {
-  const cart = useSelector((state) => state.cart.products);
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   // const { state, dispatch } = useContext(Store);
   const router = useRouter();
@@ -35,15 +35,15 @@ export default function ProductScreen() {
 
 
   const addToCartHandler = () => {
-    // const existItem = cart.products.find((x) => x.slug === product.slug);
-    // const quantity = existItem ? existItem.quantity + 1 : 1;
+    const existItem = cart.products.find((x) => x.slug === product.slug);
+    const quantity = existItem ? existItem.quantity + 1 : 1;
 
-    // if (product.countInStock < quantity) {
-    //   alert('Sorry. Product is out of stock');
-    //   return;
-    // }
+    if (product.countInStock < quantity) {
+      alert('Sorry. Product is out of stock');
+      return;
+    }
     dispatch(
-      addProduct({ ...product})
+      addToCart({ ...product})
     );
     // router.push('/Cart');
   };

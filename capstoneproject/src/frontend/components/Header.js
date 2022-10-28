@@ -18,7 +18,7 @@ export default function Header() {
     fontSize: "50px",
     // fontWeight: "bold",
   };
-  const cart = useSelector((state) => state.cartObj);
+  const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   // const { status, data: session } = useSession();
   // const { state, dispatch } = useContext(Store);
@@ -64,9 +64,9 @@ export default function Header() {
           <Link href="/Cart">
             <a className="p-2">
               Cart
-              {cartItemsCount > 0 && (
+              {cart.products.length > 0 && (
                 <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
-                  {cartItemsCount}
+                  {cart.products.reduce((a,c)=>a + c.quantity,0)}
                 </span>
               )}
             </a>
