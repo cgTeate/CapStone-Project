@@ -1,7 +1,8 @@
 package git.cgteatejte91.capstoneproject.ui.security.config;
 
-import git.cgteatejte91.capstoneproject.ui.filter.CustomAuthenticationFilter;
-import git.cgteatejte91.capstoneproject.ui.filter.JwtTokenVerifier;
+import git.cgteatejte91.capstoneproject.ui.jwt.JwtUsernameAndPasswordAuthenticationFilter;
+import git.cgteatejte91.capstoneproject.ui.jwt.JwtConfig;
+import git.cgteatejte91.capstoneproject.ui.jwt.JwtTokenVerifier;
 import git.cgteatejte91.capstoneproject.ui.service.WebsiteUserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,33 +18,41 @@ import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.provisioning.InMemoryUserDetailsManager;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import java.util.concurrent.TimeUnit;
 
+import javax.crypto.SecretKey;
+
 
 @Configuration
 @EnableWebSecurity
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 
-    private final PasswordEncoder passwordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final WebsiteUserService websiteUserService;
+    private final SecretKey secretKey;
+    private final JwtConfig jwtConfig;
 
     @Autowired
-    public WebSecurityConfig(PasswordEncoder passwordEncoder,
-                                     WebsiteUserService websiteUserService) {
-        this.passwordEncoder = passwordEncoder;
+    public WebSecurityConfig(BCryptPasswordEncoder bCryptPasswordEncoder,WebsiteUserService websiteUserService,
+                                    SecretKey secretKey,
+                                    JwtConfig jwtConfig) {
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
         this.websiteUserService = websiteUserService;
+        this.secretKey = secretKey;
+        this.jwtConfig = jwtConfig;
     }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.cors().and().csrf().disable()
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-        .addFilter(new CustomAuthenticationFilter(authenticationManager()))
-        .addFilterAfter(new JwtTokenVerifier(), CustomAuthenticationFilter.class)
+        .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
+        .addFilterBefore(new JwtTokenVerifier(secretKey, jwtConfig),JwtUsernameAndPasswordAuthenticationFilter.class)
         .authorizeRequests().antMatchers("/", "index", "/css/*", "/js/*","/api/**","/api/registration/**", "/api/login/**").permitAll()
         // .antMatchers("/api/**").hasRole(STUDENT.name())
         .anyRequest().authenticated();
@@ -58,7 +67,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Bean
     public DaoAuthenticationProvider daoAuthenticationProvider() {
         DaoAuthenticationProvider provider = new DaoAuthenticationProvider();
-        provider.setPasswordEncoder(passwordEncoder);
+        provider.setPasswordEncoder(bCryptPasswordEncoder);
         provider.setUserDetailsService(websiteUserService);
         return provider;
     }

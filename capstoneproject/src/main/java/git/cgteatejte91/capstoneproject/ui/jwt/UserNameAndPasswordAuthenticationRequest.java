@@ -1,4 +1,4 @@
-package git.cgteatejte91.capstoneproject.ui.filter;
+package git.cgteatejte91.capstoneproject.ui.jwt;
 
 public class UserNameAndPasswordAuthenticationRequest {
     private String username;
