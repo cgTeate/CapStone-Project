@@ -14,7 +14,7 @@ import lombok.Data;
 public class RegistrationRequest {
     private final String firstName;
     private final String lastName;
-    private final String email;
+    private final String username;
     private final String password;
     private final UserRole role;
     private final LocalDate dob;

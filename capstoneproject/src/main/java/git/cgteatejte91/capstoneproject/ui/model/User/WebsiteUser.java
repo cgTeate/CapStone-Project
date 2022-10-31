@@ -30,7 +30,7 @@ public class WebsiteUser implements UserDetails{
     private String firstName;
     private String lastName;
     @Indexed(unique = true)
-    private String email;
+    private String username;
     private String password;
     private UserRole role;
     private LocalDate dob;
@@ -45,16 +45,16 @@ public class WebsiteUser implements UserDetails{
         created = LocalDateTime.now().toString();
     }
 
-    public WebsiteUser(String email, String password) {
-        this.email = email;
+    public WebsiteUser(String username, String password) {
+        this.username = username;
         this.password = password;
     }
 
-    public WebsiteUser(String firstName, String lastName, String email, String password, UserRole role, LocalDate dob,
+    public WebsiteUser(String firstName, String lastName, String username, String password, UserRole role, LocalDate dob,
             String phoneNumber, Gender gender, Address address, String created) {
         this.firstName = firstName;
         this.lastName = lastName;
-        this.email = email;
+        this.username = username;
         this.password = password;
         this.role = role;
         this.dob = dob;
@@ -82,7 +82,7 @@ public class WebsiteUser implements UserDetails{
 
     @Override
     public String getUsername() {
-        return email;
+        return username;
     }
 
     public String getFirstName() {

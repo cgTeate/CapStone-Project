@@ -13,8 +13,8 @@ export const getUserData = async () => {
 export async function addUserData (values) {
     try {
         //for M1 Chip
-        const res = await fetch(`http://localhost:8080/api/registration`,
-        // const res = await fetch(`${url}/api/registration`,
+        // const res = await fetch(`http://localhost:8080/api/registration`,
+        const res = await fetch(`${url}/api/registration`,
         {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
@@ -22,7 +22,7 @@ export async function addUserData (values) {
           JSON.stringify({
             firstName: values.firstname,
             lastName: values.lastname,
-            email: values.email,
+            username: values.email,
             password: values.password,
             role: values.usertype,
             phoneNumber: values.phonenumber,
@@ -54,13 +54,13 @@ export async function addUserData (values) {
 
 export async function loginUser (values) {
     try {
-        const res = await fetch(`http://localhost:8080/api/login`,
+        const res = await fetch(`http://localhost:8080/login`,
         {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
           body:
           JSON.stringify({
-            email: values.email,
+            username: values.email,
             password: values.password,
             }),
         }

@@ -11,8 +11,9 @@ import git.cgteatejte91.capstoneproject.ui.model.User.WebsiteUser;
 @Repository
 public interface WebsiteUserRepository extends MongoRepository<WebsiteUser, String>{
 
-    Optional<WebsiteUser> findByEmail(String email);
+    Optional<WebsiteUser> findByUsername(String username);
     Optional<WebsiteUser> findByPassword(String password);
-    WebsiteUser findUserByEmail(String email);
+    // WebsiteUser findUserByEmail(String username);
+    
     
 }

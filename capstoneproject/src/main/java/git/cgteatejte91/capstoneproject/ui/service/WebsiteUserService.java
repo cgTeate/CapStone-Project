@@ -20,22 +20,23 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class WebsiteUserService implements UserDetailsService{
 
+    @Autowired
     private final WebsiteUserRepository websiteUserRepository;
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final static String USER_NOT_FOUND_MSG =
             "user with email %s not found";
 
     @Override
-    public UserDetails loadUserByUsername(String email)
+    public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {
-        return websiteUserRepository.findByEmail(email).orElseThrow(() ->
-            new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
+        return websiteUserRepository.findByUsername(username).orElseThrow(() ->
+            new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, username)));
     }
     /*
      * //TODO: change to customerAuthenticationFilter
      */
     public String signUp(WebsiteUser websiteUser){
-        boolean userExists = websiteUserRepository.findByEmail(websiteUser.getEmail())
+        boolean userExists = websiteUserRepository.findByUsername(websiteUser.getUsername())
         .isPresent();
         if(userExists){
             throw new IllegalStateException("email already taken"); 
@@ -48,24 +49,24 @@ public class WebsiteUserService implements UserDetailsService{
         return "it works";
     }
 
-    public String signIn(WebsiteUser websiteUser){
-        boolean userExists = websiteUserRepository.findByEmail(websiteUser.getEmail()).isPresent();
+    // public String signIn(WebsiteUser websiteUser){
+    //     boolean userExists = websiteUserRepository.findByEmail(websiteUser.getUsername()).isPresent();
         
-        if(!userExists){
-            throw new IllegalStateException("wrong user name");
-        }
-       String dbpassword;
-       WebsiteUser dbUser = websiteUserRepository.findUserByEmail(websiteUser.getEmail());
-        dbpassword = dbUser.getPassword();
+    //     if(!userExists){
+    //         throw new IllegalStateException("wrong user name");
+    //     }
+    //    String dbpassword;
+    //    WebsiteUser dbUser = websiteUserRepository.findUserByEmail(websiteUser.getUsername());
+    //     dbpassword = dbUser.getPassword();
 
-        if(bCryptPasswordEncoder.matches(websiteUser.getPassword(),dbpassword)){
-            return "it works";
-        }
-        else{
-            throw new IllegalStateException("wrong email or password");
-        }
+    //     if(bCryptPasswordEncoder.matches(websiteUser.getPassword(),dbpassword)){
+    //         return "it works";
+    //     }
+    //     else{
+    //         throw new IllegalStateException("wrong email or password");
+    //     }
         
-    }
+    // }
 
         //get request
     public List<WebsiteUser> getAllSellers(){

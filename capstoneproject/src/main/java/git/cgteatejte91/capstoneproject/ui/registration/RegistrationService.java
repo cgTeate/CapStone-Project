@@ -14,21 +14,21 @@ public class RegistrationService {
 
     public String register(RegistrationRequest request) {
         
-        return "";
-    //     websiteUserService.signUp(
-    //         new WebsiteUser(
-    //                 request.getFirstName(),
-    //                 request.getLastName(),
-    //                 request.getEmail(),
-    //                 request.getPassword(),
-    //                 UserRole.SELLER,
-    //                 request.getDob(), 
-    //                 request.getPhoneNumber(),
-    //                 request.getGender(), 
-    //                 request.getAddress(), 
-    //                 request.getCreated()
-    //         )
-    // );
+        return websiteUserService.signUp(
+            new WebsiteUser(
+                    request.getFirstName(),
+                    request.getLastName(),
+                    request.getUsername(),
+                    request.getPassword(),
+                    UserRole.SELLER,
+                    request.getDob(), 
+                    request.getPhoneNumber(),
+                    request.getGender(), 
+                    request.getAddress(), 
+                    request.getCreated()
+            )
+    );
+
     
     }
 
