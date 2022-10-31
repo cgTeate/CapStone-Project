@@ -38,8 +38,8 @@ public class WebsiteUser implements UserDetails{
     private Gender gender;
     private Address address;
     private String created;
-    @Transient
-    private Integer age;
+    // @Transient
+    // private Integer age;
 
     public WebsiteUser() {
         created = LocalDateTime.now().toString();
@@ -64,9 +64,9 @@ public class WebsiteUser implements UserDetails{
         this.created = created;
     }
 
-    public Integer getAge() {
-        return Period.between(this.dob, LocalDate.now()).getYears();
-    }
+    // public Integer getAge() {
+    //     return Period.between(this.dob, LocalDate.now()).getYears();
+    // }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
