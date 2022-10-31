@@ -1,8 +1,11 @@
 package git.cgteatejte91.capstoneproject.ui.service;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -28,7 +31,9 @@ public class WebsiteUserService implements UserDetailsService{
         return websiteUserRepository.findByEmail(email).orElseThrow(() ->
             new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, email)));
     }
-
+    /*
+     * //TODO: change to customerAuthenticationFilter
+     */
     public String signUp(WebsiteUser websiteUser){
         boolean userExists = websiteUserRepository.findByEmail(websiteUser.getEmail())
         .isPresent();
@@ -60,6 +65,11 @@ public class WebsiteUserService implements UserDetailsService{
             throw new IllegalStateException("wrong email or password");
         }
         
+    }
+
+        //get request
+    public List<WebsiteUser> getAllSellers(){
+        return websiteUserRepository.findAll();
     }
 
     
