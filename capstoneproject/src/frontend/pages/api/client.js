@@ -54,7 +54,9 @@ export async function addUserData (values) {
 
 export async function loginUser (values) {
     try {
-        const res = await fetch(`http://localhost:8080/login`,
+        //for M1 Chip
+        // const res = await fetch(`http://localhost:8080/login`,
+        const res = await fetch(`${url}/login`,
         {
           method: 'POST',
           headers: {'Content-Type': 'application/json'},
