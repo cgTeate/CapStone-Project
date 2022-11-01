@@ -6,7 +6,7 @@ const ProductImages = [];
 export const getStaticProps = async () => {
   
 } 
-export default function kicksHome()
+export default function KicksHome()
 {
     const jordan4 = {
       shoeName: "Jordan 4 Retro SE Black Canvas",

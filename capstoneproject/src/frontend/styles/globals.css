@@ -12,6 +12,16 @@
   .site-layout .site-layout-background {
     background: #fff;
   }
+  .search {
+    width: 500px;
+    display: flex,
+
+  }
+
+  .search-box{
+    width: 80%;
+    height: 40px;
+  }
   .slideshow {
     list-style: none;
     z-index: 1;
@@ -53,7 +63,26 @@
     .primary-button{
       @apply rounded bg-slate-500 py-2 px-4 shadow outline-none hover:bg-red-900 active:bg-red-300
     }
-  
+   
+    .default-button {
+      @apply rounded bg-gray-100 py-2  px-4 text-black shadow outline-none hover:bg-gray-200  active:bg-gray-300;
+    }
+    
+    .card{
+      @apply mb-5 block rounded-lg border border-gray-200 shadow-md;
+    }
+
+    .dropdown-link {
+      @apply flex p-2 hover:bg-gray-200;
+    }
+
+    .alert-error {
+      @apply my-3 rounded-lg bg-red-100 p-3 text-red-700;
+    }
+    
+    .alert-success {
+      @apply my-3 rounded-lg bg-green-100 p-3 text-green-700;
+    }
     /* .each-slide > div {
       display: flex;
       align-items: center;

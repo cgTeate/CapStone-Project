@@ -1,9 +1,9 @@
 import React from 'react'
 import Head from 'next/head'
 import Header from '../components/Header'
-import SellerReg from '../components/SellerReg'
+import RegistrationForm from '../components/RegistrationForm'
 
-export default function homePage()
+export default function SellerPage()
 {
 
     return (
@@ -14,7 +14,7 @@ export default function homePage()
               <link rel="icon" href="/favicon.ico" />
             </Head>
             <Header/>
-            <SellerReg/>
+            <RegistrationForm/>
         </div>
     )
 }
