@@ -1,23 +1,23 @@
-package git.cgteatejte91.capstoneproject.ui.respository;
+// package git.cgteatejte91.capstoneproject.ui.respository;
 
-import org.bson.types.ObjectId;
-import java.time.LocalDateTime;
-import java.util.List;
-import java.util.Optional;
+// import org.bson.types.ObjectId;
+// import java.time.LocalDateTime;
+// import java.util.List;
+// import java.util.Optional;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.core.MongoTemplate;
-import org.springframework.data.mongodb.repository.MongoRepository;
-import org.springframework.stereotype.Repository;
+// import org.springframework.beans.factory.annotation.Autowired;
+// import org.springframework.data.mongodb.core.MongoTemplate;
+// import org.springframework.data.mongodb.repository.MongoRepository;
+// import org.springframework.stereotype.Repository;
 
-import git.cgteatejte91.capstoneproject.ui.model.User.Customer;
+// import git.cgteatejte91.capstoneproject.ui.model.User.Customer;
 
-@Repository
-public interface CustomerRepository extends MongoRepository<Customer,String>{
+// @Repository
+// public interface CustomerRepository extends MongoRepository<Customer,String>{
 
 
 
-    Optional<Customer> findCustomerByEmail(String email);
+//     Optional<Customer> findCustomerByEmail(String email);
 
     
     //for mongoTemplate
@@ -38,4 +38,4 @@ public interface CustomerRepository extends MongoRepository<Customer,String>{
 
 
 
-}
+// }

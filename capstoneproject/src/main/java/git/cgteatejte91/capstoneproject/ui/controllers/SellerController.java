@@ -4,6 +4,7 @@ package git.cgteatejte91.capstoneproject.ui.controllers;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
-import git.cgteatejte91.capstoneproject.ui.model.User.Seller;
-import git.cgteatejte91.capstoneproject.ui.service.SellerService;
+// import git.cgteatejte91.capstoneproject.ui.model.User.Seller;
+import git.cgteatejte91.capstoneproject.ui.model.User.WebsiteUser;
+// import git.cgteatejte91.capstoneproject.ui.service.SellerService;
+import git.cgteatejte91.capstoneproject.ui.service.WebsiteUserService;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -26,29 +29,30 @@ import lombok.AllArgsConstructor;
 public class SellerController {
 
     @Autowired
-    private final SellerService sellerService;
+    private final WebsiteUserService websiteUserService;
 
-    @GetMapping
-    public List<Seller> fetchAllStudents(){
-        return sellerService.getAllSeller();
+    @GetMapping()
+    // @PreAuthorize("hasAnyRole('SELLER')")
+    public List<WebsiteUser> fetchAllSellers(){
+        return websiteUserService.getAllSellers();
     }
 
-    @PostMapping
-    public void registerNewSeller(@RequestBody Seller seller) {
-        sellerService.registerNewSeller(seller);
-    }
+//     @PostMapping
+//     public void registerNewSeller(@RequestBody Seller seller) {
+//         sellerService.registerNewSeller(seller);
+//     }
 
-    @DeleteMapping(path = "{sellerId}")
-    public void deleteSeller(@PathVariable("sellerId") String sellerId) {
-        sellerService.deleteSeller(sellerId);
-    }
+//     @DeleteMapping(path = "{sellerId}")
+//     public void deleteSeller(@PathVariable("sellerId") String sellerId) {
+//         sellerService.deleteSeller(sellerId);
+//     }
 
-    @PutMapping(path = "{sellerId}")
-    public void updateSeller(
-        @PathVariable("sellerId") String sellerId, 
-        @RequestParam(required = false) String firstName,
-        @RequestParam(required = false) String lastName,
-        @RequestParam(required = false) String email){
-            sellerService.updateSeller(sellerId, firstName, lastName, email);
-        }
+//     @PutMapping(path = "{sellerId}")
+//     public void updateSeller(
+//         @PathVariable("sellerId") String sellerId, 
+//         @RequestParam(required = false) String firstName,
+//         @RequestParam(required = false) String lastName,
+//         @RequestParam(required = false) String email){
+//             sellerService.updateSeller(sellerId, firstName, lastName, email);
+//         }
 }
