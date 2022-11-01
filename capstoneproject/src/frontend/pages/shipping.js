@@ -1,5 +1,5 @@
 import React, { useContext, useEffect } from 'react';
-import { useForm } from 'react-hook-form';
+//import { useForm } from 'react-hook-form';
 import Cookies from 'js-cookie';
 import CheckoutWizard from '../components/CheckoutWizard';
 import Layout from '../components/Layout';
