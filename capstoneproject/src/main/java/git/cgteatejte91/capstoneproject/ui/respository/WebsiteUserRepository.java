@@ -13,7 +13,7 @@ public interface WebsiteUserRepository extends MongoRepository<WebsiteUser, Stri
 
     Optional<WebsiteUser> findByUsername(String username);
     Optional<WebsiteUser> findByPassword(String password);
-    // WebsiteUser findUserByEmail(String username);
+    WebsiteUser findUserByUsername(String username);
     
     
 }
