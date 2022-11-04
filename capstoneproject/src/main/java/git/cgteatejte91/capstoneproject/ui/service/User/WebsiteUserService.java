@@ -1,4 +1,4 @@
-package git.cgteatejte91.capstoneproject.ui.service;
+package git.cgteatejte91.capstoneproject.ui.service.User;
 
 import java.util.List;
 import java.util.Objects;
@@ -51,7 +51,15 @@ public class WebsiteUserService implements WebsiteUserDao, UserDetailsService{
     @Override
     public WebsiteUser getUser(String username) {
         // TODO Might implement similar to loadUserByUsername()
-        return websiteUserRepository.findUserByUsername(username);
+        WebsiteUser user = websiteUserRepository.findByUsername(username).orElseThrow(() ->
+        new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, username)));
+        return user;
+            // .stream()
+            //     .filter(user -> username.equals(user.getUsername()))
+            //     .findFirst()
+            //     .orElseThrow(() -> new IllegalStateException(
+            //             "User " + username + " does not exist"
+            //     ));
     }
 
     @Override
@@ -63,35 +71,29 @@ public class WebsiteUserService implements WebsiteUserDao, UserDetailsService{
     }
 
     @Override
-    @Transactional
-    public void updateUser(String firstName, String lastName, String username) {
+    public void updateUser(String username, WebsiteUser user) {
         // TODO Implemented put request from CustomerService logic
-        WebsiteUser user = websiteUserRepository.findByUsername(username).orElseThrow(() ->
+           WebsiteUser userDb =  websiteUserRepository.findByUsername(username).orElseThrow(() ->
             new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, username)));
 
-            if(firstName != null &&
-                    firstName.length() > 0 && 
-                    !Objects.equals(user.getFirstName(), firstName)) {
-                user.setFirstName(firstName);
+            if(user.getFirstName() != null &&
+                    user.getFirstName().length() > 0 && 
+                    !Objects.equals(userDb.getFirstName(), user.getFirstName())) {
+                        userDb.setFirstName(user.getFirstName());
             }
 
-            if(lastName != null &&
-                    lastName.length() > 0 && 
-                    !Objects.equals(user.getLastName(), lastName)) {
-                user.setLastName(lastName);
+            if(user.getLastName() != null &&
+                    user.getLastName().length() > 0 && 
+                    !Objects.equals(userDb.getLastName(), user.getLastName())) {
+                        userDb.setLastName(user.getLastName());
             }
 
-            if(username != null &&
-                    username.length() > 0 && 
-                    !Objects.equals(user.getUsername(), username)) {
-               Optional<WebsiteUser> userOptional = websiteUserRepository
-                        .findByUsername(username);
-                if(userOptional.isPresent()) {
-                    throw new IllegalStateException("email taken");
-                }
-                user.setUsername(username);
+            if(user.getUsername() != null &&
+                user.getUsername().length() > 0 && 
+                    !Objects.equals(userDb.getUsername(), user.getUsername())) {
+                        userDb.setUsername(user.getUsername());
             }
-        
+            websiteUserRepository.save(userDb);
     }
     
     @Override

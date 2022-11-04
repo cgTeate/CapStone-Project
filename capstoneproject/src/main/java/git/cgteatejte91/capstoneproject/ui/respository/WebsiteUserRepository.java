@@ -1,5 +1,6 @@
 package git.cgteatejte91.capstoneproject.ui.respository;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -12,8 +13,9 @@ import git.cgteatejte91.capstoneproject.ui.model.User.WebsiteUser;
 public interface WebsiteUserRepository extends MongoRepository<WebsiteUser, String>{
 
     Optional<WebsiteUser> findByUsername(String username);
+    // List<WebsiteUser> findByUsername(String username);
     Optional<WebsiteUser> findByPassword(String password);
-    WebsiteUser findUserByUsername(String username);
+    //WebsiteUser findByUsername(String username);
     
     
 }

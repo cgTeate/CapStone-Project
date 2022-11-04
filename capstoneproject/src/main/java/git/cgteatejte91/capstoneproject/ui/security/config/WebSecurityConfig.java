@@ -1,9 +1,9 @@
 package git.cgteatejte91.capstoneproject.ui.security.config;
 
 import git.cgteatejte91.capstoneproject.ui.jwt.JwtUsernameAndPasswordAuthenticationFilter;
+import git.cgteatejte91.capstoneproject.ui.service.User.WebsiteUserService;
 import git.cgteatejte91.capstoneproject.ui.jwt.JwtConfig;
 import git.cgteatejte91.capstoneproject.ui.jwt.JwtTokenVerifier;
-import git.cgteatejte91.capstoneproject.ui.service.WebsiteUserService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -20,6 +20,8 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+
+import static git.cgteatejte91.capstoneproject.ui.model.User.UserRole.*;
 
 import java.util.Arrays;
 import java.util.List;
@@ -53,8 +55,8 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
         .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
         .addFilterBefore(new JwtTokenVerifier(secretKey, jwtConfig),JwtUsernameAndPasswordAuthenticationFilter.class)
-        .authorizeRequests().antMatchers("/", "index", "/css/*", "/js/*","/api/registration/**", "api/websiteuser/**").permitAll()
-        // .antMatchers("/api/**").hasRole(STUDENT.name())
+        .authorizeRequests().antMatchers("/", "index", "/css/*", "/js/*","/api/registration/**", "/api/websiteuser/**", "/management/api/websiteuser/**").permitAll()
+        // .antMatchers("/api/websiteuser/**").hasAnyRole(CUSTOMER.name(),SELLER.name())
         .anyRequest().authenticated();
                 
     }
