@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import git.cgteatejte91.capstoneproject.ui.model.Product.Shoe;
-import git.cgteatejte91.capstoneproject.ui.service.Product.ShoeService;
+import git.cgteatejte91.capstoneproject.ui.model.Product.Product;
+import git.cgteatejte91.capstoneproject.ui.service.Product.ProductService;
 import lombok.AllArgsConstructor;
 
 @RestController
@@ -22,21 +22,12 @@ import lombok.AllArgsConstructor;
 public class ProductController {
 
     @Autowired
-    private final ShoeService shoeService;
+    private final ProductService productService;
 
-    //get all shoes 
+    //get all products
     @GetMapping
-    public List<Shoe> fetchAllStudents(){
-        return shoeService.getAllCustomers();
+    public List<Product> fetchAllProducts(){
+        return productService.getAllProducts();
     }
-    //add new shoe
-    @PostMapping
-    public void registerNewCustomer(@RequestBody Shoe shoe) {
-        shoeService.registerNewCustomer(shoe);
-    }
-    //delete shoe 
-    @DeleteMapping(path = "{shoeId}")
-    public void deleteCustomer(@PathVariable("shoeId") String shoeId) {
-        shoeService.deleteShoe(shoeId);
-    }
+    
 }

@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import git.cgteatejte91.capstoneproject.ui.model.Product.Product;
 import git.cgteatejte91.capstoneproject.ui.model.User.WebsiteUser;
 import git.cgteatejte91.capstoneproject.ui.model.User.WebsiteUserPermission;
+import git.cgteatejte91.capstoneproject.ui.service.Product.ProductService;
 import git.cgteatejte91.capstoneproject.ui.service.User.WebsiteUserService;
 import lombok.AllArgsConstructor;
 
@@ -27,6 +29,7 @@ import lombok.AllArgsConstructor;
 public class AdminController {
     @Autowired
     private final WebsiteUserService websiteUserService;
+    private final ProductService productService;
 
     //get user information with admin role
     // @PostMapping("/user")
@@ -62,6 +65,19 @@ public class AdminController {
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void deleteUser(@PathVariable("username") String username) {
         websiteUserService.deleteUser(username);
+    }
+
+    //add new product
+    @PostMapping
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public void addProduct(@RequestBody Product product) {
+        productService.addProduct(product);
+    }
+    //delete product 
+    @DeleteMapping(path = "{productId}")
+    @PreAuthorize("hasRole('ROLE_ADMIN')")
+    public void deleteProduct(@PathVariable("productId") String productId) {
+        productService.deleteProduct(productId);
     }
 
     // //get users individual info
