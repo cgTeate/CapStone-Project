@@ -68,7 +68,7 @@ public class AdminController {
     }
 
     //add new product
-    @PostMapping
+    @PostMapping("/products")
     @PreAuthorize("hasRole('ROLE_ADMIN')")
     public void addProduct(@RequestBody Product product) {
         productService.addProduct(product);

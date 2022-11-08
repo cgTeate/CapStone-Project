@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import git.cgteatejte91.capstoneproject.ui.model.Product.Product;
@@ -28,6 +29,21 @@ public class ProductController {
     @GetMapping
     public List<Product> fetchAllProducts(){
         return productService.getAllProducts();
+    }
+    //get all by example (column)
+    @GetMapping("/example")
+    public List<Product> fetchAllProductsByExample(@RequestBody Product product){
+        return productService.getAllProductsByExample(product);
+    }
+    //get all by category (column)
+    @GetMapping("/category")
+    public List<Product> fetchAllProductsByCategory(@RequestParam(name = "category") String category){
+        return productService.getAllProductsByCategory(category);
+    }
+    //get all by JSON query 
+    @GetMapping("/retailprice")
+    public List<Product> fetchAllRetailPriceGreaterThan(@RequestParam(name = "retailPrice") float retailPrice){
+        return productService.getAllRetailPriceGreaterThan(retailPrice);
     }
     
 }
