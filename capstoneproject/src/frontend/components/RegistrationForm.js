@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
   
 import { Field, Formik, Form } from 'formik';
-import { addSellerData } from "../pages/api/client";
+import { addUserData } from "../pages/api/client";
 
 export default function RegistrationForm() {
 
@@ -58,9 +58,9 @@ export default function RegistrationForm() {
     {
       firstname:"",
       lastname:"",
-      username:"",
       email: "",
       password: "",
+      usertype:"",
       phonenumber: "",
       dob: "",
       gender: "",
@@ -73,7 +73,7 @@ export default function RegistrationForm() {
   
   const onSubmit = async (values) => {
       alert(JSON.stringify(values, null, 2));
-    {await addSellerData(values)}
+    {await addUserData(values)}
     console.log(values)
     }
 
@@ -113,18 +113,6 @@ export default function RegistrationForm() {
                     variant="filled"
                   />
                 </FormControl>
-                <FormControl isRequired>
-                  <FormLabel htmlFor="username">Username</FormLabel>
-                  <Field
-                    as={Input}
-                    id="username"
-                    name="username"
-                    type="username"
-                    onChange={handleChange}
-                    value={values.username}
-                    variant="filled"
-                  />
-                </FormControl>
                 <FormControl isInvalid={!!errors.email && touched.email} isRequired>
                   <FormLabel htmlFor="email">Email Address</FormLabel>
                   <Field
@@ -153,6 +141,28 @@ export default function RegistrationForm() {
                     validate={validatePassword}
                   />
                   <FormErrorMessage>{errors.password}</FormErrorMessage>
+                </FormControl>
+                <FormControl as='fieldset' isRequired>
+                <FormLabel as='legend'>Customer or Seller?</FormLabel>
+                <Field as={RadioGroup} 
+                  id="usertype"
+                  name="usertype"
+                  type="radiogroup"
+                  onChange={handleChange}
+                  value={values.usertype}
+                  variant="filled"
+                >
+                  <Field as={Radio} 
+                  id="cusertype"
+                  value="CUSTOMER"
+                  variant="filled"
+                  >Customer</Field>
+                  <Field as={Radio} 
+                  id="susertype"
+                  value="SELLER"
+                  variant="filled"
+                  >Seller</Field>
+                  </Field>
                 </FormControl>
         
                 <FormControl isInvalid={!!errors.dob && touched.dob} isRequired>

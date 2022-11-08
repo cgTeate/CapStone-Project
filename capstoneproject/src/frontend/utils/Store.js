@@ -3,10 +3,14 @@
 
 // export const Store = createContext();
 
+/* 
+    ! Original implmentation
+   */
+  
 // const initialState = {
-//     cart: Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) :
-//         { cartItems: [] }
-//     ,
+//     cart: Cookies.get('cart') 
+//     ? JSON.parse(Cookies.get('cart')) :
+//         { cartItems: [], shippingAddress: {} },
 // };
 
 // function reducer(state, action) {
@@ -39,6 +43,26 @@
 //                     paymentMethod: '',
 //                 },
 //             };
+//         case 'SAVE_SHIPPING_ADDRESS':
+//             return {
+
+//                 ...state,
+//                 cart: {
+//                     ...state.cart,
+//                     shippingAddress: {
+//                         ...state.cart.shippingAddress,
+//                         ...action.payload,
+//                     },
+//                 }
+//             };
+//         case 'SAVE_PAYMENT_METHOD':
+//             return {
+//                   ...state,
+//                   cart: {
+//                     ...state.cart,
+//                     paymentMethod: action.payload,
+//                   },
+//                 };
 //         default:
 //             return state;
 //     }

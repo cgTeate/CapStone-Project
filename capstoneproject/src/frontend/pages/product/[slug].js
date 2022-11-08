@@ -42,11 +42,24 @@ export default function ProductScreen() {
       alert('Sorry. Product is out of stock');
       return;
     }
+    
+    /* 
+    ! Redux implmentation
+   */
+
     dispatch(
       addToCart({ ...product})
     );
     // router.push('/Cart');
+
+    /* 
+    ! Original implmentation
+   */
+
+    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+    //router.push('/Cart');
   };
+  
   return (
 
     <Layout title={product.name}>
