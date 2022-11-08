@@ -17,38 +17,38 @@ function MyApp({ Component, pageProps
     ! Redux implmentation
    */
 
-  //   // <SessionProvider session={session}>
-  //   // <StoreProvider>
-  //   <Provider store = {store}>
-  //     <ChakraProvider theme={theme}>
+    // <SessionProvider session={session}>
+    // <StoreProvider>
+    <Provider store = {store}>
+      <ChakraProvider theme={theme}>
       
-  //     <Component {...pageProps} />
+      <Component {...pageProps} />
       
-  // </ChakraProvider>
-  //   </Provider>
+  </ChakraProvider>
+    </Provider>
       
-  // //   </StoreProvider>
-  // // </SessionProvider>
+  //   </StoreProvider>
+  // </SessionProvider>
 
   /* 
     ! Original implmentation
    */
 
-    <SessionProvider session={session}>
-    <StoreProvider>
-      <PayPalScriptProvider deferLoading={true}>
-      <ChakraProvider theme={theme}>
-    {Component.auth ? (
-            <Auth adminOnly={Component.auth.adminOnly}>
-        <Component {...pageProps} />
-        </Auth>
-        ) : (
-          <Component {...pageProps} />
-          )}
-    </ChakraProvider>
-    </PayPalScriptProvider>
-    </StoreProvider>
-  </SessionProvider>
+  //   <SessionProvider session={session}>
+  //   <StoreProvider>
+  //     <PayPalScriptProvider deferLoading={true}>
+  //     <ChakraProvider theme={theme}>
+  //   {Component.auth ? (
+  //           <Auth adminOnly={Component.auth.adminOnly}>
+  //       <Component {...pageProps} />
+  //       </Auth>
+  //       ) : (
+  //         <Component {...pageProps} />
+  //         )}
+  //   </ChakraProvider>
+  //   </PayPalScriptProvider>
+  //   </StoreProvider>
+  // </SessionProvider>
 ) }
 
 function Auth ({ children }) {
