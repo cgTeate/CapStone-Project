@@ -30,7 +30,7 @@ public class Product{
     private String productName;
     private String slug;
     private String brand;
-    @Indexed(unique = true)
+    //@Indexed(unique = true)
     private String styleId;
     private String colorway;
     private String size;
