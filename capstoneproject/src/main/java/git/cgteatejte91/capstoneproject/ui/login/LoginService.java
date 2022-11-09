@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 
 import git.cgteatejte91.capstoneproject.ui.model.User.UserRole;
 import git.cgteatejte91.capstoneproject.ui.model.User.WebsiteUser;
-import git.cgteatejte91.capstoneproject.ui.service.WebsiteUserService;
+import git.cgteatejte91.capstoneproject.ui.service.User.WebsiteUserService;
 import lombok.AllArgsConstructor;
 
 @Service

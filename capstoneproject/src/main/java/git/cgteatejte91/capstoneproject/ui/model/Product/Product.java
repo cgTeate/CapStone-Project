@@ -26,35 +26,48 @@ import lombok.ToString;
 public class Product{
     @Id
     private String id;
+    private String category;
     private String productName;
-    @Indexed(unique = true)
+    private String slug;
     private String brand;
+    //@Indexed(unique = true)
+    private String styleId;
+    private String colorway;
+    private String size;
     private float retailPrice;
     private float resellPrice;
-    private float size;
     private LocalDate releaseDate;
+    private String thumbnail;
+    private int countInStock;
     private String description;
-    private String colorway;
     private String designer;
+    private String created = LocalDateTime.now().toString();
     //private GridFSFile productImage;
-    @Transient
-    private Integer age;
+    // @Transient
+    // private Integer age;
 
-    public Product(String productName, String brand, float retailPrice, float resellPrice, float size,
-            LocalDate releaseDate, String description, String colorway, String designer) {
+    public Product(String category, String productName, String slug, String brand, String styleId, String colorway,
+            String size, float retailPrice, float resellPrice, LocalDate releaseDate, String thumbnail, 
+            int countInStock, String description, String designer, String created) {
+        this.category = category;
         this.productName = productName;
+        this.slug = slug;
         this.brand = brand;
+        this.styleId = styleId;
+        this.colorway = colorway;
+        this.size = size;
         this.retailPrice = retailPrice;
         this.resellPrice = resellPrice;
-        this.size = size;
         this.releaseDate = releaseDate;
+        this.thumbnail = thumbnail;
+        this.countInStock = countInStock;
         this.description = description;
-        this.colorway = colorway;
         this.designer = designer;
+        this.created = created;
     }
 
-    public Integer getAgeOfProduct() {
-        return Period.between(this.releaseDate, LocalDate.now()).getYears();
-    }
+    // public Integer getAgeOfProduct() {
+    //     return Period.between(this.releaseDate, LocalDate.now()).getYears();
+    // }
     
 }

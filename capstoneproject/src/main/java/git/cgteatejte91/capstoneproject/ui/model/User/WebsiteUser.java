@@ -3,8 +3,10 @@ package git.cgteatejte91.capstoneproject.ui.model.User;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.annotation.Transient;
@@ -70,9 +72,9 @@ public class WebsiteUser implements UserDetails{
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        SimpleGrantedAuthority authority =
-                new SimpleGrantedAuthority(role.name());
-        return Collections.singletonList(authority);
+        List <SimpleGrantedAuthority> authority =
+                new ArrayList<>(role.getGrantedAuthorities());
+        return authority;
     }
 
     @Override
