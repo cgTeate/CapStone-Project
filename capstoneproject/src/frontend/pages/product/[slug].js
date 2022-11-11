@@ -9,17 +9,32 @@ import data from '../../utils/data'
 // import { Store } from '../../utils/Store'
 import {addProduct,addToCart, cartRemoveItem, cartReset } from "../../redux/cartSlice";
 import { useSelector, useDispatch } from 'react-redux'
-import { useState } from 'react'
+import { useState, useEffect} from 'react'
+import { getKicks, getAllKicks, getProducts} from '../api/client'
 
 
 export default function ProductScreen() {
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
   // const { state, dispatch } = useContext(Store);
+  const [products, setProducts] = useState([]);
+
+        const fetchKicks = () => {
+            // {
+             getProducts()
+             .then(res => setProducts(res.data))
+        }
+
+  useEffect(()=>{
+   console.log("component is mounted");
+   fetchKicks();
+  }, []);
+
   const router = useRouter();
   const { query } = useRouter();
   const { slug } = query;
-  const product = data.products.find(x => x.slug === slug);
+  // const product = data.products.find(x => x.slug === slug);
+  const product = products.find(x => x.slug === slug);
   if (!product) {
     return <div> Product Not Found </div>
   }
@@ -32,7 +47,6 @@ export default function ProductScreen() {
   //     setQuantity(quantity + 1);
   //   }
   // };
-
 
   const addToCartHandler = () => {
     const existItem = cart.products.find((x) => x.slug === product.slug);
@@ -56,22 +70,22 @@ export default function ProductScreen() {
     ! Original implmentation
    */
 
-    dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+    // dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
     //router.push('/Cart');
   };
   
   return (
-
-    <Layout title={product.name}>
+    
+    <Layout title={product.productName}>
       <div className="py-2">
-        <Link href="/KicksPage"><a>Back To Kicks</a>
+        <Link href="/"><a>Back To Items</a>
         </Link>
       </div>
       <div className="grid md:grid-cols-4 md:gap-3">
         <div className="md:col-span-2">
           <Image
             src={product.thumbnail}
-            alt={product.shoeName}
+            alt={product.productName}
             width={640}
             height={640}
             layout="responsive"></Image>
@@ -80,7 +94,7 @@ export default function ProductScreen() {
       <div>
         <ul>
           <li>
-            <h1 className="text-lg">{product.shoeName}</h1>
+            <h1 className="text-lg">{product.productName}</h1>
           </li>
           <li>{product.releaseDate}</li>
           <li>{product.description}</li>

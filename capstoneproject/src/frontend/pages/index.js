@@ -10,8 +10,33 @@ import ProductItem from '../components/productItem'
 import ProductItem2 from '../components/productItem2'
 import data from '../utils/data'
 import data2 from '../utils/data2'
+import { useState, useEffect} from 'react'
+import { getKicks, getApparel } from '../pages/api/client'
 
 export default function Home({product}) {
+
+    const [kicks, setKicks] = useState([]);
+    const [apparels, setApparels] = useState([]);
+    //show the icon while it's fetching our data
+    const[fetching, setFetching] = useState(true);
+
+        const fetchKicks = () => {
+            // {
+             getKicks()
+             .then(res => setKicks(res.data))
+        }
+        const fetchApparel = () => {
+            // {
+             getApparel()
+             .then(res => setApparels(res.data))
+        }
+        
+
+  useEffect(()=>{
+   console.log("component is mounted");
+   fetchKicks();
+   fetchApparel();
+  }, []);
 
   return (
     
@@ -33,16 +58,16 @@ export default function Home({product}) {
             {/* <KicksHome/> */}
             {/* <KicksPage/> */}
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
-                {data.products.map((product) => (
-                    <ProductItem product={product} key={product.slug}></ProductItem>
+                {kicks.map((kick) => (
+                    <ProductItem product={kick} key={kick.slug}></ProductItem>
                 ))}
             </div>
             <div>Apparel</div>
             {/* <ApparelHome/> */}
             {/* <ApparelPage/> */}
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
-                {data2.products2.map((product2) => (
-                    <ProductItem2 product2={product2} key={product2.Name}></ProductItem2>
+                {apparels.map((apparel) => (
+                    <ProductItem product={apparel} key={apparel.slug}></ProductItem>
                 ))}
             </div>
       </Layout>

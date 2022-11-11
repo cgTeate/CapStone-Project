@@ -10,7 +10,7 @@ import {
 } from "@chakra-ui/react";
   
 import { Field, Formik, Form } from 'formik';
-import { addUserData } from "../pages/api/client";
+import { registerUser } from "../pages/api/client";
 
 export default function RegistrationForm() {
 
@@ -73,7 +73,7 @@ export default function RegistrationForm() {
   
   const onSubmit = async (values) => {
       alert(JSON.stringify(values, null, 2));
-    {await addUserData(values)}
+    {await registerUser(values)}
     console.log(values)
     }
 

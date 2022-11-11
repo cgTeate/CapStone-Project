@@ -16,7 +16,7 @@ public interface ProductRepository extends MongoRepository<Product, String>{
     
     Optional<Product> findProductByStyleId(String styleId);
     
-    List<Product> findByCategory(String category);
+    List<Product> findAllByCategory(String category);
 
     // @Query(value="{'category': ?0}", fields = "{'category':1}")
     // List<Product> getAllProductsByCategory(String category);

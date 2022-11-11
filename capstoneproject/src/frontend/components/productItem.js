@@ -10,7 +10,7 @@ export default function ProductItem({product})
              <a>
              <img 
                 src={product.thumbnail}
-                alt={product.shoeName}
+                alt={product.productName}
                 className="rounded shadow"
               />
             </a>   
@@ -18,7 +18,7 @@ export default function ProductItem({product})
         <div className="flex flex-col items-center justify-center p-5">
             <Link href={`/product/${product.slug}`}>
                 <a>
-                <h2 className="text-lg">{product.shoeName}</h2>
+                <h2 className="text-lg">{product.productName}</h2>
                 </a> 
             </Link>
             <p className="mb-2">{product.brand}</p>

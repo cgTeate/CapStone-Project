@@ -25,7 +25,6 @@ export default function login() {
     {
       await loginUser(values);
     }
-    console.log(values);
   };
 
   return (
