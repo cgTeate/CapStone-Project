@@ -15,7 +15,8 @@ import { userSchema } from "../Validations/UserValidation";
 import { loginUser } from "../pages/api/client";
 import { loginPending,loginSuccess, loginFail } from "../redux/loginSlice";
 import { useSelector, useDispatch } from 'react-redux'
-import Router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
+import {getUserProfile} from '../redux/userAction'
 
 export default function login() {
   const {isLoading, isAuth, error} = useSelector((state) => state.login);
@@ -31,11 +32,11 @@ export default function login() {
     dispatch(loginPending())
       try {
         const isAuth = await loginUser(values);
-        console.log(isAuth);
         if (isAuth.status === 403) {
           return dispatch(loginFail("Incorrect email or password!"));
         } else {
           dispatch(loginSuccess())
+          dispatch(getUserProfile())
           router.push("/");
         }
     }

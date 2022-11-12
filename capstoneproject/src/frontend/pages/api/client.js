@@ -184,6 +184,44 @@ export async function loginUser (values) {
         console.error(error.message);
     }
 };
+export const logoutUser = async () => {
+    try {
+        const access_Token =  sessionStorage.getItem('access_Token')
+
+        if(!access_Token) {
+            console.log("No access token")
+            return;
+        }
+        const res = await axios.delete(`${url}/api/websiteuser/logout`, {
+            headers: {
+                Authorization: access_Token,
+            }
+        });
+        return res.data;
+    } catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
+};
+export const fetchUser = async () => {
+    try {
+        const access_Token =  sessionStorage.getItem('access_Token')
+
+        if(!access_Token) {
+            console.log("No access token")
+            return;
+        }
+        const res = await axios.get(`${url}/api/websiteuser/username`, {
+            headers: {
+                Authorization: access_Token,
+            }
+        });
+        return res.data;
+    } catch (err) {
+        // Handle Error Here
+        console.error(err);
+    }
+};
 // export const getAllCust = () =>
 //     axios.get("http://localhost:8080/api/customers")
 

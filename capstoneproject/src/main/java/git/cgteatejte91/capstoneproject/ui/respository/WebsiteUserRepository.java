@@ -13,7 +13,7 @@ import git.cgteatejte91.capstoneproject.ui.model.User.WebsiteUser;
 public interface WebsiteUserRepository extends MongoRepository<WebsiteUser, String>{
 
     Optional<WebsiteUser> findByUsername(String username);
-    // List<WebsiteUser> findByUsername(String username);
+    List<WebsiteUser> findWebsiteUserByUsername(WebsiteUser user);
     Optional<WebsiteUser> findByPassword(String password);
     //WebsiteUser findByUsername(String username);
     

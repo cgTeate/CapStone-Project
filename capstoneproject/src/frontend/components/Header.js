@@ -8,8 +8,15 @@ import { signOut, useSession } from 'next-auth/react';
 import { Menu } from "antd";
 import DropdownLink from "./DropdownLink";
 import { useSelector, useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
 
 export default function Header() {
+  const router = useRouter();
+  const logMeOut = () => {
+    sessionStorage.removeItem('access_Token');
+    router.push("/");
+
+  }
   const mystyle = {
     color: "black",
     //backgroundColor: "Gray",

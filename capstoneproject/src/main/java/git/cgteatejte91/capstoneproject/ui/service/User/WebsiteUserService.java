@@ -49,6 +49,12 @@ public class WebsiteUserService implements WebsiteUserDao, UserDetailsService{
         return websiteUserRepository.findAll();
     }
     @Override
+    public List<WebsiteUser> getSingleUser(WebsiteUser user) {
+        // String username = user.getUsername();
+        return websiteUserRepository.findWebsiteUserByUsername(user);
+    }
+
+    @Override
     public WebsiteUser getUser(String username) {
         // TODO Might implement similar to loadUserByUsername()
         WebsiteUser user = websiteUserRepository.findByUsername(username).orElseThrow(() ->
