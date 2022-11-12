@@ -7,23 +7,40 @@ import {
   Stack,
   Checkbox,
   Link,
-  ButtonGroup,
+  ButtonGroup, Spinner, Alert
 } from "@chakra-ui/react";
 import { Divider } from "antd";
 import { Field, Formik, Form } from "formik";
 import { userSchema } from "../Validations/UserValidation";
 import { loginUser } from "../pages/api/client";
+import { loginPending,loginSuccess, loginFail } from "../redux/loginSlice";
+import { useSelector, useDispatch } from 'react-redux'
+import Router, { useRouter } from 'next/router'
 
 export default function login() {
+  const {isLoading, isAuth, error} = useSelector((state) => state.login);
+  const dispatch = useDispatch();
+  const router = useRouter();
   const initialValues = {
     email: "",
     password: "",
   };
 
   const onSubmit = async (values) => {
-    alert(JSON.stringify(values, null, 2));
-    {
-      await loginUser(values);
+    // e.preventDefault();
+    dispatch(loginPending())
+      try {
+        const isAuth = await loginUser(values);
+        console.log(isAuth);
+        if (isAuth.status === 403) {
+          return dispatch(loginFail("Incorrect email or password!"));
+        } else {
+          dispatch(loginSuccess())
+          router.push("/");
+        }
+    }
+    catch (error){
+      dispatch(loginFail("Server Error: " + error));
     }
   };
 
@@ -69,7 +86,7 @@ export default function login() {
               lineHeight="tight"
               noOfLines={1}
             ></Box>
-
+              {error && <Alert variant="danger">{error}</Alert>}
             <Formik initialValues={initialValues} onSubmit={onSubmit}>
               {({ handleChange, handleSubmit, errors, touched, values }) => (
                 <form onSubmit={handleSubmit}>
@@ -108,6 +125,7 @@ export default function login() {
                       {" "}
                       Submit
                     </Button>
+                    {isLoading && <Spinner variant="primary" animation="grow"/>}
                   </Stack>
                 </form>
               )}

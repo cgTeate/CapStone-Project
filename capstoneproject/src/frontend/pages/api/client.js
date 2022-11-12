@@ -166,19 +166,22 @@ export async function loginUser (values) {
             password: values.password,
             }),
         });
+        console.log(res)
         if(res.status == 200)
         {
             console.log("Login successful");
             const token = res.headers.get('Authorization')
-            sessionStorage.setItem('token', `${token}`) // will be deleted when website is closed 
-            // localStorage.setItem('token', `${token}`) // will not be deleted when website is closed
+            sessionStorage.setItem('access_Token', `${token}`) // will be deleted when website is closed 
+            // localStorage.setItem('refresh_Token', `${token}`) // will not be deleted when website is closed
+            // localStorage.setItem('refresh_Token', JSON.stringify(`${token}`)) // will not be deleted when website is closed
         }
-        else{
-            console.log("Incorrect email or password");
-        }
-    } catch (err) {
+        // else{
+        //     console.log("Incorrect email or password");
+        // }
+        return res;
+    } catch (error) {
         // Handle Error Here
-        console.error(err);
+        console.error(error.message);
     }
 };
 // export const getAllCust = () =>
