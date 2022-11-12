@@ -43,7 +43,7 @@ export default function Header() {
   return (
     <header className="sticky top-0 bg-white">
       <div className="flex justify-between p-5 text-sm text-gray-700flex space-x-4">
-        <div id="logo" class="fl_left">
+        <div id="logo" className="fl_left">
           <Link href="/">
             <a>
               <h1 style={mystyle}>HYPE HEADS</h1>
@@ -65,7 +65,7 @@ export default function Header() {
           <Link href="/">Home</Link>
           <Link href="/KicksPage">Kicks</Link>
           <Link href="/ApparelPage">
-            <a class="drop">Apparel</a>
+            <a className="drop">Apparel</a>
           </Link>
 
           <Link href="/Cart">
@@ -82,14 +82,14 @@ export default function Header() {
 
 
           <Link href="/FAQSPage">
-            <a class="drop" href="#">
+            <a className="drop" href="#">
               FAQS
             </a>
           </Link>
 
           <Link href="/LoginPage">
 
-             <a class="drop" href="#">
+             <a className="drop" href="#">
                Log In
              </a>
            </Link>
@@ -136,7 +136,7 @@ export default function Header() {
 
           <Link href="/RegistrationPage">
 
-            <a class="drop">
+            <a className="drop">
               Sell
             </a>
           </Link>
