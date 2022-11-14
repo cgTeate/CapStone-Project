@@ -62,6 +62,20 @@ export default function KicksHome()
       thumbnail:"https://images.stockx.com/images/adidas-Yeezy-Boost-350-V2-Flax-Product.jpg?fit=fill&bg=FFFFFF&w=700&h=500&fm=webp&auto=compress&trim=color&q=90&dpr=2&updated_at=1657197541",
     };
 
+    const addToCartHandler = () => {
+      const existItem = cart.products.find((x) => x.slug === product.slug);
+      const quantity = existItem ? existItem.quantity + 1 : 1;
+  
+      if (product.countInStock < quantity) {
+        alert('Sorry. Product is out of stock');
+        return;
+      }
+      dispatch(
+        addToCart({ ...product})
+      );
+
+      dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } });
+
     return (
         <Box>
         <Flex>
@@ -95,7 +109,7 @@ export default function KicksHome()
               {jordan4.retailPrice}
               <Box as='span' color='gray.600' fontSize='sm'>
               </Box>
-            </Box><button className="primary-button" type="button">
+            </Box><button className="primary-button" type="button" onClick={addToCartHandler}>
                 Add to cart
               </button>
           </Box>
@@ -133,7 +147,7 @@ export default function KicksHome()
             <Box as='span' color='gray.600' fontSize='sm'>
             </Box>
           </Box>
-          <button className="primary-button" type="button">
+          <button className="primary-button" type="button" onClick={addToCartHandler}>
                 Add to cart
               </button>
         </Box>
@@ -171,7 +185,7 @@ export default function KicksHome()
             <Box as='span' color='gray.600' fontSize='sm'>
             </Box>
             </Box>
-             <button className="primary-button" type="button">
+             <button className="primary-button" type="button" onClick={addToCartHandler}>
                 Add to cart
               </button>
         </Box>
@@ -209,7 +223,7 @@ export default function KicksHome()
             <Box as='span' color='gray.600' fontSize='sm'>
             </Box>
           </Box>
-              <button className="primary-button" type="button">
+              <button className="primary-button" type="button" onClick={addToCartHandler}>
                 Add to cart
               </button>
         </Box>
@@ -248,7 +262,7 @@ export default function KicksHome()
           <Box as='span' color='gray.600' fontSize='sm'>
           </Box>
         </Box>
-             <button className="primary-button" type="button">
+             <button className="primary-button" type="button" onClick={addToCartHandler}>
                 Add to cart
               </button>
       </Box>
@@ -286,7 +300,7 @@ export default function KicksHome()
         <Box as='span' color='gray.600' fontSize='sm'>
         </Box>
       </Box>
-        <button className="primary-button" type="button">
+        <button className="primary-button" type="button" onClick={addToCartHandler}>
             Add to cart
         </button>
     </Box>
@@ -296,4 +310,4 @@ export default function KicksHome()
         </Box>
       )
     }
-
+  }
