@@ -41,7 +41,8 @@ export default function Header() {
   // const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
   useEffect(() => {
-    setCartItemsCount(cart.products.reduce((a, c) => a + c.quantity, 0))
+    // setCartItemsCount(cart.products.reduce((a,c)=>a + c.quantity,0))
+    setCartItemsCount(cart.products.reduce((a,c)=>a + c.quantity,0))
   }, [cart.products]);
 
   // const logoutClickHandler = () => {
@@ -80,9 +81,9 @@ export default function Header() {
           <Link href="/Cart">
             <a className="p-2">
               Cart
-              {cart.products.length > 0 && (
+              {cartItemsCount > 0 && (
                 <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
-                  {cart.products.reduce((a,c)=>a + c.quantity,0)}
+                  {cartItemsCount}
                 </span>
               )}
             </a>
