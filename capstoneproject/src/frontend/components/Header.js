@@ -5,21 +5,26 @@ import Cookies from 'js-cookie';
 import { useContext, useEffect, useState } from "react";
 import { Store } from "../utils/Store";
 import { signOut, useSession } from 'next-auth/react';
-import { Menu } from "antd";
+// import { Menu } from "antd";
 import DropdownLink from "./DropdownLink";
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
-import { Spinner, Alert
+import { Spinner, Alert, Menu, MenuButton, MenuList, MenuItem, Button
 } from "@chakra-ui/react";
-import dynamic from 'next/dynamic'
+// import dynamic from 'next/dynamic'
+import {cartReset } from "../redux/cartSlice";
+import {Reset } from "../redux/userSlice";
 
-function Header() {
+export default function Header() {
   const router = useRouter();
-  const user = useSelector((state) => state.user.userInfo);
-  const {isLoading} = useSelector((state) => state.user);
+  const user = useSelector((state) => state.user.user);
+  const {isLoading, isAuth, error} = useSelector((state) => state.login);
   const logMeOut = () => {
+    // Cookies.remove('cart');
+    dispatch(cartReset())
+    dispatch(getUserReset())
     sessionStorage.removeItem('access_Token');
-    router.push("/");
+    router.push("/LoginPage");
   }
   const mystyle = {
     color: "black",
@@ -35,9 +40,9 @@ function Header() {
   // const { state, dispatch } = useContext(Store);
   // const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
-  // useEffect(() => {
-  //   setCartItemsCount(cart.cartItems.reduce((a, c) => a + c.quantity, 0))
-  // }, []);
+  useEffect(() => {
+    setCartItemsCount(cart.products.reduce((a, c) => a + c.quantity, 0))
+  }, [cart.products]);
 
   // const logoutClickHandler = () => {
   //   Cookies.remove('cart');
@@ -90,18 +95,70 @@ function Header() {
               FAQS
             </a>
           </Link>
+          <Link href="/LoginPage">
+            <a className="drop" href="#">
+              Login
+            </a>
+          </Link>
 
-                <a className="drop" href="#">
+               {/* <a className="drop" href="#">
                 {
-                // isLoading ? (<Spinner />) :
-                  user ? ("Hi " + user) :
+                isLoading ? (<Spinner />) :
+                  user ? (
+                    <Menu as="div" className="relative inline-block">
+                      <MenuButton as={Button} className="text-blue-600">
+                        {"Hi " + user}
+                    </MenuButton>
+              <MenuList className="absolute right-0 w-56 origin-top-right shadow-lg "> */}
+                {/* <MenuItem>
+                  <DropdownLink className="dropdown-link" href="/profile">
+                      Profile
+                  </DropdownLink>
+                </MenuItem>
+                <MenuItem>
+                  <DropdownLink
+                    className="dropdown-link"
+                    href="/order-history"
+                  >
+                    Order History
+                  </DropdownLink>
+                </MenuItem> */}
+                {/* <MenuItem>
+                  <a
+                    className="dropdown-link"
+                    href="#"
+                    onClick={logMeOut}
+                    >
+                    Logout
+                    </a>
+                </MenuItem> */}
+              {/* </MenuList>
+            </Menu>
+                  ) :
                 (<Link href="/LoginPage">
                   <a className="drop" href="#">
                       Log In
                     </a>
                   </Link>
                 )}
-                </a>
+                </a>  */}
+
+                {/* <a className="drop" href="#">
+                {isLoading ? (<Spinner />) :
+                  user ? (
+                    <Menu as="div" className="relative inline-block">
+                      <MenuButton as={Button} className="text-blue-600">
+                        {"Hi " + user}
+                    </MenuButton>
+                    ) :
+                (<Link href="/LoginPage">
+                  <a className="drop" href="#">
+                      Log In
+                    </a>
+                  </Link>
+                )}
+                </a> */}
+                  
 
                 {/* <a className="drop" href="#">
                   {
@@ -168,4 +225,4 @@ function Header() {
   );
 }
 
-export default dynamic(() => Promise.resolve(Header), {ssr: false});
+// export default dynamic(() => Promise.resolve(Header), {ssr: false});

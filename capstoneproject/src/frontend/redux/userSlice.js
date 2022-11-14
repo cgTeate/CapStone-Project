@@ -40,18 +40,28 @@ export const userSlice = createSlice({
       state.isLoading = true;
     },
     getUserSuccess: (state, action) => {
-      state.pending = false;
-      state.userInfo = action.payload;
+      state.isLoading = false;
+      state.user = action.payload;
       state.error = '';
     },
     getUserFail: (state, action) => {
-      state.pending = false;
+      state.isLoading = false;
       state.error = action.payload;
+    },
+    getUserReset: (state) => {
+      return {
+        ...state,
+        user: {
+          user: {},
+          isLoading: false,
+            error: ''
+        },
+    };
     },
   },
 });
 
-export const { getUserPending, getUserSuccess, getUserFail } = userSlice.actions;
+export const { getUserPending, getUserSuccess, getUserFail, getUserReset } = userSlice.actions;
 
 export default userSlice.reducer;
 

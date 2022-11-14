@@ -7,7 +7,7 @@ import Header from '../../components/Header'
 import Layout from '../../components/Layout'
 import data from '../../utils/data'
 // import { Store } from '../../utils/Store'
-import {addProduct,addToCart, cartRemoveItem, cartReset } from "../../redux/cartSlice";
+import {addProduct,addToCart, cartRemoveItem } from "../../redux/cartSlice";
 import { useSelector, useDispatch } from 'react-redux'
 import { useState, useEffect} from 'react'
 import { getKicks, getAllKicks, getProducts} from '../api/client'
