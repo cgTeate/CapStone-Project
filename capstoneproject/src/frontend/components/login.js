@@ -17,11 +17,23 @@ import { loginPending,loginSuccess, loginFail } from "../redux/loginSlice";
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
 import {getUserProfile} from '../redux/userAction'
+import { useState, useEffect} from 'react'
 
 export default function login() {
   const {isLoading, isAuth, error} = useSelector((state) => state.login);
+  const user = useSelector((state) => state.user.userInfo);
   const dispatch = useDispatch();
   const router = useRouter();
+  
+  const {redirect} = router.query;
+useEffect(()=>{
+console.log("component is mounted");
+if(user){
+  router.push(redirect || "/");
+}
+}, [router, user, redirect]);
+
+
   const initialValues = {
     email: "",
     password: "",

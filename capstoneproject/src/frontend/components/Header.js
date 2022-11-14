@@ -9,13 +9,17 @@ import { Menu } from "antd";
 import DropdownLink from "./DropdownLink";
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
+import { Spinner, Alert
+} from "@chakra-ui/react";
+import dynamic from 'next/dynamic'
 
-export default function Header() {
+function Header() {
   const router = useRouter();
+  const user = useSelector((state) => state.user.userInfo);
+  const {isLoading} = useSelector((state) => state.user);
   const logMeOut = () => {
     sessionStorage.removeItem('access_Token');
     router.push("/");
-
   }
   const mystyle = {
     color: "black",
@@ -87,14 +91,32 @@ export default function Header() {
             </a>
           </Link>
 
-          <Link href="/LoginPage">
+                <a className="drop" href="#">
+                {
+                // isLoading ? (<Spinner />) :
+                  user ? ("Hi " + user) :
+                (<Link href="/LoginPage">
+                  <a className="drop" href="#">
+                      Log In
+                    </a>
+                  </Link>
+                )}
+                </a>
 
-             <a className="drop" href="#">
-               Log In
-             </a>
-           </Link>
+                {/* <a className="drop" href="#">
+                  {
+                    user ? (<a
+                      className="dropdown-link"
+                      href="#"
+                      onClick={logMeOut}
+                      >
+                      Logout
+                      </a>) : ""}
+                </a> */}
 
-          {/* {status === 'loading' ? (
+             
+
+           {/* {status === 'loading' ? (
             'Loading'
           ) : session?.user ? (
             <Menu as="div" className="relative inline-block">
@@ -131,7 +153,7 @@ export default function Header() {
               <a className="p-2">
               Log In </a>
             </Link>
-          )} */}
+          )}  */}
 
 
           <Link href="/RegistrationPage">
@@ -145,3 +167,5 @@ export default function Header() {
     </header>
   );
 }
+
+export default dynamic(() => Promise.resolve(Header), {ssr: false});
