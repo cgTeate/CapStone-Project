@@ -13,7 +13,7 @@ import { Spinner, Alert, Menu, MenuButton, MenuList, MenuItem, Button
 } from "@chakra-ui/react";
 // import dynamic from 'next/dynamic'
 import {cartReset } from "../redux/cartSlice";
-import {Reset } from "../redux/userSlice";
+import {getUserReset } from "../redux/userSlice";
 
 export default function Header() {
   const router = useRouter();
@@ -96,22 +96,37 @@ export default function Header() {
               FAQS
             </a>
           </Link>
-          <Link href="/LoginPage">
+          {/* <Link href="/LoginPage">
+            <a className="drop" href="#">
+              Login
+            </a>
+          </Link> */}
+
+          {/* {
+            isLoading ? (<Spinner />) : 
+            user ? ("Hi " + user) : 
+            (
+              <Link href="/LoginPage">
             <a className="drop" href="#">
               Login
             </a>
           </Link>
+            )
+          } */}
+          
+          
 
-               {/* <a className="drop" href="#">
+               <a className="drop" href="#">
                 {
                 isLoading ? (<Spinner />) :
                   user ? (
                     <Menu as="div" className="relative inline-block">
                       <MenuButton as={Button} className="text-blue-600">
-                        {"Hi " + user}
+                        {"Hi " + user.slice(0,1).toUpperCase() + user.slice(1,6)}
                     </MenuButton>
-              <MenuList className="absolute right-0 w-56 origin-top-right shadow-lg "> */}
-                {/* <MenuItem>
+              <MenuList className="right-150 w-56 origin-top-right shadow-lg ">
+
+                 <MenuItem>
                   <DropdownLink className="dropdown-link" href="/profile">
                       Profile
                   </DropdownLink>
@@ -123,8 +138,9 @@ export default function Header() {
                   >
                     Order History
                   </DropdownLink>
-                </MenuItem> */}
-                {/* <MenuItem>
+                </MenuItem> 
+
+                <MenuItem>
                   <a
                     className="dropdown-link"
                     href="#"
@@ -132,8 +148,8 @@ export default function Header() {
                     >
                     Logout
                     </a>
-                </MenuItem> */}
-              {/* </MenuList>
+                </MenuItem>
+             </MenuList> 
             </Menu>
                   ) :
                 (<Link href="/LoginPage">
@@ -142,7 +158,7 @@ export default function Header() {
                     </a>
                   </Link>
                 )}
-                </a>  */}
+                </a>  
 
                 {/* <a className="drop" href="#">
                 {isLoading ? (<Spinner />) :
@@ -158,10 +174,10 @@ export default function Header() {
                     </a>
                   </Link>
                 )}
-                </a> */}
+                </a>
                   
 
-                {/* <a className="drop" href="#">
+                 <a className="drop" href="#">
                   {
                     user ? (<a
                       className="dropdown-link"
@@ -170,7 +186,7 @@ export default function Header() {
                       >
                       Logout
                       </a>) : ""}
-                </a> */}
+                </a> 
 
              
 

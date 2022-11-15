@@ -28,7 +28,7 @@
 
 import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
-  user: {},
+  user: null,
   isLoading: false,
     error: ''
 }
@@ -51,11 +51,9 @@ export const userSlice = createSlice({
     getUserReset: (state) => {
       return {
         ...state,
-        user: {
-          user: {},
+          user: null,
           isLoading: false,
             error: ''
-        },
     };
     },
   },

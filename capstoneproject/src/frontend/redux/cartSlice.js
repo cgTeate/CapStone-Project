@@ -52,11 +52,9 @@ export const cartSlice = createSlice({
     cartReset: (state) =>{
         return {
             ...state,
-            cart: {
                 products: [],
                 shippingAddress: { location: {} },
                 paymentMethod: '',
-            },
         };
     },
   },
