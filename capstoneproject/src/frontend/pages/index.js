@@ -1,17 +1,12 @@
 
 import Head from 'next/head'
+import { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
+import ProductCard from '../components/ProductCard'
 import Slider from '../components/Slider'
-import KicksHome from '../components/kicksHome'
-import ApparelHome from '../components/apparelHome'
-import KicksPage from './KicksPage'
+import { getApparel, getKicks } from '../pages/api/client'
 import ApparelPage from './ApparelPage'
-import ProductItem from '../components/productItem'
-import ProductItem2 from '../components/productItem2'
-import data from '../utils/data'
-import data2 from '../utils/data2'
-import { useState, useEffect} from 'react'
-import { getKicks, getApparel } from '../pages/api/client'
+import KicksPage from './KicksPage'
 
 export default function Home({product}) {
 
@@ -59,7 +54,7 @@ export default function Home({product}) {
             {/* <KicksPage/> */}
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
                 {kicks.map((kick) => (
-                    <ProductItem product={kick} key={kick.slug}></ProductItem>
+                    <ProductCard product={kick} key={kick.slug}></ProductCard>
                 ))}
             </div>
             <div>Apparel</div>
@@ -67,7 +62,7 @@ export default function Home({product}) {
             {/* <ApparelPage/> */}
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
                 {apparels.map((apparel) => (
-                    <ProductItem product={apparel} key={apparel.slug}></ProductItem>
+                    <ProductCard product={apparel} key={apparel.slug}></ProductCard>
                 ))}
             </div>
       </Layout>
