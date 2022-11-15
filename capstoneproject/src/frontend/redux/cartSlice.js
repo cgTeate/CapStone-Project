@@ -3,10 +3,10 @@ import Cookies from 'js-cookie';
 export const cartSlice = createSlice({
     name: "cart",
     initialState: {
-        products: [],
-        // products: Cookies.get('cart')
-        //       ? JSON.parse(Cookies.get('cart'))
-        //       : { products: [] },
+        // products: [],
+        products: Cookies.get('cart')
+              ? JSON.parse(Cookies.get('cart'))
+              : [],
         shippingAddress: { location: {} },
         paymentMethod: '',
     //   total: 0,
@@ -20,7 +20,7 @@ export const cartSlice = createSlice({
         } else {
           state.products.push({ ...newItem, quantity: 1 });
         }
-        // Cookies.set('cart', JSON.stringify({ ...state.products, newItem }));
+        Cookies.set('cart', JSON.stringify({ ...state.products, newItem }));
         // state.total += action.payload.price * action.payload.quantity;
       },
       addToCartFromShoppingCart: (state, action) => {
@@ -38,14 +38,14 @@ export const cartSlice = createSlice({
         } else {
           state.products.push({ ...newItem, quantity: 1 });
         }
-        // Cookies.set('cart', JSON.stringify({ ...state.products, newItem }));
+        Cookies.set('cart', JSON.stringify({ ...state.products, newItem }));
         // state.total += action.payload.price * action.payload.quantity;
       },
     cartRemoveItem: (state, action) => {
         const removeItem = state.products.filter(
             (item) => item.slug !== action.payload.slug
         );
-        // Cookies.set('cart', JSON.stringify({ ...state.products, removeItem }));
+        Cookies.set('cart', JSON.stringify({ ...state.products, removeItem }));
         // return { ...state, cart: { ...state.cart, removeItem } };
         state.products = removeItem;
     },

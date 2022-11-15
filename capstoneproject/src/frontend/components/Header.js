@@ -42,7 +42,8 @@ export default function Header() {
   const [cartItemsCount, setCartItemsCount] = useState(0);
   useEffect(() => {
     // setCartItemsCount(cart.products.reduce((a,c)=>a + c.quantity,0))
-    setCartItemsCount(cart.products.reduce((a,c)=>a + c.quantity,0))
+    const number = Array.isArray(cart.products) ? cart.products.reduce((a,c)=>a + c.quantity,0) : 0;
+    setCartItemsCount(number)
   }, [cart.products]);
 
   // const logoutClickHandler = () => {
@@ -116,7 +117,7 @@ export default function Header() {
           
           
 
-               <a className="drop" href="#">
+               {/* <a className="drop" href="#"> */}
                 {
                 isLoading ? (<Spinner />) :
                   user ? (
@@ -158,7 +159,7 @@ export default function Header() {
                     </a>
                   </Link>
                 )}
-                </a>  
+                {/* </a>   */}
 
                 {/* <a className="drop" href="#">
                 {isLoading ? (<Spinner />) :
