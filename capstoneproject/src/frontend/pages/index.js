@@ -4,7 +4,7 @@ import { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
 import ProductCard from '../components/ProductCard'
 import Slider from '../components/Slider'
-import { getApparel, getKicks } from '../pages/api/client'
+import { getApparel, getKicks, getKickss } from '../pages/api/client'
 import ApparelPage from './ApparelPage'
 import KicksPage from './KicksPage'
 

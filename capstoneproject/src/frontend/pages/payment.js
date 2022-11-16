@@ -1,36 +1,45 @@
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
+// import { toast } from 'react-toastify';
+import { Alert }from "@chakra-ui/react";
 import Cookies from 'js-cookie';
 import CheckoutWizard from '../components/CheckoutWizard';
 import Layout from '../components/Layout';
 import { Store } from '../utils/Store';
+import {savePaymentMethod} from "../redux/cartSlice";
+import { useSelector, useDispatch } from 'react-redux'
 
 export default function PaymentScreen() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('');
 
-  const { state, dispatch } = useContext(Store);
-  const { cart } = state;
-  const { shippingAddress, paymentMethod } = cart;
+  // const { state, dispatch } = useContext(Store);
+  // const { cart } = state;
+  // const { shippingAddress, paymentMethod } = cart;
 
+  const cart = useSelector((state) => state.cart);
+  const {shippingAddress, paymentMethod} = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const router = useRouter();
 
   const submitHandler = (e) => {
     e.preventDefault();
     if (!selectedPaymentMethod) {
-      return toast.error('Payment method is required');
+      // return Alert('Payment method is required');
+      return alert('Payment method is required');
     }
-    dispatch({ type: 'SAVE_PAYMENT_METHOD', payload: selectedPaymentMethod });
-    Cookies.set(
-      'cart',
-      JSON.stringify({
-        ...cart,
-        paymentMethod: selectedPaymentMethod,
-      })
-    );
+    // dispatch({ type: 'SAVE_PAYMENT_METHOD', payload: selectedPaymentMethod });
+    dispatch(savePaymentMethod(selectedPaymentMethod))
+    // Cookies.set(
+    //   'paymentMethod',
+    //   JSON.stringify({
+    //     // ...cart,
+    //     paymentMethod: selectedPaymentMethod,
+    //   })
+    // );
 
-    router.push('/placeorder');
+    // router.push('/placeorder');
   };
+  //TODO: Radio button needs to be reset when afte you go back to shipping page
   useEffect(() => {
     if (!shippingAddress.address) {
       return router.push('/shipping');

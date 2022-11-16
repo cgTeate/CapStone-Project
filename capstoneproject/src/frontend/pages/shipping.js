@@ -81,7 +81,7 @@ export default function ShippingScreen() {
     //   })
     // );
 
-    // router.push('/payment');
+    router.push('/payment');
   };
 
       const postcodeRegExp = /^[0-9]{5}(?:-[0-9]{4})?$/i
