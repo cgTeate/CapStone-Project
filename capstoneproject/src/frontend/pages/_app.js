@@ -8,6 +8,9 @@ import store from '../redux/store'
 import { SessionProvider, useSession } from 'next-auth/react';
 import { useRouter } from 'next/router';
 import { PayPalScriptProvider } from '@paypal/react-paypal-js';
+import { useSelector} from 'react-redux'
+import { useEffect } from "react";
+
 
 function MyApp({ Component, pageProps
   // : { session, ...pageProps } 
@@ -19,13 +22,20 @@ function MyApp({ Component, pageProps
 
     // <SessionProvider session={session}>
     // <StoreProvider>
+
     <Provider store = {store}>
       <ChakraProvider theme={theme}>
-      
-      <Component {...pageProps} />
-      
-  </ChakraProvider>
+        {Component.auth ? (
+          <AuthProvider>
+              <Component {...pageProps} />
+          </AuthProvider>
+        ) : (
+          <Component {...pageProps} />
+        )
+        }
+      </ChakraProvider>
     </Provider>
+    
       
   //   </StoreProvider>
   // </SessionProvider>
@@ -51,19 +61,44 @@ function MyApp({ Component, pageProps
   // </SessionProvider>
 ) }
 
-function Auth ({ children }) {
+// ! Redux implmentation
+function AuthProvider ({ children }) {
+  const user = useSelector((state) => state.user.user);
+  const {isLoading, isAuth, error} = useSelector((state) => state.login);
   const router = useRouter();
-  const { status} = useSession({
-    required: true,
-    onUnauthenticated() {
+  //save user credentials on local storage
+  useEffect(() => {
+    localStorage.setItem("user", JSON.stringify(user));
+    if(user===null){
       router.push('/unauthorized?message=login required');
-    },
-  });
-  if (status === 'loading') {
-    return <div>Loading...</div>;
-  }
-
+    }
+    if (isLoading) {
+      return <div>Loading...</div>;
+    }
+  }, [user, isLoading]);
   return children;
-}
+};
+
+// ! Original Implementation
+
+// function Auth ({ children }) {
+//   const user = useSelector((state) => state.user.user);
+//   const {isLoading, isAuth, error} = useSelector((state) => state.login);
+//   const router = useRouter();
+//   if(user===null){
+//     router.push('/unauthorized?message=login required');
+//   }
+//   // const { status} = useSession({
+//   //   required: true,
+//   //   onUnauthenticated() {
+//   //     router.push('/unauthorized?message=login required');
+//   //   },
+//   // });
+//   if (isLoading) {
+//     return <div>Loading...</div>;
+//   }
+
+//   return children;
+// }
 
 export default MyApp;

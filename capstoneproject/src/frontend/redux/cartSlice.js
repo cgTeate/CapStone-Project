@@ -7,7 +7,9 @@ export const cartSlice = createSlice({
         products: Cookies.get('cart')
               ? JSON.parse(Cookies.get('cart'))
               : [],
-        shippingAddress: { location: {} },
+        shippingAddress: Cookies.get('shippingAddress')
+        ? JSON.parse(Cookies.get('shippingAddress'))
+        : {},
         paymentMethod: '',
     //   total: 0,
     },
@@ -53,14 +55,32 @@ export const cartSlice = createSlice({
         return {
             ...state,
                 products: [],
-                shippingAddress: { location: {} },
+                shippingAddress: {},
                 paymentMethod: '',
         };
+    },
+    saveShippingAddress: (state, action) =>{
+      return {
+            ...state,
+            //keep the previous fields of the cart as they are
+            //...state.cart,
+
+            //keep the previous fields of the shipping as they are
+            //but merge the address in the payload with the shipping address
+            //update shipping address fields with payload 
+        shippingAddress: action.payload,
+           };
+    },
+    savePaymentMethod: (state, action) => {
+      return {
+        ...state,
+        paymentMethod: action.payload,
+      };
     },
   },
 //   default: state,
 });
 
-export const { addToCart, addProduct, cartRemoveItem, cartReset, addToCartFromShoppingCart} = cartSlice.actions
+export const { addToCart, addProduct, cartRemoveItem, cartReset, addToCartFromShoppingCart, saveShippingAddress} = cartSlice.actions
 
 export default cartSlice.reducer;

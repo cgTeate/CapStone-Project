@@ -1,58 +1,197 @@
 import React, { useContext, useEffect } from 'react';
-//import { useForm } from 'react-hook-form';
+import {
+  Flex,Heading, Button,Box,Stack,
+  FormControl, FormErrorMessage, FormGroup, FormHelperText, 
+  FormLabel, HStack, Input, Radio, RadioGroup, Select, Tooltip,
+  VStack, Checkbox,Link, ButtonGroup, Spinner, Alert
+} from "@chakra-ui/react";
+// import { useForm } from 'react-hook-form';
 import Cookies from 'js-cookie';
 import CheckoutWizard from '../components/CheckoutWizard';
 import Layout from '../components/Layout';
-import { Store } from '../utils/Store';
+// import { Store } from '../utils/Store';
+import {saveShippingAddress } from "../redux/cartSlice";
+import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router';
+import { Field, Formik, Form} from "formik";
 
 export default function ShippingScreen() {
-  const {
-    handleSubmit,
-    register,
-    formState: { errors },
-    setValue,
-  } = useForm();
+  // const {
+  //   handleSubmit,
+  //   register,
+  //   formState: { errors },
+  //   setValue,
+  // } = useForm();
 
-  const { state, dispatch } = useContext(Store);
-  const { cart } = state;
-  const { shippingAddress } = cart;
+  // const { state, dispatch } = useContext(Store);
+  // const { cart } = state;
+  // const { shippingAddress } = cart;
+
+  const cart = useSelector((state) => state.cart);
+  const {shippingAddress} = useSelector((state) => state.cart);
+  const dispatch = useDispatch();
   const router = useRouter();
 
+  /*
+  TODO: Unsure how to use UseEffect to set field values with formik using the cookies: Will work on later
   useEffect(() => {
-    setValue('fullName', shippingAddress.fullName);
-    setValue('address', shippingAddress.address);
-    setValue('city', shippingAddress.city);
-    setValue('postalCode', shippingAddress.postalCode);
-    setValue('country', shippingAddress.country);
-  }, [setValue, shippingAddress]);
+    setFieldValue('fullname', shippingAddress.fullname);
+    setFieldValue('address', shippingAddress.address);
+    setFieldValue('city', shippingAddress.city);
+    setFieldValue('postalcode', shippingAddress.postalcode);
+    setFieldValue('country', shippingAddress.country);
+  }, [setFieldValue, shippingAddress]);
+  */
 
-  const submitHandler = ({ fullName, address, city, postalCode, country }) => {
-    dispatch({
-      type: 'SAVE_SHIPPING_ADDRESS',
-      payload: { fullName, address, city, postalCode, country },
-    });
-    Cookies.set(
-      'cart',
-      JSON.stringify({
-        ...cart,
-        shippingAddress: {
-          fullName,
-          address,
-          city,
-          postalCode,
-          country,
-        },
-      })
-    );
+  // const submitHandler = ({ fullName, address, city, postalCode, country }) => {
+  //   dispatch({
+  //     type: 'SAVE_SHIPPING_ADDRESS',
+  //     payload: { fullname, address, city, postalCode, country },
+  //   });
+  //   Cookies.set(
+  //     'cart',
+  //     JSON.stringify({
+  //       ...cart,
+  //       shippingAddress: {
+  //         fullName,
+  //         address,
+  //         city,
+  //         postalCode,
+  //         country,
+  //       },
+  //     })
+  //   );
 
-    router.push('/payment');
+  //   router.push('/payment');
+  // };
+  const submitHandler = (values) => {
+    // dispatch({
+    //   type: 'SAVE_SHIPPING_ADDRESS',
+    //   payload: { fullname, address, city, postalCode, country },
+    // });
+    dispatch(saveShippingAddress(values))
+    
+    // Cookies.set(
+    //   'shippingAddress',
+    //   JSON.stringify({
+    //     // ...cart,
+    //     shippingAddress: {
+    //       values
+    //     },
+    //   })
+    // );
+
+    // router.push('/payment');
   };
+
+      const postcodeRegExp = /^[0-9]{5}(?:-[0-9]{4})?$/i
+      const validateAddress = (value) => {
+        if (value.length < 3) {
+          return "Address should be over 2 characters.";
+        }
+      }
+      const validatePostcode = (value) => {
+        if (!postcodeRegExp.test(value)) { 
+          return "Invalid ZIP code"; 
+        } 
+      }
+    const initialValues = 
+    {
+      fullname:"",
+      address:"",
+      city: "",
+      postcode:"",  
+      country: "", 
+  }
 
   return (
     <Layout title="Shipping Address">
       <CheckoutWizard activeStep={1} />
-      <form
+      <Formik
+          initialValues={initialValues}
+          onSubmit={submitHandler}
+        >
+          {({ handleChange, handleSubmit, setFieldValue, errors, touched, values}) => (
+            <form className="mx-auto max-w-screen-md" onSubmit={handleSubmit}>
+              <h1 className="mb-4 text-xl">Shipping Address</h1>
+              <VStack spacing={4} align="flex-start">
+                <FormControl className="mb-4" isRequired="Please enter full name">
+                  <FormLabel htmlFor="fullname">Full Name</FormLabel>
+                  <Field
+                     className="w-full"
+                     as={Input}
+                     id="fullname"
+                     autoFocus
+                     name="fullname"
+                     type="text"
+                     onChange={handleChange}
+                     value={values.fullname}
+                     variant="filled"
+                  />
+                </FormControl>
+                <FormControl isInvalid={!!errors.address && touched.address} isRequired="Please enter address">
+                  <FormLabel htmlFor="address">Address</FormLabel>
+                  <Field
+                    as={Input}
+                    id="address"
+                    name="address"
+                    type="text"
+                    onChange={handleChange}
+                    value={values.address}
+                    variant="filled"
+                    validate={validateAddress}
+                  />
+                  <FormErrorMessage>{errors.address}</FormErrorMessage>
+                </FormControl>
+                <FormControl isRequired="Please enter city">
+                  <FormLabel htmlFor="city">City</FormLabel>
+                  <Field
+                    as={Input}
+                    id="city"
+                    name="city"
+                    type="city"
+                    onChange={handleChange}
+                    value={values.city}
+                    variant="filled"
+                  />
+                </FormControl>
+                <FormControl isInvalid={!!errors.postcode && touched.postcode} isRequired="Please enter postal code">
+                  <FormLabel>Postal Code</FormLabel>
+                  <Field
+                  as={Input}
+                  id="postcode"
+                  name="postcode"
+                  type="postcode"
+                  onChange={handleChange}
+                  value={values.postcode}
+                  variant="filled"
+                  validate={validatePostcode}
+                  />
+                  <FormErrorMessage>{errors.postcode}</FormErrorMessage>
+                  </FormControl>
+                <FormControl isRequired="Please enter country">
+                  <FormLabel htmlFor="country">Country</FormLabel>
+                  <Field
+                    as={Input}
+                    id="country"
+                    name="country"
+                    type="country"
+                    onChange={handleChange}
+                    value={values.country}
+                    variant="filled"
+                  />
+                </FormControl>
+                <div className="mb-4 flex justify-between">
+                <Button type="submit" colorScheme="yellow" w="full">
+                  Next
+                </Button>
+                </div>
+              </VStack>
+            </form>
+          )}
+        </Formik>
+
+      {/* <form
         className="mx-auto max-w-screen-md"
         onSubmit={handleSubmit(submitHandler)}
       >
@@ -127,7 +266,7 @@ export default function ShippingScreen() {
         <div className="mb-4 flex justify-between">
           <button className="primary-button">Next</button>
         </div>
-      </form>
+      </form> */}
     </Layout>
   );
 }
