@@ -22,7 +22,7 @@ export const cartSlice = createSlice({
         } else {
           state.products.push({ ...newItem, quantity: 1 });
         }
-        Cookies.set('cart', JSON.stringify({ ...state.products, newItem }));
+        // Cookies.set('cart', JSON.stringify({ ...state.products, newItem }));
         // state.total += action.payload.price * action.payload.quantity;
       },
       addToCartFromShoppingCart: (state, action) => {
@@ -40,14 +40,14 @@ export const cartSlice = createSlice({
         } else {
           state.products.push({ ...newItem, quantity: 1 });
         }
-        Cookies.set('cart', JSON.stringify({ ...state.products, newItem }));
+        // Cookies.set('cart', JSON.stringify({ ...state.products, newItem }));
         // state.total += action.payload.price * action.payload.quantity;
       },
     cartRemoveItem: (state, action) => {
         const removeItem = state.products.filter(
             (item) => item.slug !== action.payload.slug
         );
-        Cookies.set('cart', JSON.stringify({ ...state.products, removeItem }));
+        // Cookies.set('cart', JSON.stringify({ ...state.products, removeItem }));
         // return { ...state, cart: { ...state.cart, removeItem } };
         state.products = removeItem;
     },
@@ -57,6 +57,12 @@ export const cartSlice = createSlice({
                 products: [],
                 shippingAddress: {},
                 paymentMethod: '',
+        };
+    },
+    clearCartItems: (state) =>{
+        return {
+            ...state,
+                products: [],
         };
     },
     saveShippingAddress: (state, action) =>{
@@ -81,6 +87,6 @@ export const cartSlice = createSlice({
 //   default: state,
 });
 
-export const { addToCart, addProduct, cartRemoveItem, cartReset, addToCartFromShoppingCart, saveShippingAddress, savePaymentMethod} = cartSlice.actions
+export const { addToCart, addProduct, cartRemoveItem, cartReset, addToCartFromShoppingCart, saveShippingAddress, savePaymentMethod, clearCartItems} = cartSlice.actions
 
 export default cartSlice.reducer;

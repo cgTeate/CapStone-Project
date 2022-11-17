@@ -38,7 +38,7 @@ export default function ShippingScreen() {
     setFieldValue('fullname', shippingAddress.fullname);
     setFieldValue('address', shippingAddress.address);
     setFieldValue('city', shippingAddress.city);
-    setFieldValue('postalcode', shippingAddress.postalcode);
+    setFieldValue('postcode', shippingAddress.postcode);
     setFieldValue('country', shippingAddress.country);
   }, [setFieldValue, shippingAddress]);
   */
@@ -49,7 +49,7 @@ export default function ShippingScreen() {
   //     payload: { fullname, address, city, postalCode, country },
   //   });
   //   Cookies.set(
-  //     'cart',
+  //     'shippingAddress',
   //     JSON.stringify({
   //       ...cart,
   //       shippingAddress: {

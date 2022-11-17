@@ -1,6 +1,6 @@
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
-// import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { Alert }from "@chakra-ui/react";
 import Cookies from 'js-cookie';
 import CheckoutWizard from '../components/CheckoutWizard';
@@ -25,7 +25,7 @@ export default function PaymentScreen() {
     e.preventDefault();
     if (!selectedPaymentMethod) {
       // return Alert('Payment method is required');
-      return alert('Payment method is required');
+      return toast.error('Payment method is required');
     }
     // dispatch({ type: 'SAVE_PAYMENT_METHOD', payload: selectedPaymentMethod });
     dispatch(savePaymentMethod(selectedPaymentMethod))
@@ -37,7 +37,7 @@ export default function PaymentScreen() {
     //   })
     // );
 
-    // router.push('/placeorder');
+    router.push('/placeorder');
   };
   //TODO: Radio button needs to be reset when afte you go back to shipping page
   useEffect(() => {

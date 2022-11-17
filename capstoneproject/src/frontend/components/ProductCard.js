@@ -23,7 +23,7 @@ export default function ProductCard({product})
             </Link>
             <p className="mb-2">{product.brand}</p>
             <p>${product.retailPrice}</p>
-            {/* <button className="primary-button" type="button">
+            {/* <button className="primary-button" type="button" onClick={() => addToCartHandler(product)}>
                 Add to Cart
             </button> */}
         </div>

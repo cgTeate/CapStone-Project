@@ -5,6 +5,9 @@ import { useRouter } from 'next/router';
 import Header from "../components/Header";
 // import { Store } from "../utils/Store";
 import Layout from '../components/Layout'
+import { useState, useEffect} from 'react'
+import { toast } from 'react-toastify';
+import { getKicks, getAllKicks, getProducts} from '../pages/api/client'
 import { useSelector, useDispatch } from 'react-redux'
 import { cartRemoveItem, addToCart, addToCartFromShoppingCart} from "../redux/cartSlice";
 import dynamic from 'next/dynamic'
@@ -18,12 +21,29 @@ const dispatch = useDispatch();
 //   const {
 //     cart: { cartItems },
 //   } = state;
+
+const [productsdb, setProductsdb] = useState([]);
+
+const fetchKicks = () => {
+     getProducts()
+     .then(res => setProductsdb(res.data))
+}
+
+useEffect(()=>{
+console.log("component is mounted");
+fetchKicks();
+}, []);
+
 const updateCartHandler = (item, qty) => {
     const quantity = Number(qty);
     // dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } });
+    if (productsdb.countInStock < quantity) {
+      return toast.error('Sorry. Product is out of stock');
+    }
     dispatch(
         addToCartFromShoppingCart({ ...item, quantity})
       );
+      toast.success('Product updated in the cart');
   };
   const removeItemHandler = (item) => {
     

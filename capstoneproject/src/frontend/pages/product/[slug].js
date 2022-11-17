@@ -20,7 +20,6 @@ export default function ProductScreen() {
   const [products, setProducts] = useState([]);
 
         const fetchKicks = () => {
-            // {
              getProducts()
              .then(res => setProducts(res.data))
         }

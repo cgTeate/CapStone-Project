@@ -24,6 +24,7 @@ export default function Header() {
     dispatch(cartReset())
     dispatch(getUserReset())
     sessionStorage.removeItem('access_Token');
+    localStorage.removeItem('user');
     router.push("/LoginPage");
   }
   const mystyle = {
