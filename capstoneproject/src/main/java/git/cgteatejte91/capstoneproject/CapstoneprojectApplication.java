@@ -10,6 +10,7 @@ public class CapstoneprojectApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(CapstoneprojectApplication.class, args);
+		System.out.println("Backend Server Running!");
 	}
 
 }
