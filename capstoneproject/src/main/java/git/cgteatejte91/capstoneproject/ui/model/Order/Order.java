@@ -27,13 +27,13 @@ public class Order {
     private float totalPrice;
     private boolean isPaid;
     private boolean isDelivered;
-    private LocalDate paidAt;
-    private LocalDate DeliveredAt;
-    private String created = LocalDateTime.now().toString();
+    private String paidAt = LocalDateTime.now().toString();
+    private LocalDate deliveredAt;
+    
 
     public Order(String username, OrderItems[] orderItems, ShippingAddress shippingAddress, String paymentMethod,
             float itemsPrice, float shippingPrice, float taxPrice, float totalPrice, boolean isPaid,
-            boolean isDelivered, LocalDate paidAt, LocalDate deliveredAt, String created) {
+            boolean isDelivered, String paidAt, LocalDate deliveredAt) {
         this.username = username;
         this.orderItems = orderItems;
         this.shippingAddress = shippingAddress;
@@ -45,13 +45,12 @@ public class Order {
         this.isPaid = isPaid;
         this.isDelivered = isDelivered;
         this.paidAt = paidAt;
-        DeliveredAt = deliveredAt;
-        this.created = created;
+        this.deliveredAt = deliveredAt;
     }
     
 
      public Order(OrderItems[] orderItems, ShippingAddress shippingAddress, String paymentMethod, float itemsPrice,
-            float shippingPrice, float taxPrice, float totalPrice, String created) {
+            float shippingPrice, float taxPrice, float totalPrice, String paidAt) {
         this.orderItems = orderItems;
         this.shippingAddress = shippingAddress;
         this.paymentMethod = paymentMethod;
@@ -59,7 +58,7 @@ public class Order {
         this.shippingPrice = shippingPrice;
         this.taxPrice = taxPrice;
         this.totalPrice = totalPrice;
-        this.created = created;
+        this.paidAt = paidAt;
     }
     
 }

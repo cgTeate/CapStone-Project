@@ -47,9 +47,9 @@ export default function PlaceOrderScreen() {
         try {
             setLoading(true);
 
-            const res = await axios({
+            const {data} = await axios({
                 method: 'POST',
-                url:`${url}/api/orders`,
+                url:`${url}/api/orders/placeOrder`,
                 headers: {'Content-Type': 'application/json'},
                 data:
                 JSON.stringify({
@@ -62,16 +62,7 @@ export default function PlaceOrderScreen() {
                 totalPrice,
                 }
             )});
-            console.log(res)
-            // const { data } = await axios.post(`${url}/api/orders`, {
-            //     orderItems: products,
-            //     shippingAddress,
-            //     paymentMethod,
-            //     itemsPrice,
-            //     shippingPrice,
-            //     taxPrice,
-            //     totalPrice,
-            // });
+            console.log(data)
             setLoading(false);
             // dispatch({ type: 'CART_CLEAR_ITEMS' });
             dispatch(clearCartItems())
@@ -82,7 +73,7 @@ export default function PlaceOrderScreen() {
             //         products: [],
             //     })
             // );
-        // router.push(`/order/${data._id}`);
+        router.push(`/order/${data}`);
         } catch (err) {
             setLoading(false);
             toast.error(err);
@@ -141,7 +132,7 @@ export default function PlaceOrderScreen() {
                                                     width={50}
                                                     height={50}
                                                     layout="responsive"></img>
-                                                    {/* &nbsp; */}
+                                                    &nbsp;
                                                     {item.productName}
                                                     </a>
                                                 </Link>
@@ -156,7 +147,7 @@ export default function PlaceOrderScreen() {
                                 </tbody>
                             </table>
                             <div>
-                                <Link href="/cart">Edit</Link>
+                                <Link href="/Cart">Edit</Link>
                             </div>
                         </div>
                     </div>

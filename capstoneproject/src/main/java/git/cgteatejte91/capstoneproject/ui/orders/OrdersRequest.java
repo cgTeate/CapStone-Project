@@ -17,5 +17,5 @@ public class OrdersRequest {
     private final float shippingPrice;
     private final float taxPrice;
     private final float totalPrice;
-    private final String created = LocalDateTime.now().toString();
+    private final String paidAt = LocalDateTime.now().toString();
 }

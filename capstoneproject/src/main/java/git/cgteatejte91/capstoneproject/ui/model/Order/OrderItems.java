@@ -7,6 +7,7 @@ import lombok.Data;
 @AllArgsConstructor
 public class OrderItems {
     private String productName;
+    private String slug;
     private int quantity;
     private String thumbnail;
     private float retailPrice;

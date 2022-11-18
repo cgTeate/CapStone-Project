@@ -36,16 +36,26 @@ public class OrdersService {
                     request.getShippingPrice(),
                     request.getTaxPrice(),
                     request.getTotalPrice(),
-                    request.getCreated()
+                    request.getPaidAt()
             );
-                    Optional<Order> orderOptional = ordersRepository
-                .findById(order);
-            if(orderOptional.isPresent()) {   
-                throw new IllegalStateException("two duplicate order IDs cannot exist");
-            }
+                //     Optional<Order> orderOptional = ordersRepository
+                // .findById(order);
+            // if(orderOptional.isPresent()) {   
+            //     throw new IllegalStateException("two duplicate order IDs cannot exist");
+            // }
             ordersRepository.save(order);
-            return "order added successfully";
+           String id = order.getId();
+            return id;
     
     }
 
-}
+    public Order getOrder(String id) {
+       Optional<Order> orderOptional = ordersRepository.findById(id);
+        if(orderOptional.isPresent()) 
+        {
+            return orderOptional.get();
+        }
+        return orderOptional.get();
+    }
+
+    }

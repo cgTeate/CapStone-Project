@@ -10,6 +10,6 @@ import git.cgteatejte91.capstoneproject.ui.model.Order.Order;
 @Repository
 public interface OrdersRepository extends MongoRepository<Order, String>{
 
-    Optional<Order> findById(Order order);
+    // Optional<Order> findById(Order order);
 
 }
