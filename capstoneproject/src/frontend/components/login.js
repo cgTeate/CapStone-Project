@@ -145,12 +145,15 @@ if(user){
             </Formik>
           </Box>
 
-          <Checkbox defaultChecked fontFamily={"Garamond"} colorScheme="blue">
+          {/* <Checkbox defaultChecked fontFamily={"Garamond"} colorScheme="blue">
             REMEBER ME
-          </Checkbox>
+          </Checkbox> */}
           <br />
-
-          <Link fontFamily={"Garamond"}>FORGOT PASSWORD</Link>
+          <div className="mb-4 ">
+          Don&apos;t have an account? &nbsp;
+          <Link href="/RegistrationPage">Register</Link>
+          </div>
+          <Link href={`/register?redirect=${redirect || '/'}`}>Register</Link>
           <Divider orientation="horizontal" />
         </Box>
       </Flex>
