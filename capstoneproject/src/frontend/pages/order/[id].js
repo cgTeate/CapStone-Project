@@ -13,13 +13,13 @@ import { fetchRequest, fetchSuccess, fetchFail, payRequest, paySuccess, payFail,
   deliverRequest, deliverSuccess, deliverFail, deliverReset} from "../../redux/orderSlice";
 
 function OrderScreen() {
-
+    const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();
    // order/:id
   const { query } = useRouter();
   const orderId = query.id;
 
   const dispatch = useDispatch();
-  const orders = useSelector((state) => state.order);
+//   const orders = useSelector((state) => state.order);
   const 
     {
       loading,
@@ -36,7 +36,7 @@ function OrderScreen() {
       try {
         dispatch(fetchRequest())
         const { data } = await axios.get(`${url}/api/orders/${orderId}`);
-        console.log(data)
+        // console.log(data)
         dispatch(fetchSuccess(data))
       } catch (err) {
         dispatch(fetchFail(err))
@@ -45,33 +45,56 @@ function OrderScreen() {
     
     if (
       !order.id ||
-    //   successPay ||
+      successPay ||
     //   successDeliver ||
       (order.id && order.id !== orderId)
     ) {
       fetchOrder();
-    //   if (successPay) {
-    //     dispatch({ type: 'PAY_RESET' });
-    //   }
+      
+      if (successPay) {
+        dispatch(payReset())
+        // dispatch(fetchReset())
+      }
+      
     //   if (successDeliver) {
-    //     dispatch({ type: 'DELIVER_RESET' });
+    //    dispatch(deliverReset())
     //   }
-    // } else {
-    //   const loadPaypalScript = async () => {
-    //     const { data: clientId } = await axios.get('/api/keys/paypal');
-    //     paypalDispatch({
-    //       type: 'resetOptions',
-    //       value: {
-    //         'client-id': clientId,
-    //         currency: 'USD',
-    //       },
-    //     });
-    //     paypalDispatch({ type: 'setLoadingStatus', value: 'pending' });
-    //   };
-    //   loadPaypalScript();
+    } else {
+
+      const loadPaypalScript = async () => {
+        //to get the paypal client ID from the server
+        const access_Token =  sessionStorage.getItem('access_Token')
+                if(!access_Token) {
+                    console.log("User Not Signed In")
+                    return;
+                }
+
+                const { data } = await axios.get(`${url}/api/keys/paypal`, {
+                    headers: {
+                        Authorization: access_Token,
+                    }
+                });
+        paypalDispatch({
+          type: 'resetOptions',
+          value: {
+            'client-id': data,
+            currency: 'USD',
+          },
+        });
+        paypalDispatch({ type: 'setLoadingStatus', value: 'pending' });
+      };
+      loadPaypalScript();
     }
-  }, [order, orderId
-    // , paypalDispatch, successDeliver, successPay
+    console.log("order", order)
+      console.log("successPay", successPay)
+      console.log("isPaid", paid)
+      console.log("isPending", isPending)
+  }, [
+    order, 
+    orderId,
+    paypalDispatch,  
+    successPay,
+    //successDeliver,
   ]);
 
   const {
@@ -82,73 +105,70 @@ function OrderScreen() {
     taxPrice,
     shippingPrice,
     totalPrice,
-    isPaid,
+    //isPaid,
+    paid,
     paidAt,
     isDelivered,
-    deliveredAt,
+    // deliveredAt,
+    delivered,
   } = order;
 
-  // function createOrder(data, actions) {
-  //   return actions.order
-  //     .create({
-  //       purchase_units: [
-  //         {
-  //           amount: { value: totalPrice },
-  //         },
-  //       ],
-  //     })
-  //     .then((orderID) => {
-  //       return orderID;
-  //     });
-  // }
+  function createOrder(data, actions) {
+    return actions.order
+      .create({
+        purchase_units: [
+          {
+            amount: { value: totalPrice },
+          },
+        ],
+      })
+      .then((orderID) => {
+        return orderID;
+      });
+  }
 
-  // function onApprove(data, actions) {
-  //   return actions.order.capture().then(async function (details) {
-  //     try {
-  //       // dispatch({ type: 'PAY_REQUEST' });
-  //       dispatch(payRequest())
-  //       const { data } = await axios.put(
-  //         `${url}/api/orders/${order._id}/pay`,
-  //         details
-  //       );
-  //       // dispatch({ type: 'PAY_SUCCESS', payload: data });
-  //       dispatch(paySuccess(data));
-  //       toast.success('Order is paid successgully');
-  //     } catch (err) {
-  //       // dispatch({ type: 'PAY_FAIL', payload: getError(err) });
-  //       dispatch(payFail(err));
-  //       toast.error(err);
-  //     }
-  //   });
-  // }
+  function onApprove(data, actions) {
+    return actions.order.capture().then(async function (details) {
+      try {
+        dispatch(payRequest())
+        const { data } = await axios.put(
+          `${url}/api/orders/${order.id}/pay`,
+          details
+        );
+        dispatch(paySuccess(data));
+        toast.success('Order is paid successfully');
+      } catch (err) {
+        dispatch(payFail(err));
+        toast.error(err);
+      }
+    });
+  }
 
-  // function onError(err) {
-  //   toast.error(err);
-  // }
+  function onError(err) {
+    toast.error(err);
+  }
 
-  // async function deliverOrderHandler() {
-  //   try {
-  //     // dispatch({ type: 'DELIVER_REQUEST' });
-  //     dispatch(deliverRequest())
-  //     const { data } = await axios.put(
-  //       `${url}/api/admin/orders/${order._id}/deliver`,
-  //       {}
-  //     );
-  //     // dispatch({ type: 'DELIVER_SUCCESS', payload: data });
-  //     dispatch(deliverSuccess(data))
-  //     toast.success('Order is delivered');
-  //   } catch (err) {
-  //     // dispatch({ type: 'DELIVER_FAIL', payload: getError(err) });
-  //     dispatch(deliverFail(err));
-  //     toast.error(err);
-  //   }
-  // }
+//   async function deliverOrderHandler() {
+//     try {
+//       dispatch(deliverRequest())
+//       const { data } = await axios.put(
+//         `${url}/api/admin/orders/${order._id}/deliver`,
+//         {}
+//       );
+//       dispatch(deliverSuccess(data))
+//       toast.success('Order is delivered');
+//     } catch (err) {
+//       dispatch(deliverFail(err));
+//       toast.error(err);
+//     }
+//   }
+
 
   return (
     <Layout title={`Order ${orderId}`}>
       <h1 className="mb-4 text-xl">{`Order ${orderId}`}</h1>
       {loading ? (
-        <div>Loading...</div>
+        <div>Loading</div>
       ) : error ? (
         <div className="alert-error">{error}</div>
       ) : (
@@ -171,7 +191,7 @@ function OrderScreen() {
             <div className="card p-5">
               <h2 className="mb-2 text-lg">Payment Method</h2>
               <div>{paymentMethod}</div>
-              {isPaid ? (
+              {paid ? (
                 <div className="alert-success">Paid at {paidAt}</div>
               ) : (
                 <div className="alert-error">Not paid</div>
@@ -246,6 +266,22 @@ function OrderScreen() {
                     <div>${totalPrice}</div>
                   </div>
                 </li>
+                {!paid && (
+                  <li>
+                    {isPending ? (
+                      <div>Loading...</div>
+                    ) : (
+                      <div className="w-full">
+                        <PayPalButtons
+                          createOrder={createOrder}
+                          onApprove={onApprove}
+                          onError={onError}
+                        ></PayPalButtons>
+                      </div>
+                    )}
+                    {loadingPay && <div>Loading...</div>}
+                  </li>
+                )}
               </ul>
             </div>
           </div>
@@ -282,7 +318,7 @@ function OrderScreen() {
 //             <div className="card p-5">
 //               <h2 className="mb-2 text-lg">Payment Method</h2>
 //               <div>{paymentMethod}</div>
-//               {isPaid ? (
+//               {paid ? (
 //                 <div className="alert-success">Paid at {paidAt}</div>
 //               ) : (
 //                 <div className="alert-error">Not paid</div>

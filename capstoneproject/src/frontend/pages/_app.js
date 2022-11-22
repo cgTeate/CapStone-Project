@@ -24,7 +24,8 @@ function MyApp({ Component, pageProps
     // <StoreProvider>
 
     <Provider store = {store}>
-      <ChakraProvider theme={theme}>
+       <PayPalScriptProvider deferLoading={true}>
+       <ChakraProvider theme={theme}>
         {Component.auth ? (
           <AuthProvider>
               <Component {...pageProps} />
@@ -34,6 +35,7 @@ function MyApp({ Component, pageProps
         )
         }
       </ChakraProvider>
+       </PayPalScriptProvider>
     </Provider>
     
       

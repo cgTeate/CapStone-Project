@@ -10,6 +10,7 @@ import lombok.Data;
 @AllArgsConstructor
 @Data
 public class OrdersRequest {
+    private final String username;
     private final OrderItems orderItems[];
     private final ShippingAddress shippingAddress;
     private final String paymentMethod;
@@ -17,5 +18,6 @@ public class OrdersRequest {
     private final float shippingPrice;
     private final float taxPrice;
     private final float totalPrice;
-    private final String paidAt = LocalDateTime.now().toString();
+    private final String paidAt;
+    // private final String createdAt = LocalDateTime.now().toString();
 }

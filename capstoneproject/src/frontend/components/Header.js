@@ -9,13 +9,14 @@ import { signOut, useSession } from 'next-auth/react';
 import DropdownLink from "./DropdownLink";
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router'
-import { Spinner, Alert, Menu, MenuButton, MenuList, MenuItem, Button
+import { Spinner, Alert, Button
 } from "@chakra-ui/react";
-// import dynamic from 'next/dynamic'
+import {Menu, MenuButton, MenuList, MenuItem} from "@chakra-ui/menu";
+import dynamic from 'next/dynamic'
 import {cartReset } from "../redux/cartSlice";
 import {getUserReset } from "../redux/userSlice";
 
-export default function Header() {
+function Header() {
   const router = useRouter();
   const user = useSelector((state) => state.user.user);
   const {isLoading, isAuth, error} = useSelector((state) => state.login);
@@ -98,6 +99,11 @@ export default function Header() {
               FAQS
             </a>
           </Link>
+          <Link href="/order-history">
+            <a className="drop" href="#">
+              History
+            </a>
+          </Link>
           {/* <Link href="/LoginPage">
             <a className="drop" href="#">
               Login
@@ -129,27 +135,37 @@ export default function Header() {
               <MenuList className="right-150 w-56 origin-top-right shadow-lg ">
 
                  <MenuItem>
-                  <DropdownLink className="dropdown-link" href="/profile">
+                 <Link href="/profile">
+                      <a className="dropdown-link" href="#">
+                       Profile
+                      </a>
+                  </Link>
+                  {/* <DropdownLink className="dropdown-link" href="/profile">
                       Profile
-                  </DropdownLink>
+                  </DropdownLink> */}
                 </MenuItem>
                 <MenuItem>
-                  <DropdownLink
+                  <Link href="/order-history">
+                      <a className="dropdown-link" href="#">
+                       Order History
+                      </a>
+                  </Link>
+                  {/* <DropdownLink
                     className="dropdown-link"
                     href="/order-history"
                   >
                     Order History
-                  </DropdownLink>
+                  </DropdownLink> */}
                 </MenuItem> 
 
                 <MenuItem>
-                  <a
+                  <DropdownLink
                     className="dropdown-link"
                     href="#"
                     onClick={logMeOut}
                     >
                     Logout
-                    </a>
+                    </DropdownLink>
                 </MenuItem>
              </MenuList> 
             </Menu>
@@ -244,4 +260,4 @@ export default function Header() {
   );
 }
 
-// export default dynamic(() => Promise.resolve(Header), {ssr: false});
+export default dynamic(() => Promise.resolve(Header), {ssr: false});

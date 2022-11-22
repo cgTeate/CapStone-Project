@@ -9,6 +9,9 @@ const initialState = {
     errorPay: '',
     loadingDeliver: false,
     successDeliver: false,
+    historyloading: true,
+    orders: [],
+    historyerror: '',
 }
 export const orderSlice = createSlice({
   name: "order",
@@ -27,12 +30,30 @@ export const orderSlice = createSlice({
         state.loading = false
         state.error = action.payload
     },
-    payRequest: (state)=>{
-        state.loading = true
+     // fetchReset: (state)=>{
+    //     state.loading = false
+    //     state.error = ''
+    // },
+    historyfetchRequest: (state)=>{
+        state.historyloading = true
+        state.historyerror = ''
     },
-    paySuccess: (state)=>{
+    historyfetchSuccess: (state, action)=>{
+        state.historyloading = false
+        state.orders = action.payload
+        state.historyerror = ''
+    },
+    historyfetchFail: (state, action)=>{
+        state.historyloading = false
+        state.historyerror = action.payload
+    },
+    payRequest: (state)=>{
+        state.loadingPay = true
+    },
+    paySuccess: (state, action)=>{
         state.loadingPay = false 
         state.successPay = true
+        state.order = action.payload
     },
     payFail: (state, action)=>{
         state.loadingPay = false
@@ -40,7 +61,7 @@ export const orderSlice = createSlice({
     },
     payReset: (state)=>{
         state.loadingPay = false
-        state.succesPay = false
+        state.successPay = false
         state.errorPay = ''
     },
     deliverRequest: (state)=>{
@@ -61,6 +82,6 @@ export const orderSlice = createSlice({
 });
 
 export const {fetchRequest, fetchSuccess, fetchFail, payRequest, paySuccess, payFail, payReset,
-    deliverRequest, deliverSuccess, deliverFail, deliverReset } = orderSlice.actions;
+    deliverRequest, deliverSuccess, deliverFail, deliverReset, historyfetchRequest, historyfetchSuccess, historyfetchFail } = orderSlice.actions;
 
 export default orderSlice.reducer;

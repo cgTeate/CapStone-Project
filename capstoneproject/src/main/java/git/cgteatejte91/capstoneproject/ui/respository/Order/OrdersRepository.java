@@ -1,5 +1,6 @@
 package git.cgteatejte91.capstoneproject.ui.respository.Order;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -11,5 +12,5 @@ import git.cgteatejte91.capstoneproject.ui.model.Order.Order;
 public interface OrdersRepository extends MongoRepository<Order, String>{
 
     // Optional<Order> findById(Order order);
-
+    List<Order> findAllByUsername(String username);
 }

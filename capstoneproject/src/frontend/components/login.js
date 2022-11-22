@@ -21,7 +21,7 @@ import { useState, useEffect} from 'react'
 
 export default function login() {
   const {isLoading, isAuth, error} = useSelector((state) => state.login);
-  const user = useSelector((state) => state.user.userInfo);
+  const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const router = useRouter();
   
@@ -151,9 +151,9 @@ if(user){
           <br />
           <div className="mb-4 ">
           Don&apos;t have an account? &nbsp;
-          <Link href="/RegistrationPage">Register</Link>
+          <Link href={`/RegistrationPage?redirect=${redirect || '/'}`}>Register</Link>
           </div>
-          <Link href={`/register?redirect=${redirect || '/'}`}>Register</Link>
+          <Link fontFamily={"Garamond"}>FORGOT PASSWORD</Link>
           <Divider orientation="horizontal" />
         </Box>
       </Flex>
