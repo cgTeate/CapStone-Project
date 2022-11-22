@@ -24,7 +24,9 @@ public interface ProductRepository extends MongoRepository<Product, String>{
     @Query(value="{'retailPrice': {$gt: ?0}}", fields = "{'retailPrice': 1, 'productName': 1}")
     List<Product> findByRetailPriceGreaterThan(float retailPrice);
 
-    // List<Product> findByAddressCountry(String country);
+
+    //List<Product> findByAddressCountry(String country);
+
     
 }
 
