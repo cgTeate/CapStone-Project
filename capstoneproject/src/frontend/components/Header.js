@@ -19,7 +19,7 @@ import {getUserReset } from "../redux/userSlice";
 function Header() {
   const router = useRouter();
   const user = useSelector((state) => state.user.user);
-  const {isLoading, isAuth, error} = useSelector((state) => state.login);
+  const { isLoading, isAuth, error } = useSelector((state) => state.login);
   const logMeOut = () => {
     // Cookies.remove('cart');
     dispatch(cartReset())
@@ -34,6 +34,14 @@ function Header() {
     padding: "30px",
     fontFamily: "Garamond",
     fontSize: "50px",
+    fontWeight: "bold",
+  };
+  const mystyle2 = {
+    color: "black",
+    //backgroundColor: "Gray",
+    padding: "1px",
+    fontFamily: "Garamond",
+    fontSize: "16px",
     // fontWeight: "bold",
   };
   const cart = useSelector((state) => state.cart);
@@ -44,7 +52,7 @@ function Header() {
   const [cartItemsCount, setCartItemsCount] = useState(0);
   useEffect(() => {
     // setCartItemsCount(cart.products.reduce((a,c)=>a + c.quantity,0))
-    const number = Array.isArray(cart.products) ? cart.products.reduce((a,c)=>a + c.quantity,0) : 0;
+    const number = Array.isArray(cart.products) ? cart.products.reduce((a, c) => a + c.quantity, 0) : 0;
     setCartItemsCount(number)
   }, [cart.products]);
 
@@ -54,7 +62,7 @@ function Header() {
   //   signOut({ callbackUrl: '/login' });
   // }
   return (
-    <header className="sticky top-0 bg-white">
+    <header className="sticky top-0 bg-gray-400">
       <div className="flex justify-between p-5 text-sm text-gray-700flex space-x-4">
         <div id="logo" className="fl_left">
           <Link href="/">
@@ -63,27 +71,37 @@ function Header() {
             </a>
           </Link>
         </div>
-        <div className="relative mt-2">
-          <div className="absolute top-2 middle-2">
+        <div className="relative mt-10">
+          <div className="absolute top-0 middle-2">
             <MagnifyingGlassIcon className="h-5 text-gray-500" />
           </div>
           <input
             type="text"
             placeholder="Search"
-            className="bg-gray-50 pl-10 border-gray-500 text-sm focus:ring-black focus:border-black rounded-md"
+            className="bg-gray-50 pl-20 border-black text-lg focus:ring-black focus:border-black rounded-md"
           />
         </div>
 
-        <div className="flex space-x-4 items-center">
-          <Link href="/">Home</Link>
-          <Link href="/KicksPage">Kicks</Link>
+        <div className="flex space-x-4 items-center ">
+          <Link href="/">
+            <a>
+              <h1 style={mystyle2}>Home</h1>
+            </a>
+          </Link>
+          <Link href="/KicksPage">
+            <a>
+              <h1 style={mystyle2}>Kicks</h1>
+            </a>
+          </Link>
           <Link href="/ApparelPage">
-            <a className="drop">Apparel</a>
+            <a>
+              <h1 style={mystyle2}>Apparel</h1>
+            </a>
           </Link>
 
           <Link href="/Cart">
             <a className="p-2">
-              Cart
+              <h1 style={mystyle2}>Cart</h1>
               {cartItemsCount > 0 && (
                 <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
                   {cartItemsCount}
@@ -95,15 +113,15 @@ function Header() {
 
 
           <Link href="/FAQSPage">
-            <a className="drop" href="#">
-              FAQS
+            <a>
+              <h1 style={mystyle2}>FAQS</h1>
             </a>
           </Link>
-          <Link href="/order-history">
+          {/* <Link href="/order-history">
             <a className="drop" href="#">
               History
             </a>
-          </Link>
+          </Link> */}
           {/* <Link href="/LoginPage">
             <a className="drop" href="#">
               Login
@@ -121,11 +139,10 @@ function Header() {
           </Link>
             )
           } */}
-          
-          
 
-               {/* <a className="drop" href="#"> */}
-                {
+                
+                 {/* <a className="drop" href="#"> */}
+                 {
                 isLoading ? (<Spinner />) :
                   user ? (
                     <Menu as="div" className="relative inline-block">
@@ -159,13 +176,20 @@ function Header() {
                 </MenuItem> 
 
                 <MenuItem>
-                  <DropdownLink
+                <Button
+                    href="#"
+                    onClick={logMeOut}>
+                      <a className="dropdown-link" href="#">
+                       Logout
+                      </a>
+                  </Button>
+                  {/* <DropdownLink
                     className="dropdown-link"
                     href="#"
                     onClick={logMeOut}
                     >
                     Logout
-                    </DropdownLink>
+                    </DropdownLink> */}
                 </MenuItem>
              </MenuList> 
             </Menu>
@@ -178,7 +202,7 @@ function Header() {
                 )}
                 {/* </a>   */}
 
-                {/* <a className="drop" href="#">
+          {/* <a className="drop" href="#">
                 {isLoading ? (<Spinner />) :
                   user ? (
                     <Menu as="div" className="relative inline-block">
@@ -249,9 +273,8 @@ function Header() {
 
 
           <Link href="/RegistrationPage">
-
-            <a className="drop">
-              Sell
+            <a>
+              <h1 style={mystyle2}>Sell</h1>
             </a>
           </Link>
         </div>

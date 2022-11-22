@@ -7,7 +7,7 @@ import ApparelHome from '../components/apparelHome'
 
 export default function HomePage()
 {
-
+        
     return (
         <div>
             <Head>
