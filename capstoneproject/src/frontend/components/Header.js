@@ -1,24 +1,23 @@
-import { MagnifyingGlassIcon,PlusCircleIcon} from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
 //import { signOut, useSession } from 'next-auth/react';
-import Link from "next/link";
 import Cookies from 'js-cookie';
+import { signOut, useSession } from 'next-auth/react';
+import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
 import { Store } from "../utils/Store";
-import { signOut, useSession } from 'next-auth/react';
 // import { Menu } from "antd";
+import { Alert, Button, Menu, MenuButton, MenuItem, MenuList, Spinner } from "@chakra-ui/react";
+import { useRouter } from 'next/router';
+import { useDispatch, useSelector } from 'react-redux';
 import DropdownLink from "./DropdownLink";
-import { useSelector, useDispatch } from 'react-redux'
-import { useRouter } from 'next/router'
-import { Spinner, Alert, Menu, MenuButton, MenuList, MenuItem, Button
-} from "@chakra-ui/react";
 // import dynamic from 'next/dynamic'
-import {cartReset } from "../redux/cartSlice";
-import {getUserReset } from "../redux/userSlice";
+import { cartReset } from "../redux/cartSlice";
+import { getUserReset } from "../redux/userSlice";
 
 export default function Header() {
   const router = useRouter();
   const user = useSelector((state) => state.user.user);
-  const {isLoading, isAuth, error} = useSelector((state) => state.login);
+  const { isLoading, isAuth, error } = useSelector((state) => state.login);
   const logMeOut = () => {
     // Cookies.remove('cart');
     dispatch(cartReset())
@@ -33,6 +32,14 @@ export default function Header() {
     padding: "30px",
     fontFamily: "Garamond",
     fontSize: "50px",
+    fontWeight: "bold",
+  };
+  const mystyle2 = {
+    color: "black",
+    //backgroundColor: "Gray",
+    padding: "1px",
+    fontFamily: "Garamond",
+    fontSize: "16px",
     // fontWeight: "bold",
   };
   const cart = useSelector((state) => state.cart);
@@ -43,7 +50,7 @@ export default function Header() {
   const [cartItemsCount, setCartItemsCount] = useState(0);
   useEffect(() => {
     // setCartItemsCount(cart.products.reduce((a,c)=>a + c.quantity,0))
-    const number = Array.isArray(cart.products) ? cart.products.reduce((a,c)=>a + c.quantity,0) : 0;
+    const number = Array.isArray(cart.products) ? cart.products.reduce((a, c) => a + c.quantity, 0) : 0;
     setCartItemsCount(number)
   }, [cart.products]);
 
@@ -53,7 +60,7 @@ export default function Header() {
   //   signOut({ callbackUrl: '/login' });
   // }
   return (
-    <header className="sticky top-0 bg-white">
+    <header className="sticky top-0 bg-gray-400">
       <div className="flex justify-between p-5 text-sm text-gray-700flex space-x-4">
         <div id="logo" className="fl_left">
           <Link href="/">
@@ -62,27 +69,37 @@ export default function Header() {
             </a>
           </Link>
         </div>
-        <div className="relative mt-2">
-          <div className="absolute top-2 middle-2">
+        <div className="relative mt-10">
+          <div className="absolute top-0 middle-2">
             <MagnifyingGlassIcon className="h-5 text-gray-500" />
           </div>
           <input
             type="text"
             placeholder="Search"
-            className="bg-gray-50 pl-10 border-gray-500 text-sm focus:ring-black focus:border-black rounded-md"
+            className="bg-gray-50 pl-20 border-black text-lg focus:ring-black focus:border-black rounded-md"
           />
         </div>
 
-        <div className="flex space-x-4 items-center">
-          <Link href="/">Home</Link>
-          <Link href="/KicksPage">Kicks</Link>
+        <div className="flex space-x-4 items-center ">
+          <Link href="/">
+            <a>
+              <h1 style={mystyle2}>Home</h1>
+            </a>
+          </Link>
+          <Link href="/KicksPage">
+            <a>
+              <h1 style={mystyle2}>Kicks</h1>
+            </a>
+          </Link>
           <Link href="/ApparelPage">
-            <a className="drop">Apparel</a>
+            <a>
+              <h1 style={mystyle2}>Apparel</h1>
+            </a>
           </Link>
 
           <Link href="/Cart">
             <a className="p-2">
-              Cart
+              <h1 style={mystyle2}>Cart</h1>
               {cartItemsCount > 0 && (
                 <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">
                   {cartItemsCount}
@@ -94,8 +111,8 @@ export default function Header() {
 
 
           <Link href="/FAQSPage">
-            <a className="drop" href="#">
-              FAQS
+            <a>
+              <h1 style={mystyle2}>FAQS</h1>
             </a>
           </Link>
           {/* <Link href="/LoginPage">
@@ -115,54 +132,54 @@ export default function Header() {
           </Link>
             )
           } */}
-          
-          
 
-               {/* <a className="drop" href="#"> */}
-                {
-                isLoading ? (<Spinner />) :
-                  user ? (
-                    <Menu as="div" className="relative inline-block">
-                      <MenuButton as={Button} className="text-blue-600">
-                        {"Hi " + user.slice(0,1).toUpperCase() + user.slice(1,6)}
-                    </MenuButton>
-              <MenuList className="right-150 w-56 origin-top-right shadow-lg ">
 
-                 <MenuItem>
-                  <DropdownLink className="dropdown-link" href="/profile">
-                      Profile
-                  </DropdownLink>
-                </MenuItem>
-                <MenuItem>
-                  <DropdownLink
-                    className="dropdown-link"
-                    href="/order-history"
-                  >
-                    Order History
-                  </DropdownLink>
-                </MenuItem> 
 
-                <MenuItem>
-                  <a
-                    className="dropdown-link"
-                    href="#"
-                    onClick={logMeOut}
-                    >
-                    Logout
-                    </a>
-                </MenuItem>
-             </MenuList> 
-            </Menu>
-                  ) :
+          {/* <a className="drop" href="#"> */}
+          {
+            isLoading ? (<Spinner />) :
+              user ? (
+                <Menu as="div" className="relative inline-block">
+                  <MenuButton as={Button} className="text-blue-600">
+                    {"Hi " + user.slice(0, 1).toUpperCase() + user.slice(1, 6)}
+                  </MenuButton>
+                  <MenuList className="right-150 w-56 origin-top-right shadow-lg ">
+
+                    <MenuItem>
+                      <DropdownLink className="dropdown-link" href="/profile">
+                        Profile
+                      </DropdownLink>
+                    </MenuItem>
+                    <MenuItem>
+                      <DropdownLink
+                        className="dropdown-link"
+                        href="/order-history"
+                      >
+                        Order History
+                      </DropdownLink>
+                    </MenuItem>
+
+                    <MenuItem>
+                      <a
+                        className="dropdown-link"
+                        href="#"
+                        onClick={logMeOut}
+                      >
+                        Logout
+                      </a>
+                    </MenuItem>
+                  </MenuList>
+                </Menu>
+              ) :
                 (<Link href="/LoginPage">
-                  <a className="drop" href="#">
-                      Log In
-                    </a>
-                  </Link>
+                  <a>
+                    <h1 style={mystyle2}>Log In</h1>
+                  </a>
+                </Link>
                 )}
-                {/* </a>   */}
+          {/* </a>   */}
 
-                {/* <a className="drop" href="#">
+          {/* <a className="drop" href="#">
                 {isLoading ? (<Spinner />) :
                   user ? (
                     <Menu as="div" className="relative inline-block">
@@ -233,9 +250,8 @@ export default function Header() {
 
 
           <Link href="/RegistrationPage">
-
-            <a className="drop">
-              Sell
+            <a>
+              <h1 style={mystyle2}>Sell</h1>
             </a>
           </Link>
         </div>

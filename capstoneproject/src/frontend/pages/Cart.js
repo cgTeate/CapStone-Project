@@ -6,7 +6,7 @@ import Header from "../components/Header";
 // import { Store } from "../utils/Store";
 import Layout from '../components/Layout'
 import { useState, useEffect} from 'react'
-import { toast } from 'react-toastify';
+//import { toast } from 'react-toastify';
 import { getKicks, getAllKicks, getProducts} from '../pages/api/client'
 import { useSelector, useDispatch } from 'react-redux'
 import { cartRemoveItem, addToCart, addToCartFromShoppingCart} from "../redux/cartSlice";

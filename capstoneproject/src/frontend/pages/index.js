@@ -10,6 +10,14 @@ import KicksPage from './KicksPage'
 
 export default function Home({product}) {
 
+    const mystyle = {
+        color: "black",
+        //backgroundColor: "Gray",
+        padding: "30px",
+        fontFamily: "Garamond",
+        fontSize: "30px",
+        // fontWeight: "bold",
+      };
     const [kicks, setKicks] = useState([]);
     const [apparels, setApparels] = useState([]);
     //show the icon while it's fetching our data
@@ -49,7 +57,7 @@ export default function Home({product}) {
       // </div> 
       <Layout title="Home Page">
             <Slider/>
-            <p>Kicks</p>
+            <p style={mystyle}>Kicks</p>
             {/* <KicksHome/> */}
             {/* <KicksPage/> */}
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
@@ -57,7 +65,7 @@ export default function Home({product}) {
                     <ProductCard product={kick} key={kick.slug}></ProductCard>
                 ))}
             </div>
-            <div>Apparel</div>
+            <p style={mystyle}>Apparel</p>
             {/* <ApparelHome/> */}
             {/* <ApparelPage/> */}
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
