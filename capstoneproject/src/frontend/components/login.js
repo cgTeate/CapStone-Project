@@ -7,25 +7,54 @@ import {
   Stack,
   Checkbox,
   Link,
-  ButtonGroup,
+  ButtonGroup, Spinner, Alert
 } from "@chakra-ui/react";
 import { Divider } from "antd";
 import { Field, Formik, Form } from "formik";
 import { userSchema } from "../Validations/UserValidation";
 import { loginUser } from "../pages/api/client";
+import { loginPending,loginSuccess, loginFail } from "../redux/loginSlice";
+import { useSelector, useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
+import {getUserProfile} from '../redux/userAction'
+import { useState, useEffect} from 'react'
 
 export default function login() {
+  const {isLoading, isAuth, error} = useSelector((state) => state.login);
+  const user = useSelector((state) => state.user.userInfo);
+  const dispatch = useDispatch();
+  const router = useRouter();
+  
+  const {redirect} = router.query;
+useEffect(()=>{
+console.log("component is mounted");
+if(user){
+  router.push(redirect || "/");
+}
+}, [router, user, redirect]);
+
+
   const initialValues = {
     email: "",
     password: "",
   };
 
   const onSubmit = async (values) => {
-    alert(JSON.stringify(values, null, 2));
-    {
-      await loginUser(values);
+    // e.preventDefault();
+    dispatch(loginPending())
+      try {
+        const isAuth = await loginUser(values);
+        if (isAuth.status === 403) {
+          return dispatch(loginFail("Incorrect email or password!"));
+        } else {
+          dispatch(loginSuccess())
+          dispatch(getUserProfile())
+          router.push("/");
+        }
     }
-    console.log(values);
+    catch (error){
+      dispatch(loginFail("Server Error: " + error));
+    }
   };
 
   return (
@@ -70,7 +99,7 @@ export default function login() {
               lineHeight="tight"
               noOfLines={1}
             ></Box>
-
+              {error && <Alert variant="danger">{error}</Alert>}
             <Formik initialValues={initialValues} onSubmit={onSubmit}>
               {({ handleChange, handleSubmit, errors, touched, values }) => (
                 <form onSubmit={handleSubmit}>
@@ -109,6 +138,7 @@ export default function login() {
                       {" "}
                       Submit
                     </Button>
+                    {isLoading && <Spinner variant="primary" animation="grow"/>}
                   </Stack>
                 </form>
               )}

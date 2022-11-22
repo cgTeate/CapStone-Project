@@ -16,7 +16,7 @@ public interface ProductRepository extends MongoRepository<Product, String>{
     
     Optional<Product> findProductByStyleId(String styleId);
     
-    List<Product> findByCategory(String category);
+    List<Product> findAllByCategory(String category);
 
     // @Query(value="{'category': ?0}", fields = "{'category':1}")
     // List<Product> getAllProductsByCategory(String category);
@@ -24,7 +24,9 @@ public interface ProductRepository extends MongoRepository<Product, String>{
     @Query(value="{'retailPrice': {$gt: ?0}}", fields = "{'retailPrice': 1, 'productName': 1}")
     List<Product> findByRetailPriceGreaterThan(float retailPrice);
 
+
     //List<Product> findByAddressCountry(String country);
+
     
 }
 

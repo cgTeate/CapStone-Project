@@ -56,8 +56,9 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         .addFilter(new JwtUsernameAndPasswordAuthenticationFilter(authenticationManager(), jwtConfig, secretKey))
         .addFilterBefore(new JwtTokenVerifier(secretKey, jwtConfig),JwtUsernameAndPasswordAuthenticationFilter.class)
         .authorizeRequests().antMatchers("/", "index", "/css/*", "/js/*",
-                    "/api/registration/**", "/api/products/**", "/api/websiteuser/**", "/management/api/websiteuser/**").permitAll()
-        // .antMatchers("/api/websiteuser/**").hasAnyRole(CUSTOMER.name(),SELLER.name())
+                    "/api/registration/**", "/api/products/**","/api/orders/**", "/management/api/websiteuser/**").permitAll()
+        .antMatchers("/api/websiteuser/**").hasAnyRole(CUSTOMER.name(),SELLER.name())
+        //.antMatchers("/management/api/websiteuser/**").hasRole(ADMIN.name())
         .anyRequest().authenticated();
                 
     }
@@ -83,6 +84,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter{
         configuration.setAllowedMethods(Arrays.asList("HEAD",
                 "GET", "POST", "PUT", "DELETE", "PATCH"));
         configuration.setAllowedHeaders(List.of("Authorization", "Content-Type"));
+        configuration.setExposedHeaders(List.of("Authorization"));
         // // setAllowCredentials(true) is important, otherwise:
         // // The value of the 'Access-Control-Allow-Origin' header in the response must not be the wildcard '*' when the request's credentials mode is 'include'.
         // configuration.setAllowCredentials(true);

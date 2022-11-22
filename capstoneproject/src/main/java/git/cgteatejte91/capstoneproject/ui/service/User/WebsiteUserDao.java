@@ -13,6 +13,7 @@ public interface WebsiteUserDao {
     List<WebsiteUser> getAllSellers();
     List<WebsiteUser> getAllCustomers();
     List<WebsiteUser> getAllUsers();
+    List<WebsiteUser> getSingleUser(WebsiteUser user);
     void deleteUser(String username);
     void updateUser(String username, WebsiteUser user);
     // WebsiteUser updateUser(String username, WebsiteUser user);

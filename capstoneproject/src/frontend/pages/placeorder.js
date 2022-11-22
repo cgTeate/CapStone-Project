@@ -2,23 +2,31 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import Image from 'next/image';
 import Link from 'next/link';
+const url = process.env.NEXT_PUBLIC_SPRINGBOOT_API_URL
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import CheckoutWizard from '../components/CheckoutWizard';
 import Layout from '../components/Layout';
-import { getError } from '../utils/error';
-import { Store } from '../utils/Store';
+// import { getError } from '../utils/error';
+// import { Store } from '../utils/Store';
+import { getKicks, getAllKicks, getProducts} from '../pages/api/client'
+import { useSelector, useDispatch } from 'react-redux'
+import { clearCartItems} from "../redux/cartSlice";
 
 export default function PlaceOrderScreen() {
-    const { state, dispatch } = useContext(Store);
-    const { cart } = state;
-    const { cartItems, shippingAddress, paymentMethod } = cart;
+    const cart = useSelector((state) => state.cart);
+    const { products, shippingAddress, paymentMethod  } = useSelector((state) => state.cart);
+    const dispatch = useDispatch();
+
+    // const { state, dispatch } = useContext(Store);
+    // const { cart } = state;
+    // const { cartItems, shippingAddress, paymentMethod } = cart;
 
     const round2 = (num) => Math.round(num * 100 + Number.EPSILON) / 100;
 
     const itemsPrice = round2(
-        cartItems.reduce((a, c) => a + c.quantity * c.price, 0)
+        products.reduce((a, c) => a + c.quantity * c.retailPrice, 0)
     ); // 123.4567 => 123.46
 
     const shippingPrice = itemsPrice > 200 ? 0 : 15;
@@ -33,32 +41,42 @@ export default function PlaceOrderScreen() {
     }, [paymentMethod, router]);
 
     const [loading, setLoading] = useState(false);
+    const productsOI = [products.productName, products.quantity, products.thumbnail, products.retailPrice]
 
     const placeOrderHandler = async () => {
         try {
             setLoading(true);
-            const { data } = await axios.post('/api/orders', {
-                orderItems: cartItems,
+
+            const {data} = await axios({
+                method: 'POST',
+                url:`${url}/api/orders/placeOrder`,
+                headers: {'Content-Type': 'application/json'},
+                data:
+                JSON.stringify({
+                    orderItems: products,
                 shippingAddress,
                 paymentMethod,
                 itemsPrice,
                 shippingPrice,
                 taxPrice,
                 totalPrice,
-            });
+                }
+            )});
+            console.log(data)
             setLoading(false);
-            dispatch({ type: 'CART_CLEAR_ITEMS' });
-            Cookies.set(
-                'cart',
-                JSON.stringify({
-                    ...cart,
-                    cartItems: [],
-                })
-            );
-        router.push(`/order/${data._id}`);
+            // dispatch({ type: 'CART_CLEAR_ITEMS' });
+            dispatch(clearCartItems())
+
+            // Cookies.set(
+            //     'cart',
+            //     JSON.stringify({
+            //         products: [],
+            //     })
+            // );
+        router.push(`/order/${data}`);
         } catch (err) {
             setLoading(false);
-            toast.error(getError(err));
+            toast.error(err);
         }
     };
 
@@ -66,9 +84,9 @@ export default function PlaceOrderScreen() {
         <Layout title="Place Order">
             <CheckoutWizard activeStep={3} />
             <h1 className="mb-4 text-xl">Place Order</h1>
-            {cartItems.length === 0 ? (
+            {products.length === 0 ? (
                 <div>
-                    Cart is empty. <Link href="/">Go shopping</Link>
+                    Cart is empty. <Link href="/">Come Kick It</Link>
                 </div>
             ) : (
                 <div className="grid md:grid-cols-4 md:gap-5">
@@ -76,8 +94,8 @@ export default function PlaceOrderScreen() {
                         <div className="card  p-5">
                             <h2 className="mb-2 text-lg">Shipping Address</h2>
                             <div>
-                                {shippingAddress.fullName}, {shippingAddress.address},{' '}
-                                {shippingAddress.city}, {shippingAddress.postalCode},{' '}
+                                {shippingAddress.fullname}, {shippingAddress.address},{' '}
+                                {shippingAddress.city}, {shippingAddress.postcode},{' '}
                                 {shippingAddress.country}
                             </div>
                             <div>
@@ -103,19 +121,19 @@ export default function PlaceOrderScreen() {
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    {cartItems.map((item) => (
-                                        <tr key={item._id} className="border-b">
+                                    {products.map((item) => (
+                                        <tr key={item.id} className="border-b">
                                             <td>
                                                 <Link href={`/product/${item.slug}`}>
                                                     <a className="flex items-center">
-                                                        <Image
-                                                            src={item.thumbnail}
-                                                            alt={item.shoeName}
-                                                            width={50}
-                                                            height={50}
-                                                        ></Image>
-                                                        &nbsp;
-                                                        {item.shoeName}
+                                                    <img
+                                                    src={item.thumbnail}
+                                                    alt={item.productName}
+                                                    width={50}
+                                                    height={50}
+                                                    layout="responsive"></img>
+                                                    &nbsp;
+                                                    {item.productName}
                                                     </a>
                                                 </Link>
                                             </td>
@@ -129,7 +147,7 @@ export default function PlaceOrderScreen() {
                                 </tbody>
                             </table>
                             <div>
-                                <Link href="/cart">Edit</Link>
+                                <Link href="/Cart">Edit</Link>
                             </div>
                         </div>
                     </div>

@@ -1,17 +1,45 @@
 
 import Head from 'next/head'
+import { useEffect, useState } from 'react'
 import Layout from '../components/Layout'
+import ProductCard from '../components/ProductCard'
 import Slider from '../components/Slider'
-import KicksHome from '../components/kicksHome'
-import ApparelHome from '../components/apparelHome'
-import KicksPage from './KicksPage'
+import { getApparel, getKicks, getKickss } from '../pages/api/client'
 import ApparelPage from './ApparelPage'
-import ProductItem from '../components/productItem'
-import ProductItem2 from '../components/productItem2'
-import data from '../utils/data'
-import data2 from '../utils/data2'
+import KicksPage from './KicksPage'
 
 export default function Home({product}) {
+
+    const mystyle = {
+        color: "black",
+        //backgroundColor: "Gray",
+        padding: "30px",
+        fontFamily: "Garamond",
+        fontSize: "30px",
+        // fontWeight: "bold",
+      };
+    const [kicks, setKicks] = useState([]);
+    const [apparels, setApparels] = useState([]);
+    //show the icon while it's fetching our data
+    const[fetching, setFetching] = useState(true);
+
+        const fetchKicks = () => {
+            // {
+             getKicks()
+             .then(res => setKicks(res.data))
+        }
+        const fetchApparel = () => {
+            // {
+             getApparel()
+             .then(res => setApparels(res.data))
+        }
+        
+
+  useEffect(()=>{
+   console.log("component is mounted");
+   fetchKicks();
+   fetchApparel();
+  }, []);
 
   return (
     
@@ -29,20 +57,20 @@ export default function Home({product}) {
       // </div> 
       <Layout title="Home Page">
             <Slider/>
-            <p>Kicks</p>
+            <p style={mystyle}>Kicks</p>
             {/* <KicksHome/> */}
             {/* <KicksPage/> */}
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
-                {data.products.map((product) => (
-                    <ProductItem product={product} key={product.slug}></ProductItem>
+                {kicks.map((kick) => (
+                    <ProductCard product={kick} key={kick.slug}></ProductCard>
                 ))}
             </div>
-            <div>Apparel</div>
+            <p style={mystyle}>Apparel</p>
             {/* <ApparelHome/> */}
             {/* <ApparelPage/> */}
             <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
-                {data2.products2.map((product2) => (
-                    <ProductItem2 product2={product2} key={product2.Name}></ProductItem2>
+                {apparels.map((apparel) => (
+                    <ProductCard product={apparel} key={apparel.slug}></ProductCard>
                 ))}
             </div>
       </Layout>

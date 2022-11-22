@@ -7,6 +7,8 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,10 +33,23 @@ public class WebsiteUserController {
 
     //get users individual info
     // @PostMapping("/user")
-    @PostMapping(path = "{username}")
+    // @PostMapping(path = "{username}")
+    // @PreAuthorize("hasAuthority('account:read')")
+    // public WebsiteUser fetchUser(@PathVariable("username") String username){
+    //     return websiteUserService.getUser(username);
+    // }
+    
+    //able to get username with JWT
+    @GetMapping("/username")
     @PreAuthorize("hasAuthority('account:read')")
-    public WebsiteUser fetchUser(@PathVariable("username") String username){
-        return websiteUserService.getUser(username);
+    public String fetchUser(Authentication authentication){
+        return authentication.getName();
+    }
+    //tryint to get all user info with JWT
+    @GetMapping("/usernames")
+    @PreAuthorize("hasAuthority('account:read')")
+    public List<WebsiteUser> fetchUser(@AuthenticationPrincipal WebsiteUser websiteUser){
+        return websiteUserService.getSingleUser(websiteUser);
     }
 
     //delete user

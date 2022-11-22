@@ -35,7 +35,7 @@ public class ProductService {
     public List<Product> getAllProductsByCategory(String category) {
         // ExampleMatcher matcher = ExampleMatcher.matchingAny().withIgnoreCase().withMatcher("Kicks", GenericPropertyMatcher.of(StringMatcher.ENDING));
         // Example<Product> p = Example.of(product, matcher);
-        return productRepository.findByCategory(category);
+        return productRepository.findAllByCategory(category);
     }
 
     public List<Product> getAllRetailPriceGreaterThan(float retailPrice) {
