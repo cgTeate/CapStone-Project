@@ -1,20 +1,22 @@
-import { MagnifyingGlassIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
+import { MagnifyingGlassIcon,PlusCircleIcon} from "@heroicons/react/24/outline";
 //import { signOut, useSession } from 'next-auth/react';
-import Cookies from 'js-cookie';
-import { signOut, useSession } from 'next-auth/react';
 import Link from "next/link";
+import Cookies from 'js-cookie';
 import { useContext, useEffect, useState } from "react";
 import { Store } from "../utils/Store";
+import { signOut, useSession } from 'next-auth/react';
 // import { Menu } from "antd";
-import { Alert, Button, Menu, MenuButton, MenuItem, MenuList, Spinner } from "@chakra-ui/react";
-import { useRouter } from 'next/router';
-import { useDispatch, useSelector } from 'react-redux';
 import DropdownLink from "./DropdownLink";
-// import dynamic from 'next/dynamic'
-import { cartReset } from "../redux/cartSlice";
-import { getUserReset } from "../redux/userSlice";
+import { useSelector, useDispatch } from 'react-redux'
+import { useRouter } from 'next/router'
+import { Spinner, Alert, Button
+} from "@chakra-ui/react";
+import {Menu, MenuButton, MenuList, MenuItem} from "@chakra-ui/menu";
+import dynamic from 'next/dynamic'
+import {cartReset } from "../redux/cartSlice";
+import {getUserReset } from "../redux/userSlice";
 
-export default function Header() {
+function Header() {
   const router = useRouter();
   const user = useSelector((state) => state.user.user);
   const { isLoading, isAuth, error } = useSelector((state) => state.login);
@@ -115,6 +117,11 @@ export default function Header() {
               <h1 style={mystyle2}>FAQS</h1>
             </a>
           </Link>
+          {/* <Link href="/order-history">
+            <a className="drop" href="#">
+              History
+            </a>
+          </Link> */}
           {/* <Link href="/LoginPage">
             <a className="drop" href="#">
               Login
@@ -133,51 +140,67 @@ export default function Header() {
             )
           } */}
 
+                
+                 {/* <a className="drop" href="#"> */}
+                 {
+                isLoading ? (<Spinner />) :
+                  user ? (
+                    <Menu as="div" className="relative inline-block">
+                      <MenuButton as={Button} className="text-blue-600">
+                        {"Hi " + user.slice(0,1).toUpperCase() + user.slice(1,6)}
+                    </MenuButton>
+              <MenuList className="right-150 w-56 origin-top-right shadow-lg ">
 
-
-          {/* <a className="drop" href="#"> */}
-          {
-            isLoading ? (<Spinner />) :
-              user ? (
-                <Menu as="div" className="relative inline-block">
-                  <MenuButton as={Button} className="text-blue-600">
-                    {"Hi " + user.slice(0, 1).toUpperCase() + user.slice(1, 6)}
-                  </MenuButton>
-                  <MenuList className="right-150 w-56 origin-top-right shadow-lg ">
-
-                    <MenuItem>
-                      <DropdownLink className="dropdown-link" href="/profile">
-                        Profile
-                      </DropdownLink>
-                    </MenuItem>
-                    <MenuItem>
-                      <DropdownLink
-                        className="dropdown-link"
-                        href="/order-history"
-                      >
-                        Order History
-                      </DropdownLink>
-                    </MenuItem>
-
-                    <MenuItem>
-                      <a
-                        className="dropdown-link"
-                        href="#"
-                        onClick={logMeOut}
-                      >
-                        Logout
+                 <MenuItem>
+                 <Link href="/profile">
+                      <a className="dropdown-link" href="#">
+                       Profile
                       </a>
-                    </MenuItem>
-                  </MenuList>
-                </Menu>
-              ) :
+                  </Link>
+                  {/* <DropdownLink className="dropdown-link" href="/profile">
+                      Profile
+                  </DropdownLink> */}
+                </MenuItem>
+                <MenuItem>
+                  <Link href="/order-history">
+                      <a className="dropdown-link" href="#">
+                       Order History
+                      </a>
+                  </Link>
+                  {/* <DropdownLink
+                    className="dropdown-link"
+                    href="/order-history"
+                  >
+                    Order History
+                  </DropdownLink> */}
+                </MenuItem> 
+
+                <MenuItem>
+                <Button
+                    href="#"
+                    onClick={logMeOut}>
+                      <a className="dropdown-link" href="#">
+                       Logout
+                      </a>
+                  </Button>
+                  {/* <DropdownLink
+                    className="dropdown-link"
+                    href="#"
+                    onClick={logMeOut}
+                    >
+                    Logout
+                    </DropdownLink> */}
+                </MenuItem>
+             </MenuList> 
+            </Menu>
+                  ) :
                 (<Link href="/LoginPage">
-                  <a>
-                    <h1 style={mystyle2}>Log In</h1>
-                  </a>
-                </Link>
+                  <a className="drop" href="#">
+                      Log In
+                    </a>
+                  </Link>
                 )}
-          {/* </a>   */}
+                {/* </a>   */}
 
           {/* <a className="drop" href="#">
                 {isLoading ? (<Spinner />) :
@@ -260,4 +283,4 @@ export default function Header() {
   );
 }
 
-// export default dynamic(() => Promise.resolve(Header), {ssr: false});
+export default dynamic(() => Promise.resolve(Header), {ssr: false});

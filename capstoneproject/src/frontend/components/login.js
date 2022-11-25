@@ -21,7 +21,7 @@ import { useState, useEffect} from 'react'
 
 export default function login() {
   const {isLoading, isAuth, error} = useSelector((state) => state.login);
-  const user = useSelector((state) => state.user.userInfo);
+  const user = useSelector((state) => state.user.user);
   const dispatch = useDispatch();
   const router = useRouter();
   
@@ -145,11 +145,14 @@ if(user){
             </Formik>
           </Box>
 
-          <Checkbox defaultChecked fontFamily={"Garamond"} colorScheme="blue">
+          {/* <Checkbox defaultChecked fontFamily={"Garamond"} colorScheme="blue">
             REMEBER ME
-          </Checkbox>
+          </Checkbox> */}
           <br />
-
+          <div className="mb-4 ">
+          Don&apos;t have an account? &nbsp;
+          <Link href={`/RegistrationPage?redirect=${redirect || '/'}`}>Register</Link>
+          </div>
           <Link fontFamily={"Garamond"}>FORGOT PASSWORD</Link>
           <Divider orientation="horizontal" />
         </Box>

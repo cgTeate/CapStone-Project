@@ -4,15 +4,17 @@ import {
   Button,
   Checkbox,
   Flex,
-  
+  Link,
   FormControl,
   FormErrorMessage, FormGroup, FormHelperText, FormLabel, HStack, Input, Radio, RadioGroup, Select, Tooltip, VStack
 } from "@chakra-ui/react";
-  
+import { useRouter } from 'next/router'
 import { Field, Formik, Form } from 'formik';
 import { registerUser } from "../pages/api/client";
 
 export default function RegistrationForm() {
+  const router = useRouter();
+  const {redirect} = router.query;
 
       const dateRegExp = /^\d{4}-\d{2}-\d{2}$/i
       const phoneRegExp = /^((\\+[1-9]{1,4}[ \\-]*)|(\\([0-9]{2,3}\\)[ \\-]*)|([0-9]{2,4})[ \\-]*)*?[0-9]{3,4}?[ \\-]*[0-9]{3,4}?$/i
@@ -273,6 +275,10 @@ export default function RegistrationForm() {
             </form>
           )}
         </Formik>
+        <div className="mb-4 ">
+          Don&apos;t have an account? &nbsp;
+          <Link href={`/RegistrationPage?redirect=${redirect || '/'}`}>Register</Link>
+          </div>
         </Box>
     </Flex>
        

@@ -7,6 +7,7 @@ export const getUserProfile = () => async (dispatch) =>{
         const user = await fetchUser()
         console.log(user)
         if(user){
+            localStorage.setItem("user", JSON.stringify(user));
             return dispatch(getUserSuccess(user));
         }
         dispatch(getUserFail("User not found"))

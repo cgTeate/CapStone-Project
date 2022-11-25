@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import git.cgteatejte91.capstoneproject.ui.controllers.WebsiteUserUpdateRequest;
 import git.cgteatejte91.capstoneproject.ui.model.User.WebsiteUser;
 import git.cgteatejte91.capstoneproject.ui.respository.WebsiteUserRepository;
 import lombok.AllArgsConstructor;
@@ -77,10 +78,12 @@ public class WebsiteUserService implements WebsiteUserDao, UserDetailsService{
     }
 
     @Override
-    public void updateUser(String username, WebsiteUser user) {
+    public void updateUser(String username, WebsiteUserUpdateRequest user) {
         // TODO Implemented put request from CustomerService logic
            WebsiteUser userDb =  websiteUserRepository.findByUsername(username).orElseThrow(() ->
             new UsernameNotFoundException(String.format(USER_NOT_FOUND_MSG, username)));
+            String dbpassword;
+        dbpassword = userDb.getPassword();
 
             if(user.getFirstName() != null &&
                     user.getFirstName().length() > 0 && 
@@ -98,6 +101,12 @@ public class WebsiteUserService implements WebsiteUserDao, UserDetailsService{
                 user.getUsername().length() > 0 && 
                     !Objects.equals(userDb.getUsername(), user.getUsername())) {
                         userDb.setUsername(user.getUsername());
+            }
+            if(user.getPassword() != null &&
+                user.getPassword().length() > 0 && 
+                    !bCryptPasswordEncoder.matches(user.getPassword(),dbpassword)) {
+                        String encodedPassword = bCryptPasswordEncoder.encode(user.getPassword());
+                        userDb.setPassword(encodedPassword);
             }
             websiteUserRepository.save(userDb);
     }

@@ -16,6 +16,7 @@ import { clearCartItems} from "../redux/cartSlice";
 
 export default function PlaceOrderScreen() {
     const cart = useSelector((state) => state.cart);
+    const user = useSelector((state) => state.user.user);
     const { products, shippingAddress, paymentMethod  } = useSelector((state) => state.cart);
     const dispatch = useDispatch();
 
@@ -53,6 +54,7 @@ export default function PlaceOrderScreen() {
                 headers: {'Content-Type': 'application/json'},
                 data:
                 JSON.stringify({
+                    username: user,
                     orderItems: products,
                 shippingAddress,
                 paymentMethod,

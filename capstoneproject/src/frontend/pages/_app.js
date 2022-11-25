@@ -24,7 +24,8 @@ function MyApp({ Component, pageProps
     // <StoreProvider>
 
     <Provider store = {store}>
-      <ChakraProvider theme={theme}>
+       <PayPalScriptProvider deferLoading={true}>
+       <ChakraProvider theme={theme}>
         {Component.auth ? (
           <AuthProvider>
               <Component {...pageProps} />
@@ -34,6 +35,7 @@ function MyApp({ Component, pageProps
         )
         }
       </ChakraProvider>
+       </PayPalScriptProvider>
     </Provider>
     
       
@@ -68,7 +70,9 @@ function AuthProvider ({ children }) {
   const router = useRouter();
   //save user credentials on local storage
   useEffect(() => {
-    localStorage.setItem("user", JSON.stringify(user));
+    if(!localStorage.getItem('user') || user!==localStorage.getItem('user')){
+      localStorage.setItem("user", JSON.stringify(user));
+    }
     if(user===null){
       router.push('/unauthorized?message=login required');
     }
