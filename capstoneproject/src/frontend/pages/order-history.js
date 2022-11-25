@@ -7,24 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { fetchRequest, fetchSuccess, fetchFail, payRequest, paySuccess, payFail, payReset,
   deliverRequest, deliverSuccess, deliverFail, deliverReset, historyfetchRequest, historyfetchSuccess, historyfetchFail} from "../redux/orderSlice";
 
-// function reducer(state, action) {
-//   switch (action.type) {
-//     case 'FETCH_REQUEST':
-//       return { ...state, loading: true, error: '' };
-//     case 'FETCH_SUCCESS':
-//       return { ...state, loading: false, orders: action.payload, error: '' };
-//     case 'FETCH_FAIL':
-//       return { ...state, loading: false, error: action.payload };
-//     default:
-//       return state;
-//   }
-// }
 function OrderHistoryScreen() {
-  // const [{ loading, error, orders }, dispatch] = useReducer(reducer, {
-  //   loading: true,
-  //   orders: [],
-  //   error: '',
-  // });
   const user = useSelector((state) => state.user.user);
 
   const dispatch = useDispatch();
@@ -39,7 +22,7 @@ function OrderHistoryScreen() {
     const fetchOrders = async () => {
       try {
         dispatch(historyfetchRequest());
-        // const { data } = await axios.get(`/api/orders/history`);
+
         const access_Token =  sessionStorage.getItem('access_Token')
                 if(!access_Token) {
                     console.log("User Not Signed In")
@@ -53,17 +36,6 @@ function OrderHistoryScreen() {
                             Authorization: access_Token,
               });
               console.log(data)
-                // const res = await axios.get(`${url}/api/orders/history`, {
-                //   data:
-                //   JSON.stringify({
-                //     username: user,
-                //   }),
-                //     headers: {
-                //       'Content-Type': 'application/json',
-                //         Authorization: access_Token,
-                //     }
-                // });
-                // console.log(res)
         dispatch(historyfetchSuccess(data));
       } catch (err) {
         dispatch(historyfetchFail(err));
@@ -125,5 +97,5 @@ function OrderHistoryScreen() {
   );
 }
 
-// OrderHistoryScreen.auth = true;
+OrderHistoryScreen.auth = true;
 export default OrderHistoryScreen;

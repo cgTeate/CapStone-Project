@@ -51,6 +51,14 @@ public class WebsiteUser implements UserDetails{
         this.username = username;
         this.password = password;
     }
+    
+
+    public WebsiteUser(String firstName, String lastName, String username, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.username = username;
+        this.password = password;
+    }
 
     public WebsiteUser(String firstName, String lastName, String username, String password, UserRole role, LocalDate dob,
             String phoneNumber, Gender gender, Address address, String created) {

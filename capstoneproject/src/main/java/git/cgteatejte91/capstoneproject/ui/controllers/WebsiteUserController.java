@@ -59,9 +59,9 @@ public class WebsiteUserController {
         websiteUserService.deleteUser(username);
     }
     //update user info
-    @PutMapping(path = "{username}")
+    @PutMapping(path = "/update/{username}")
     @PreAuthorize("hasAuthority('account:write')")
-    public void updateUser(@PathVariable("username") String username, @RequestBody WebsiteUser user){
+    public void updateUser(@PathVariable("username") String username, @RequestBody WebsiteUserUpdateRequest user){
             websiteUserService.updateUser(username, user);
         }
 }

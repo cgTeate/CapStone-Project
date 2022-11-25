@@ -171,7 +171,10 @@ export async function loginUser (values) {
         {
             console.log("Login successful");
             const token = res.headers.get('Authorization')
-            sessionStorage.setItem('access_Token', `${token}`) // will be deleted when website is closed 
+            if(!sessionStorage.getItem('access_Token') || token!==sessionStorage.getItem('access_Token')){
+                sessionStorage.setItem('access_Token', `${token}`); // will be deleted when website is closed 
+              }
+            
             // localStorage.setItem('refresh_Token', `${token}`) // will not be deleted when website is closed
             // localStorage.setItem('refresh_Token', JSON.stringify(`${token}`)) // will not be deleted when website is closed
         }
