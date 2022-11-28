@@ -15,6 +15,7 @@ import {Menu, MenuButton, MenuList, MenuItem} from "@chakra-ui/menu";
 import dynamic from 'next/dynamic'
 import {cartReset } from "../redux/cartSlice";
 import {getUserReset } from "../redux/userSlice";
+import HypeHeadsLogo from "../images/NewHypeHeadsLogo3.png";
 
 function Header() {
   const router = useRouter();
@@ -61,17 +62,28 @@ function Header() {
   //   dispatch({ type: 'CART_RESET' })
   //   signOut({ callbackUrl: '/login' });
   // }
+
+  const logo = [HypeHeadsLogo];
   return (
-    <header className="sticky top-0 bg-gray-400">
-      <div className="flex justify-between p-5 text-sm text-gray-700flex space-x-4">
+
+    
+    <header className="items-center top-0 bg-gray-500">
+      <div className="flex justify-between items-center p-5 text-sm text-gray-700flex space-x-4">
         <div id="logo" className="fl_left">
-          <Link href="/">
-            <a>
-              <h1 style={mystyle}>HYPE HEADS</h1>
-            </a>
-          </Link>
+              {logo.map((image) => (
+          <div key={image.src} className="">
+            <Link href="/">
+            <img
+            layout="fill"
+            style={{ width: 200, height: 100 }}
+            src={image.src}
+            alt={image.alt}
+          />
+            </Link>
+          </div>
+        ))}   
         </div>
-        <div className="relative mt-10">
+        <div className="relative">
           <div className="absolute top-0 middle-2">
             <MagnifyingGlassIcon className="h-5 text-gray-500" />
           </div>
@@ -117,6 +129,7 @@ function Header() {
               <h1 style={mystyle2}>FAQS</h1>
             </a>
           </Link>
+
           {/* <Link href="/order-history">
             <a className="drop" href="#">
               History

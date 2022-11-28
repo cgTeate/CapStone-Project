@@ -3,7 +3,7 @@ const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
   images:{
-    domains:["images.stockx.com"],
+    domains:["images.stockx.com", "https://discord.com/channels/691711061513994255/917547212475621456"],
   },
 }
 

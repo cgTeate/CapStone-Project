@@ -8,12 +8,16 @@ import image3 from "../images/image3.jpg";
 
 
 
-const fadeImages = [image3];
+const fadeImages = [
+  "https://cdn.discordapp.com/attachments/917547212475621456/1046210226883403796/IMG_6088.JPG",
+  "https://cdn.discordapp.com/attachments/917547212475621456/1046609283904720976/IMG_5213.JPG",
+  "https://cdn.discordapp.com/attachments/917547212475621456/1043242498060988536/IMG_4873.JPG",
+];
 
 const fadeProperties = {
-  duration: 5000,
+  duration: 3000,
   transitionDuration: 500,
-  infinite: false,
+  infinite: true,
   indicators: true
 }
 
@@ -26,7 +30,7 @@ export default function Slider() {
     <>
        <div className="slide-container">
       <Fade {...fadeProperties}>
-        <div className="each-fade">
+        {/* <div className="each-fade">
         {fadeImages.map((image) => (
           <div key={image.src} className="relative aspect-square">
           <Image
@@ -36,13 +40,15 @@ export default function Slider() {
             alt={image.alt}
           /></div>
         ))}
-        {/* <img src={require('../images/image1.jpg')}/> 
+        </div> */}
+        <div className="each-fade">
+          <img src={fadeImages[0]} />
         </div>
         <div className="each-fade">
-        <img src={require('../images/image2.jpg')}/> 
+          <img src={fadeImages[1]} />
         </div>
         <div className="each-fade">
-        <img src={require('../images/image3.jpg')}/>  */}
+          <img src={fadeImages[2]} />
         </div>
       </Fade>
     </div>

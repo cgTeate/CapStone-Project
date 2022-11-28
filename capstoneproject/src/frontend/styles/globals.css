@@ -31,12 +31,13 @@
     width: 100%;
     height: 100%;
     margin: auto; 
-    max-width: 600px;  
+    max-width: 1100px;  
     text-align: center;
     border-radius: 20px;
     position: relative;
     top: 0px;
     left: 0px;
+    z-index: 1;
     }
 
     .slideshow li h3 {
@@ -70,6 +71,12 @@
     
     .card{
       @apply mb-5 block rounded-lg border border-gray-200 shadow-md;
+    }
+
+    .active{
+      color: skyblue;
+      font-size: 24px;
+      cursor: pointer;
     }
 
     .dropdown-link {
