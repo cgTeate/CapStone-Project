@@ -16,17 +16,17 @@ import { cartReset } from "../redux/cartSlice";
 import { getUserReset } from "../redux/userSlice";
 import DropdownLink from "./DropdownLink"; 
 import HypeHeadsLogo from "../images/NewHypeHeadsLogo3.png";
-import SearchHeaderOptions from "./SearchHeaderOptions";
+// import SearchHeaderOptions from "./SearchHeaderOptions";
 
 function Header() {
   const router = useRouter();
-  const searchInputRef = useRef(null);
-  function search(event){
-    event.preventDefault();
-    const term = searchInputRef.current.value;
-    if(!term.trim()) return;
-    router.push(`/search?term=${term.trim()}&searchType=image`);
-  }
+  // const searchInputRef = useRef(null);
+  // function search(event){
+  //   event.preventDefault();
+  //   const term = searchInputRef.current.value;
+  //   if(!term.trim()) return;
+  //   router.push(`/search?term=${term.trim()}&searchType=image`);
+  // }
   const user = useSelector((state) => state.user.user);
   const { isLoading, isAuth, error } = useSelector((state) => state.login);
   const logMeOut = () => {
@@ -71,6 +71,25 @@ function Header() {
   //   signOut({ callbackUrl: '/login' });
   // }
 
+  // const query = new URLSearchParams({
+  //   query: 'string',
+  //   pageNumber: '1',
+  //   pageSize: '1'
+  // }).toString();
+  // const resp = await fetch(
+  //   `https://developer.stockx.com/v2/catalog/search?${query}`,
+  //   {
+  //     method: 'GET',
+  //     headers: {
+  //       'x-api-key': 'YOUR_API_KEY_HERE',
+  //       Authorization: 'Bearer <YOUR_JWT_HERE>'
+  //     }
+  //   }
+  // );
+  
+  // const data = await resp.text();
+  // console.log(data);  
+
   const logo = [HypeHeadsLogo];
   return (
 
@@ -91,18 +110,19 @@ function Header() {
           </div>
         ))}   
         </div>
+        
+           {/* SEARCH BAR */}
         <div className="flex mt-10 shadow-lg px-6 ml-10 mr-5 items-center">
           <div className="flex top-2 middle-2">
             <MagnifyingGlassIcon className="h-7 text-black" />
-          </div>
+          </div> 
           <input
             type="text"
-            defaultValue={router.query.term}
-            ref={searchInputRef}
+            // ref={searchInputRef}
             placeholder="Search"
             className="bg-gray-50 pl-20 border-black text-lg focus:ring-black focus:border-black rounded-md"
           />
-          <button onClick={search} type="submit" hidden></button>
+          {/* <button onClick={search} type="submit" hidden></button> */}
         </div>
 
         <div className="flex space-x-4 items-center ">
@@ -303,7 +323,7 @@ function Header() {
           </Link>
         </div>
       </div>
-      <SearchHeaderOptions/>
+      {/* <SearchHeaderOptions/> */}
     </header>
   );
 }
