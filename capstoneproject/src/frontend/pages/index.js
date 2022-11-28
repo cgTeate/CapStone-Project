@@ -7,9 +7,19 @@ import Slider from '../components/Slider'
 import { getApparel, getKicks, getKickss } from '../pages/api/client'
 import ApparelPage from './ApparelPage'
 import KicksPage from './KicksPage'
+import {useRouter} from 'next/router'
+import {useRef} from 'react'
 
 export default function Home({product}) {
-
+    const router = useRouter();
+    const searchInputRef = useRef(null)
+    function search(event) 
+    {
+        event.preventDefault();
+        const term  = searchInputRef.current.value;
+        if(!term.trim()) return
+        router.push(`/search?term={term}`)
+    }
     const mystyle = {
         color: "black",
         //backgroundColor: "Gray",
