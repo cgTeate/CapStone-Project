@@ -298,7 +298,7 @@ function Header() {
 
           <Link href="/RegistrationPage">
             <a>
-              <h1 style={mystyle2}>Sell</h1>
+              <h1 style={mystyle2}>Register</h1>
             </a>
           </Link>
         </div>
