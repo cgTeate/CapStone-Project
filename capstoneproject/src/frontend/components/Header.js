@@ -16,6 +16,7 @@ import { cartReset } from "../redux/cartSlice";
 import { getUserReset } from "../redux/userSlice";
 import DropdownLink from "./DropdownLink"; 
 import HypeHeadsLogo from "../images/NewHypeHeadsLogo3.png";
+import SideMenu from "./SideMenu";
 // import SearchHeaderOptions from "./SearchHeaderOptions";
 
 function Header() {
@@ -39,7 +40,6 @@ function Header() {
   }
   const mystyle = {
     color: "black",
-    //backgroundColor: "Gray",
     padding: "30px",
     fontFamily: "Garamond",
     fontSize: "50px",
@@ -47,17 +47,12 @@ function Header() {
   };
   const mystyle2 = {
     color: "black",
-    //backgroundColor: "Gray",
     padding: "1px",
     fontFamily: "Garamond",
-    fontSize: "16px",
-    // fontWeight: "bold",
+    fontSize: "24px",
   };
   const cart = useSelector((state) => state.cart);
   const dispatch = useDispatch();
-  // const { status, data: session } = useSession();
-  // const { state, dispatch } = useContext(Store);
-  // const { cart } = state;
   const [cartItemsCount, setCartItemsCount] = useState(0);
   useEffect(() => {
     // setCartItemsCount(cart.products.reduce((a,c)=>a + c.quantity,0))
@@ -95,14 +90,15 @@ function Header() {
 
     
     <header className="items-center top-0 bg-gray-500">
-      <div className="flex justify-between items-center p-5 text-sm text-gray-700flex space-x-4">
-        <div id="logo" className="fl_left">
+      <div className="flex justify-between items-center p-5 text-sm text-gray-700 space-x-28">
+        <SideMenu/>
+        <div id="logo" className="float-left">
               {logo.map((image) => (
           <div key={image.src} className="">
             <Link href="/">
             <img
             layout="fill"
-            style={{ width: 200, height: 100 }}
+            style={{ width: 250, height: 150 }}
             src={image.src}
             alt={image.alt}
           />
@@ -141,7 +137,7 @@ function Header() {
               <h1 style={mystyle2}>Apparel</h1>
             </a>
           </Link>
-
+                {/* fix spacing for cart number bubble */}
           <Link href="/Cart">
             <a className="p-2">
               <h1 style={mystyle2}>Cart</h1>
@@ -153,51 +149,24 @@ function Header() {
             </a>
           </Link>
 
-
-
           <Link href="/FAQSPage">
             <a>
               <h1 style={mystyle2}>FAQS</h1>
             </a>
           </Link>
 
-          {/* <Link href="/order-history">
-            <a className="drop" href="#">
-              History
-            </a>
-          </Link> */}
-          {/* <Link href="/LoginPage">
-            <a className="drop" href="#">
-              Login
-            </a>
-          </Link> */}
-
-          {/* {
-            isLoading ? (<Spinner />) : 
-            user ? ("Hi " + user) : 
-            (
-              <Link href="/LoginPage">
-            <a className="drop" href="#">
-              Login
-            </a>
-          </Link>
-            )
-          } */}
-
-
-          {/* <a className="drop" href="#"> */}
           {
             isLoading ? (<Spinner />) :
               user ? (
                 <Menu as="div" className="relative inline-block">
-                  <MenuButton as={Button} className="text-blue-600">
+                  <MenuButton as={Button} className="text-blue-600 mystyle">
                     {"Hi " + user.slice(0, 1).toUpperCase() + user.slice(1, 6)}
                   </MenuButton>
                   <MenuList className="right-150 w-56 origin-top-right shadow-lg ">
 
                     <MenuItem>
                       <Link href="/profile">
-                        <a className="dropdown-link" href="#">
+                        <a className="dropdown-link mystyle" href="#">
                           Profile
                         </a>
                       </Link>
@@ -207,7 +176,7 @@ function Header() {
                     </MenuItem>
                     <MenuItem>
                       <Link href="/order-history">
-                        <a className="dropdown-link" href="#">
+                        <a className="dropdown-link mystyle" href="#">
                           Order History
                         </a>
                       </Link>
@@ -223,7 +192,7 @@ function Header() {
                       <Button
                         href="#"
                         onClick={logMeOut}>
-                        <a className="dropdown-link" href="#">
+                        <a className="dropdown-link mystyle" href="#">
                           Logout
                         </a>
                       </Button>
@@ -239,8 +208,8 @@ function Header() {
                 </Menu>
               ) :
                 (<Link href="/LoginPage">
-                  <a className="drop" href="#">
-                    Log In
+                  <a className="" href="#">
+                    <h1 style={mystyle2}>Log In</h1>
                   </a>
                 </Link>
                 )}

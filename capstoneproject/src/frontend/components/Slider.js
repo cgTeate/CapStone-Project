@@ -3,14 +3,10 @@ import React from "react";
 import { Fade } from "react-slideshow-image";
 import 'react-slideshow-image/dist/styles.css';
 import { Image } from 'antd';
-//import Image from "next/image"
-import image3 from "../images/image3.jpg";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
 import { EffectCoverflow, Pagination } from "swiper";
-
-
 
 const trendingfadeImages = [
   "https://cdn.discordapp.com/attachments/917547212475621456/1046210226883403796/IMG_6088.JPG",
@@ -25,10 +21,11 @@ const kicksfadeImages = [
 
 ];
 const modelfadeImages = [
-  "https://cdn.discordapp.com/attachments/917547212475621456/1046210226883403796/IMG_6088.JPG",
-  "https://cdn.discordapp.com/attachments/917547212475621456/1046609283904720976/IMG_5213.JPG",
-  "https://cdn.discordapp.com/attachments/917547212475621456/1046897247847186574/IMG_4229.JPG",
   "https://cdn.discordapp.com/attachments/917547212475621456/1046894650767704064/IMG_5925.JPG",
+  "https://cdn.discordapp.com/attachments/917547212475621456/1046917907768152194/IMG_6679.jpg",
+  "https://cdn.discordapp.com/attachments/917547212475621456/1046609283904720976/IMG_5213.JPG", 
+  "https://cdn.discordapp.com/attachments/917547212475621456/1046897247847186574/IMG_4229.JPG",
+  
 ];
 const accessoriesfadeImages = [
   "https://cdn.discordapp.com/attachments/917547212475621456/1043248816545091624/IMG_4362.JPG",
@@ -43,11 +40,9 @@ const fadeProperties = {
   indicators: true
 }
 
-
-
 export default function Slider() {
 
- 
+
   return (
     <>
     <Swiper
@@ -80,7 +75,6 @@ export default function Slider() {
         </div>
       </Fade>
     </div>
-          {/* <img src="https://swiperjs.com/demos/images/nature-1.jpg" /> */}
         </SwiperSlide>
         <SwiperSlide className="swiper-slide">
         <div className="slide-container">
@@ -99,7 +93,6 @@ export default function Slider() {
         </div>
       </Fade>
     </div>
-    {/* <img src="https://swiperjs.com/demos/images/nature-3.jpg" /> */}
         </SwiperSlide>
         <SwiperSlide className="swiper-slide">
         <div className="slide-container">
@@ -118,7 +111,6 @@ export default function Slider() {
         </div>
       </Fade>
     </div>
-          {/* <img src="https://swiperjs.com/demos/images/nature-3.jpg" /> */}
         </SwiperSlide>
         <SwiperSlide className="swiper-slide">
         <div className="slide-container">
@@ -134,7 +126,6 @@ export default function Slider() {
         </div>
       </Fade>
     </div>
-          {/* <img src="https://swiperjs.com/demos/images/nature-3.jpg" /> */}
         </SwiperSlide>
       </Swiper>
       

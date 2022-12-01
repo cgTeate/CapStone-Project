@@ -16,7 +16,7 @@ export default function Layout({ title, children }) {
 
       <div className="flex min-h-screen flex-col justify-between ">
         <header className='flex justify-center sticky z-10 items-center top-0 bg-gray-500'>
-          <SideMenu/>
+          {/* <SideMenu/> */}
             <Header/>
           {/* <nav className="flex h-12 items-center px-4 justify-between shadow-md">
             <Link href="/">

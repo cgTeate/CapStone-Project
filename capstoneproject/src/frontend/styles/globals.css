@@ -124,6 +124,22 @@
     .alert-success {
       @apply my-3 rounded-lg bg-green-100 p-3 text-green-700;
     }
+    .each-fade img {
+      max-height: 700px;
+      /* overflow: hidden; */
+    }
+    .mystyle {
+      color: "black";
+      padding: "30px";
+      font-family: "Garamond";
+      font-size: "30px";
+    }
+    .mystyle2 {
+      color: "black";
+      padding: "1px";
+      font-family: "Garamond";
+      font-size: "16px";
+    }
     
     /* .each-slide > div {
       display: flex;
@@ -138,11 +154,6 @@
       font-size: 20px;
       background: #efefef;
       text-align: center;
-    }
-
-    .each-fade .image-container {
-      width: 75%;
-      overflow: hidden;
     }
 
     .each-fade .image-container img {
