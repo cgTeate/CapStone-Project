@@ -9,6 +9,7 @@ import ApparelPage from './ApparelPage'
 import KicksPage from './KicksPage'
 import {useRouter} from 'next/router'
 import {useRef} from 'react'
+import Link from "next/link";
 
 export default function Home({product}) {
     const router = useRouter();
@@ -28,11 +29,19 @@ export default function Home({product}) {
         fontSize: "30px",
         // fontWeight: "bold",
       };
+      const mystyle2 = {
+        color: "black",
+        //backgroundColor: "Gray",
+        padding: "1px",
+        fontFamily: "Garamond",
+        fontSize: "16px",
+        // fontWeight: "bold",
+      };
     const [kicks, setKicks] = useState([]);
     const [apparels, setApparels] = useState([]);
     
     //Kicks Pagination
-    const[kicksPerPage, setKicksPerPage] = useState(12);
+    const[kicksPerPage, setKicksPerPage] = useState(4);
     const [kicksCurrentPage, setKicksCurrentPage] = useState(1);
 
     const numOfKicksPages = Math.ceil(kicks.length/kicksPerPage);
@@ -50,10 +59,10 @@ export default function Home({product}) {
         if(kicksCurrentPage!==numOfKicksPages) setKicksCurrentPage(kicksCurrentPage + 1);
     }
     //Apparel Pagination
-    const[apparelsPerPage, setApparelsPerPage] = useState(12);
+    const[apparelsPerPage, setApparelsPerPage] = useState(4);
     const [apparelsCurrentPage, setApparelsCurrentPage] = useState(1);
 
-    const numOfApparelsPages = Math.ceil(kicks.length/apparelsPerPage);
+    const numOfApparelsPages = Math.ceil(apparels.length/apparelsPerPage);
     const apparelsPages = [...Array(numOfApparelsPages + 1).keys()].slice(1);
 
     const indexOfLastApparel = apparelsCurrentPage * apparelsPerPage;
@@ -91,45 +100,34 @@ export default function Home({product}) {
             <Slider/>
             <div>
                 <p style={mystyle}>Kicks</p>
-                {/* <KicksHome/> */}
-                {/* <KicksPage/> */}
-                <select onChange={(e)=> setKicksPerPage(e.target.value)}>
-                    <option value="4">4</option>
-                    <option value="8">8</option>
-                    <option value="12">12</option>
-                    <option value="16">16</option>
-                </select>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
                 {visibleKicks.map((kick) => (
                     <ProductCard product={kick} key={kick.slug}></ProductCard>
                 ))}
                 </div>
                 <div className="flex justify-between items-center">
-                    <span className="cursor-pointer" onClick={kicksPrevPageHandler}>Prev</span>
+                    <span className="cursor-pointer mystyle2" onClick={kicksPrevPageHandler}>Prev</span>
                     <p>
                     {kicksPages.map((page)=> (
                         <span key={page.slug} 
                         onClick={() => setKicksCurrentPage(page)}
-                        className={`${kicksCurrentPage === page ? "active" : "cursor-pointer"}`}
+                        className={`${kicksCurrentPage === page ? "active mystyle2" : "cursor-pointer mystyle2"}`}
                         >
                             {`${page} | `}
                         </span>
                     ))}
                     </p>
-                    <span className="cursor-pointer" onClick={kicksNextPageHandler}>Next</span>
+                    <span className="cursor-pointer mystyle2" onClick={kicksNextPageHandler}>Next</span>
                 </div>
+                <Link href="/KicksPage">
+                    <a>
+                    <h1 style={mystyle2}>View More</h1>
+                    </a>
+                </Link>
             </div>
             
             <div>
                 <p style={mystyle}>Apparel</p>
-                {/* <ApparelHome/> */}
-                {/* <ApparelPage/> */}
-                <select onChange={(e)=> setApparelsPerPage(e.target.value)}>
-                    <option value="4">4</option>
-                    <option value="8">8</option>
-                    <option value="12">12</option>
-                    <option value="16">16</option>
-                </select>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
                 {visibleApparels.map((apparel) => (
                     <ProductCard product={apparel} key={apparel.slug}></ProductCard>
@@ -141,14 +139,19 @@ export default function Home({product}) {
                     {apparelsPages.map((page)=> (
                         <span key={page.slug} 
                         onClick={() => setApparelsCurrentPage(page)}
-                        className={`${apparelsCurrentPage === page ? "active" : "cursor-pointer"}`}
+                        className={`${apparelsCurrentPage === page ? "active mystyle2" : "cursor-pointer mystyle2"}`}
                         >
                             {`${page} | `}
                         </span>
                     ))}
                     </p>
-                    <span className="cursor-pointer" onClick={apparelsNextPageHandler}>Next</span>
+                    <span className="cursor-pointer mystyle2" onClick={apparelsNextPageHandler}>Next</span>
                 </div>
+                <Link href="/ApparelPage">
+                    <a>
+                     <h1 style={mystyle2}>View More</h1>
+                    </a>
+                </Link>
             </div>
             
             {/* <p style={mystyle}>Kicks</p>
