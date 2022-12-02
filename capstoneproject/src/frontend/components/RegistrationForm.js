@@ -3,10 +3,11 @@ import {
   Box,
   Button,
   Checkbox,
+  Heading,
   Flex,
   Link,
   FormControl,
-  FormErrorMessage, FormGroup, FormHelperText, FormLabel, HStack, Input, Radio, RadioGroup, Select, Tooltip, VStack
+  FormErrorMessage, FormGroup, FormHelperText, FormLabel, HStack, Input, Radio, RadioGroup, Select, Tooltip, VStack, Textarea
 } from "@chakra-ui/react";
 import { useRouter } from 'next/router'
 import { Field, Formik, Form } from 'formik';
@@ -81,7 +82,21 @@ export default function RegistrationForm() {
 
   return (
     <div className="flex justify-center space-x-7 mt-20">
-
+      <Flex height={"120vh"} alignItems={"center"} justifyContent={"center"}>
+      <Flex
+        length={"100vh"}
+        direction={"column"}
+        background={"gray.100"}
+        p={10}
+        rounded={6}
+        position={"relative"}
+      >
+        <Heading mb={1} fontFamily="Garamond" fontSize="30px" >
+        HYPE HEADS
+        </Heading>
+        <Heading mb={1} fontFamily="Garamond" fontSize="20px">
+        Registration Form
+        </Heading>
      <Flex bg="gray.100" align="bottom" justify="center" h="100vh">
       <Box bg="white" p={6} rounded="md" w={64}>
         <Formik
@@ -92,8 +107,8 @@ export default function RegistrationForm() {
             <form onSubmit={handleSubmit}>
               <VStack spacing={4} align="flex-start">
                 <FormControl isRequired>
-                  <FormLabel htmlFor="firstname">First Name</FormLabel>
-                  <Field
+                  <FormLabel fontFamily="Garamond" htmlFor="firstname">First Name</FormLabel>
+                  <Input
                      as={Input}
                      id="firstname"
                      name="firstname"
@@ -101,10 +116,11 @@ export default function RegistrationForm() {
                      onChange={handleChange}
                      value={values.firstname}
                      variant="filled"
+                     size='sm'
                   />
                 </FormControl>
                 <FormControl isRequired>
-                  <FormLabel htmlFor="lastname">Last Name</FormLabel>
+                  <FormLabel fontFamily="Garamond" htmlFor="lastname">Last Name</FormLabel>
                   <Field
                     as={Input}
                     id="lastname"
@@ -113,10 +129,11 @@ export default function RegistrationForm() {
                     onChange={handleChange}
                     value={values.lastname}
                     variant="filled"
+                    size='sm'
                   />
                 </FormControl>
                 <FormControl isInvalid={!!errors.email && touched.email} isRequired>
-                  <FormLabel htmlFor="email">Email Address</FormLabel>
+                  <FormLabel fontFamily="Garamond" htmlFor="email">Email Address</FormLabel>
                   <Field
                     as={Input}
                     id="email"
@@ -126,12 +143,13 @@ export default function RegistrationForm() {
                     value={values.email}
                     variant="filled"
                     validate={validateEmail}
+                    size='sm'
                   />
                   <FormErrorMessage>{errors.email}</FormErrorMessage>
                 </FormControl>
 
                 <FormControl isInvalid={!!errors.password && touched.password} isRequired>
-                  <FormLabel htmlFor="password">Password</FormLabel>
+                  <FormLabel fontFamily="Garamond" htmlFor="password">Password</FormLabel>
                   <Field
                     as={Input}
                     id="password"
@@ -141,34 +159,31 @@ export default function RegistrationForm() {
                     value={values.password}
                     variant="filled"
                     validate={validatePassword}
+                    size='sm'
                   />
                   <FormErrorMessage>{errors.password}</FormErrorMessage>
                 </FormControl>
+
                 <FormControl as='fieldset' isRequired>
-                <FormLabel as='legend'>Customer or Seller?</FormLabel>
-                <Field as={RadioGroup} 
-                  id="usertype"
-                  name="usertype"
-                  type="radiogroup"
-                  onChange={handleChange}
-                  value={values.usertype}
-                  variant="filled"
-                >
-                  <Field as={Radio} 
-                  id="cusertype"
+                <FormLabel fontFamily="Garamond" as='legend'>Customer or Seller?</FormLabel>
+                <HStack fontFamily="Garamond" spacing='30px'>
+                  <Radio 
+                  id="mgender"
                   value="CUSTOMER"
                   variant="filled"
-                  >Customer</Field>
-                  <Field as={Radio} 
-                  id="susertype"
+                  >Customer</Radio>
+
+                  <Radio 
+                  id="mgender"
                   value="SELLER"
                   variant="filled"
-                  >Seller</Field>
-                  </Field>
+                  >Seller</Radio>
+
+                  </HStack>
                 </FormControl>
         
                 <FormControl isInvalid={!!errors.dob && touched.dob} isRequired>
-                  <FormLabel htmlFor="dob">Date of Birth</FormLabel>
+                  <FormLabel fontFamily="Garamond" htmlFor="dob">Date of Birth</FormLabel>
                   <Field
                     as={Input}
                     id="dob"
@@ -178,12 +193,13 @@ export default function RegistrationForm() {
                     onChange={handleChange}
                     value={values.dob}
                     validate={validateDOB}
+                    size='sm'
                   />
                   <FormErrorMessage>{errors.dob}</FormErrorMessage>
                 </FormControl>
 
                 <FormControl isInvalid={!!errors.phonenumber && touched.phonenumber} isRequired>
-                  <FormLabel htmlFor="phonenumber">Phone Number</FormLabel>
+                  <FormLabel fontFamily="Garamond" htmlFor="phonenumber">Phone Number</FormLabel>
                   <Field
                     as={Input}
                     id="phonenumber"
@@ -193,46 +209,51 @@ export default function RegistrationForm() {
                     value={values.phonenumber}
                     variant="filled"
                     validate={validatePhoneNumber}
+                    size='sm'
                   />
                   <FormErrorMessage>{errors.phonenumber}</FormErrorMessage>
                 </FormControl>
 
                 <FormControl as='fieldset' isRequired>
-                <FormLabel as='legend'>Gender</FormLabel>
-                <Field as={RadioGroup} 
+                <FormLabel fontFamily="Garamond" as='legend'>Gender</FormLabel>
+                <HStack fontFamily="Garamond" spacing='15px'>
+                {/* <Field as={RadioGroup} 
                   id="gender"
                   name="gender"
                   type="radiogroup"
                   onChange={handleChange}
                   value={values.gender}
                   variant="filled"
-                >
-                  <Field as={Radio} 
+                > */}
+                  <Radio 
                   id="mgender"
                   value="MALE"
                   variant="filled"
-                  >Male</Field>
-                  <Field as={Radio} 
-                  id="fgender"
+                  >Male </Radio>
+
+                  <Radio 
+                  id="mgender"
                   value="FEMALE"
-                  variant="filled"
-                  >Female</Field>
-                  <Field as={Radio} 
-                  id="ogender"
+                  // variant="filled"
+                  >Female </Radio>
+
+                  <Radio 
+                  id="mgender"
                   value="OTHER"
-                  variant="filled"
-                  >Other</Field>
-                  </Field>
+                  // variant="filled"
+                  >Other </Radio>
+                  </HStack>
                 </FormControl>
 
                 <FormControl isInvalid={!!errors.postcode && touched.postcode} isRequired>
-                <FormLabel>Current Address</FormLabel>
+                <FormLabel fontFamily="Garamond">Current Address</FormLabel>
 
                 <Field as={Select} id="address.country"
                 name="address.country"
                 type="country" placeholder='Select Country'
                 onChange={handleChange}
                 value={values.address.country}
+                size='sm'
                 >
                 <option value="United States">United States</option>
                 <option value="Philippines">Philippines</option>
@@ -246,6 +267,7 @@ export default function RegistrationForm() {
                 type="city" placeholder='Select City'
                 onChange={handleChange}
                 value={values.address.city}
+                size='sm'
                 >
                 <option value="Topeka">Topeka</option>
                 <option value="Lawrence">Lawrence</option>
@@ -264,24 +286,26 @@ export default function RegistrationForm() {
                 value={values.address.postcode}
                 variant="filled"
                 validate={validatePostcode}
+                size='sm'
                 />
                 <FormErrorMessage>{errors.postcode}</FormErrorMessage>
                 </FormControl>
               
-                <Button type="submit" colorScheme="green" w="full">
+                <Button type="submit" fontFamily="Garamond" colorScheme="green" w="full" size='sm'>
                   Register
                 </Button>
               </VStack>
             </form>
           )}
         </Formik>
-        <div className="mb-4 ">
+        <div fontFamily="Garamond"className="mb-4 ">
           Don&apos;t have an account? &nbsp;
           <Link href={`/RegistrationPage?redirect=${redirect || '/'}`}>Register</Link>
           </div>
         </Box>
     </Flex>
-       
+    </Flex>  
+    </Flex>  
     </div>
   )
 
