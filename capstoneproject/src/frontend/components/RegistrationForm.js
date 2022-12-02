@@ -41,7 +41,7 @@ export default function RegistrationForm() {
 
       const validateDOB = (value) => {
         if (!dateRegExp.test(value)) { 
-          return "Invalid date format"; 
+          return "Invalid date format. Please use yyyy-mm-dd"; 
         } 
       }
 

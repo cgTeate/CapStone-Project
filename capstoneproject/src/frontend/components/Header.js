@@ -92,7 +92,7 @@ function Header() {
     <header className="items-center top-0 bg-gray-500">
       <div className="flex justify-between items-center p-5 text-sm text-gray-700 space-x-27">
         <SideMenu/>
-        <div id="logo" className="float-left">
+        <div id="logo" className="float-left cursor-pointer">
               {logo.map((image) => (
           <div key={image.src} className="">
             <Link href="/">
