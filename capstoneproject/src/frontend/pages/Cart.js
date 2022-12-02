@@ -6,7 +6,7 @@ import Header from "../components/Header";
 // import { Store } from "../utils/Store";
 import Layout from '../components/Layout'
 import { useState, useEffect} from 'react'
-//import { toast } from 'react-toastify';
+import { toast } from 'react-toastify';
 import { getKicks, getAllKicks, getProducts} from '../pages/api/client'
 import { useSelector, useDispatch } from 'react-redux'
 import { cartRemoveItem, addToCart, addToCartFromShoppingCart} from "../redux/cartSlice";
@@ -87,7 +87,7 @@ const updateCartHandler = (item, qty) => {
                             </a>
                           </Link>
                         </td>
-                        <td className="p-5 text-right">
+                        <td className="p-5 text-left">
                       <select
                         value={item.quantity}
                         onChange={(e) =>

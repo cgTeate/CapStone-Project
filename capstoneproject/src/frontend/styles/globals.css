@@ -31,13 +31,48 @@
     width: 100%;
     height: 100%;
     margin: auto; 
-    max-width: 600px;  
+    max-width: 800px;  
     text-align: center;
     border-radius: 20px;
     position: relative;
     top: 0px;
     left: 0px;
+    z-index: 2;
     }
+  .swiper-slide-container {
+    width: 100%;
+    height: 100%;
+    /* margin: auto;  */
+    max-width: 800px;  
+    /* text-align: center;
+    border-radius: 20px;
+    position: relative;
+    top: 0px;
+    left: 0px; */
+    z-index: 2;
+    }
+    .swiper {
+      width: 100%;
+      height: 100%;
+      padding-top: 50px;
+      padding-bottom: 50px;
+      max-height: 700px;
+      /* max-width: 1100px; */
+      z-index: 3;
+    }
+    
+    .swiper-slide {
+      /* background-position: center; */
+      background-size: cover;
+      max-width: 800px;
+
+    }
+    
+    .swiper-slide img {
+      display: block;
+      width: 100%;
+    }
+    
 
     .slideshow li h3 {
       position: absolute;
@@ -63,6 +98,9 @@
     .primary-button{
       @apply rounded bg-slate-500 py-2 px-4 shadow outline-none hover:bg-red-900 active:bg-red-300
     }
+    .primary-button2{
+      @apply rounded bg-blue-400 py-2 px-4 shadow outline-none hover:bg-red-900 active:bg-red-300
+    }
    
     .default-button {
       @apply rounded bg-gray-100 py-2  px-4 text-black shadow outline-none hover:bg-gray-200  active:bg-gray-300;
@@ -70,6 +108,12 @@
     
     .card{
       @apply mb-5 block rounded-lg border border-gray-200 shadow-md;
+    }
+
+    .active{
+      color: skyblue;
+      font-size: 24px;
+      cursor: pointer;
     }
 
     .dropdown-link {
@@ -82,6 +126,22 @@
     
     .alert-success {
       @apply my-3 rounded-lg bg-green-100 p-3 text-green-700;
+    }
+    .each-fade img {
+      max-height: 700px;
+      /* overflow: hidden; */
+    }
+    .mystyle {
+      color: "black";
+      padding: "30px";
+      font-family: "Garamond";
+      font-size: "30px";
+    }
+    .mystyle2 {
+      color: "black";
+      padding: "1px";
+      font-family: "Garamond";
+      font-size: "16px";
     }
     
     /* .each-slide > div {
@@ -97,11 +157,6 @@
       font-size: 20px;
       background: #efefef;
       text-align: center;
-    }
-
-    .each-fade .image-container {
-      width: 75%;
-      overflow: hidden;
     }
 
     .each-fade .image-container img {

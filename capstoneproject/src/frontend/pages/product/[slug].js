@@ -34,6 +34,7 @@ export default function ProductScreen() {
   const { slug } = query;
   // const product = data.products.find(x => x.slug === slug);
   const product = products.find(x => x.slug === slug);
+  console.log("products",products)
   if (!product) {
     return <div> Product Not Found </div>
   }
@@ -85,7 +86,7 @@ export default function ProductScreen() {
           <Image
             src={product.thumbnail}
             alt={product.productName}
-            width={640}
+            width={1200}
             height={640}
             layout="responsive"></Image>
         </div>
@@ -122,7 +123,7 @@ export default function ProductScreen() {
           Remove Quantity
         </button> */}
         <button
-          className="primary-button w-full"
+          className="primary-button2 w-full"
           onClick={addToCartHandler}
         >
           Add to cart

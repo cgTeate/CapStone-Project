@@ -1,6 +1,7 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
+import SideMenu from './SideMenu';
 import Footer from './Footer';
 import Header from './Header';
 
@@ -14,7 +15,8 @@ export default function Layout({ title, children }) {
       </Head>
 
       <div className="flex min-h-screen flex-col justify-between ">
-        <header>
+        <header className='flex justify-center sticky z-10 items-center top-0 bg-gray-500'>
+          {/* <SideMenu/> */}
             <Header/>
           {/* <nav className="flex h-12 items-center px-4 justify-between shadow-md">
             <Link href="/">
@@ -31,7 +33,7 @@ export default function Layout({ title, children }) {
           </nav> */}
         </header>
         <main className="container m-auto mt-4 px-4">{children}</main>
-        <footer className="flex h-10 justify-center items-center shadow-inner">
+        <footer className="flex h-10 justify-center items-center shadow-inner bg-gray-500">
           <Footer/>
         </footer>
       </div>
