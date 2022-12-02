@@ -90,7 +90,7 @@ function Header() {
 
     
     <header className="items-center top-0 bg-gray-500">
-      <div className="flex justify-between items-center p-5 text-sm text-gray-700 space-x-28">
+      <div className="flex justify-between items-center p-5 text-sm text-gray-700 space-x-27">
         <SideMenu/>
         <div id="logo" className="float-left">
               {logo.map((image) => (
@@ -139,7 +139,7 @@ function Header() {
           </Link>
                 {/* fix spacing for cart number bubble */}
           <Link href="/Cart">
-            <a className="p-2">
+            <a className="p-2 flex">
               <h1 style={mystyle2}>Cart</h1>
               {cartItemsCount > 0 && (
                 <span className="ml-1 rounded-full bg-red-600 px-2 py-1 text-xs font-bold text-white">

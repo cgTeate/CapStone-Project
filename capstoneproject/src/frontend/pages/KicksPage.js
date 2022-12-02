@@ -49,12 +49,16 @@ export default function KicksPage({product})
     return (
             <Layout title="Kicks Page">
             <div>
+                <p style={mystyle}>Kicks</p>
+                <div className="flex">
+                <p>Per Page</p>
                 <select onChange={(e)=> setKicksPerPage(e.target.value)}>
-                    <option value="8">Per Page 8</option>
+                    <option value="8">8</option>
                     <option value="12">12</option>
                     <option value="24">24</option>
                     <option value="36">36</option>
                 </select>
+                </div>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
                 {visibleKicks.map((kick) => (
                     <ProductCard product={kick} key={kick.slug}></ProductCard>

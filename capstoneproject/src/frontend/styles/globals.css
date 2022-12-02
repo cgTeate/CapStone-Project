@@ -98,6 +98,9 @@
     .primary-button{
       @apply rounded bg-slate-500 py-2 px-4 shadow outline-none hover:bg-red-900 active:bg-red-300
     }
+    .primary-button2{
+      @apply rounded bg-blue-400 py-2 px-4 shadow outline-none hover:bg-red-900 active:bg-red-300
+    }
    
     .default-button {
       @apply rounded bg-gray-100 py-2  px-4 text-black shadow outline-none hover:bg-gray-200  active:bg-gray-300;

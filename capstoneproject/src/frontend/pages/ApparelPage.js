@@ -50,12 +50,15 @@ export default function ApparelPage({product})
         <Layout title="Apparel Page">
             <div>
                 <p style={mystyle}>Apparel</p>
+                <div className="flex">
+                <p>Per Page</p>
                 <select onChange={(e)=> setApparelsPerPage(e.target.value)}>
                     <option value="8">8</option>
                     <option value="12">12</option>
                     <option value="24">24</option>
                     <option value="36">36</option>
                 </select>
+                </div>
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
                 {visibleApparels.map((apparel) => (
                     <ProductCard product={apparel} key={apparel.slug}></ProductCard>
