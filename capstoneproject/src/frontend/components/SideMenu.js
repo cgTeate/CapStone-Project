@@ -35,31 +35,31 @@ export default function SideMenu() {
   />
   <MenuList>
     <Link href="/">
-    <MenuItem style={mystyle2} icon={<Icon as={HomeIcon}/>} command='⌘H'>Home</MenuItem>
+    <MenuItem style={mystyle2} icon={<Icon as={HomeIcon}/>}>Home</MenuItem>
     </Link>
     <Link href="/KicksPage">
-    <MenuItem style={mystyle2} command='⌘K'>Kicks</MenuItem>
+    <MenuItem style={mystyle2}>Kicks</MenuItem>
     </Link>
     <Link href="/ApparelPage">
-    <MenuItem style={mystyle2} command='⌘A'>Apparel</MenuItem>
+    <MenuItem style={mystyle2}>Apparel</MenuItem>
     </Link>
     <Link href="/">
-    <MenuItem style={mystyle2} command='⌘V'>Vintage</MenuItem>
+    <MenuItem style={mystyle2}>Vintage</MenuItem>
     </Link>
     <Link href="/">
-    <MenuItem style={mystyle2} command='⌘B'>Accessories</MenuItem>
+    <MenuItem style={mystyle2}>Accessories</MenuItem>
     </Link>
     <Link href="/Cart">
-    <MenuItem style={mystyle2} command='⌘C'>Cart</MenuItem>
+    <MenuItem style={mystyle2}>Cart</MenuItem>
     </Link>
     <Link href="/FAQSPage">
-    <MenuItem style={mystyle2} command='⌘N'>FAQS</MenuItem>
+    <MenuItem style={mystyle2}>FAQS</MenuItem>
     </Link>
     <Link href="/RegistrationPage">
-    <MenuItem style={mystyle2} command='⌘R'>Register</MenuItem>
+    <MenuItem style={mystyle2}>Register</MenuItem>
     </Link>
     <Link href="/LoginPage">
-    <MenuItem style={mystyle2} command='⌘L'>Log In</MenuItem>
+    <MenuItem style={mystyle2}>Log In</MenuItem>
     </Link>
   </MenuList>
 </Menu>

@@ -2,7 +2,7 @@ import React from 'react'
   
   export default function Footer() {
     return (
-        <p>Copyright © 2022 HypeHeads</p>
+        <p className='mystyle'>Copyright © 2022 Hype Heads</p>
       );
   }
   

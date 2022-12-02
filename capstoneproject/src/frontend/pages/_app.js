@@ -1,5 +1,6 @@
 import '../styles/globals.css'
 import 'antd/dist/antd.css';
+import "swiper/css";
 import {theme} from '../styles/theme'
 import { ChakraProvider } from '@chakra-ui/react'
 import { StoreProvider } from '../utils/Store'
