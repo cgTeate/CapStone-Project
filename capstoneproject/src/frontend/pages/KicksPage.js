@@ -1,6 +1,5 @@
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
-import AirJordan from '../components/AirJordan'
 import Header from '../components/Header'
 import Layout from '../components/Layout'
 import ProductCard from '../components/ProductCard'
