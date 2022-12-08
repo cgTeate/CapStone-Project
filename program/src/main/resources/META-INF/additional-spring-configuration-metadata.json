@@ -1,0 +1,57 @@
+{"properties": [
+  {
+    "name": "application.jwt.secretKey",
+    "type": "java.lang.String",
+    "description": "A description for 'application.jwt.secretKey'"
+  },
+  {
+    "name": "application.jwt.secretKey",
+    "type": "java.lang.String",
+    "description": "A description for 'application.jwt.secretKey'"
+  },
+  {
+    "name": "application.jwt.tokenPrefix",
+    "type": "java.lang.String",
+    "description": "A description for 'application.jwt.tokenPrefix'"
+  },
+  {
+    "name": "application.jwt.tokenExpirationAfterDays",
+    "type": "java.lang.String",
+    "description": "A description for 'application.jwt.tokenExpirationAfterDays'"
+  },
+  {
+    "name": "spring.paypal.baseUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.paypal.baseUrl'"
+  },
+  {
+    "name": "spring.paypal.mode",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.paypal.mode'"
+  },
+  {
+    "name": "spring.paypal.clientId",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.paypal.clientId'"
+  },
+  {
+    "name": "spring.paypal.secret",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.paypal.secret'"
+  },
+  {
+    "name": "spring.paypal.clientId",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.paypal.clientId'"
+  },
+  {
+    "name": "spring.paypal.baseUrl",
+    "type": "java.lang.String",
+    "description": "A description for 'spring.paypal.baseUrl'"
+  },
+  {
+    "name": "application.jwt.secretKey",
+    "type": "java.lang.String",
+    "description": "A description for 'application.jwt.secretKey'"
+  }
+]}
