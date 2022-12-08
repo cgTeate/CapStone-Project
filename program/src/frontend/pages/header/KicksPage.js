@@ -1,10 +1,10 @@
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header'
-import Layout from '../components/Layout'
-import ProductCard from '../components/ProductCard'
-import data from '../utils/data'
-import { getApparel, getKicks } from './api/client'
+import Header from '../../components/Header'
+import Layout from '../../layouts/Layout'
+import ProductCard from '../../components/ProductCard'
+import data from '../../utils/data'
+import { getApparel, getKicks } from './../api/client'
 
 export default function KicksPage({product})
 {

@@ -1,12 +1,12 @@
 
 import Head from 'next/head'
 import { useEffect, useState } from 'react'
-import Layout from '../components/Layout'
-import ProductCard from '../../components/ProductCard'
-import Slider from '../../components/Slider'
-import { getApparel, getKicks, getKickss } from '../api/client'
-import ApparelPage from '../ApparelPage'
-import KicksPage from '../KicksPage'
+import Layout from '../layouts/Layout'
+import ProductCard from '../components/ProductCard'
+import Slider from '../components/Slider'
+import { getApparel, getKicks, getKickss } from './api/client'
+import ApparelPage from '../pages/header/ApparelPage'
+import KicksPage from '../pages/header/KicksPage'
 import {useRouter} from 'next/router'
 import {useRef} from 'react'
 import Link from "next/link";
