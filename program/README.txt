@@ -62,6 +62,7 @@ Sources for steps 1 & 2:
 	ES7+ React/Redux/React-Native snippets
 
 4. Git & Github
+    source: https://www.jcchouinard.com/install-git-in-vscode/ 
 
 5. Docker Desktop
     source: https://www.docker.com/products/docker-desktop/
@@ -72,38 +73,55 @@ Sources for steps 1 & 2:
 
 		Contents
 ---------------------------------------------------------
-Included in this project file are the following:
+Included in this project file are the following:		
 
-README.txt			This file
+program Directory:		The VSCode Project folder containing the NextJs & Spring Boot folders (under src).
+            NextJs frontend is called frontend, Spring Boot backend is called main (cannot change name to backend due to Spring Boot/Maven source directory).
 
-docker-compose.yaml			The docker File that creates containers of mongodb database & mongoexpress UI.
+program folder: 
+    .mvn/wrapper folder ~ Used to bootstrap the download and invocation of Maven from the wrapper shell scripts.
+    src folder
+        frontend folder
+        main folder 
+        test folder ~ default Spring Boot test folder
+    target folder ~ the maven default output folder
+    .gitignore ~ specifies intentionally untracked files that Git should ignore
+    docker-compose.yaml ~ The docker file that creates containers of mongodb database & mongoexpress UI.
+    mvnw ~ an executable Unix shell script used in place of a fully installed Maven
+    mvnw.cmd ~ Batch version of the above script
+    pom.xml ~ contains information about the project and configuration details used by Maven to build the Spring Boot project
+    README.txt ~ This file
 
-program Directory		The VSCode Project folder containing the frontend & backend folders (under src).
-            frontend is called frontend, backend is called main (cannot name change due to Spring Boot/Maven source directory).
+frontend files/folders: 
+    .next folder ~ containing all built content
+    components folder ~ contains a collection of UI components like buttons, modals, inputs, loader, etc., that can be used across various files in the project.
+    images folder ~ contains local images for the project
+    layouts folder ~ contains layout component for pages
+    node_modules folder ~ used to save all downloaded packages from npm in your computer for the JavaScript project that you have. 
+        (will only show up with npm install cmd)
+    pages folder ~ contains website pages & api files
+    public folder ~  contains static files such as index.html, javascript library files, images, and other assets, etc.
+    redux folder ~ contains redux state management files
+    styles folder ~ contains global styling files
+    utils folder ~ consists of some repeatedly used functions that are commonly used in the project. 
+    validations folder ~ contains yup package validation
+    .env ~ contains the individual user environment variables that override the variables set in the /etc/environment file.
+    .eslintric ~ a configuration file for a tool named ESLINT
+    .gitignore ~ specifies intentionally untracked files that Git should ignore
+    next.config.js ~ nextjs config file
+    package-lock.json ~ contains basic information about the project.
+    package.json ~ frontend Dependency file (similar to pom.xml)
+    postcss.config.js ~ a tool for transforming styles with JS plugins
+    README.md
+    tailwind.config.js ~ tailwind css config file
 
+backend (main) files/folders:
+    java/git/cgteatejte91/hypeheads folder
+        HypeHeadsApplication.java ~ backend server execution file
+        ui folder ~ contains backend layer folders & files
+    resources folder ~ configuration and data files related to the Spring Boot backend
 
-AuthenticationServer.java
-ChangeEmail.java
-ChangePassword.java
-GameAttributes.java
-GameIcon.java
-GameInfo.java
-GamePanel.java
-GameServer.java
-HelpSoundFrame.java
-HelpSoundPanel.java
-LobbyPanel.java
-LoginPanel.java
-Mission.java
-PrimaryServer.java
-ProfilePanel.java
-RegisterPanel.java
-ResetPassPanel.java
-StartFrame.java
-TitlePanel.java
-User.java
-
-		Running the game
+		Running the website
 ----------------------------------------------------------
 
 Running the Database Script
