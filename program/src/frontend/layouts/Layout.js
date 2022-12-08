@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import Link from 'next/link';
 import React from 'react';
-import SideMenu from './SideMenu';
-import Footer from './Footer';
-import Header from './Header';
+import SideMenu from '../components/SideMenu';
+import Footer from '../components/Footer';
+import Header from '../components/Header';
 
 export default function Layout({ title, children }) {
   return (

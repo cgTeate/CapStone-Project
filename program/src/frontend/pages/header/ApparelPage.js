@@ -1,11 +1,11 @@
 import { Pagination } from 'antd'
 import Head from 'next/head'
 import React, { useEffect, useState } from 'react'
-import Header from '../components/Header'
+import Header from '../../components/Header'
 import Layout from '../components/Layout'
-import ProductCard from '../components/ProductCard'
-import { getApparel, getKicks } from '../pages/api/client'
-import data2 from '../utils/data2'
+import ProductCard from '../../components/ProductCard'
+import { getApparel, getKicks } from '../api/client'
+import data2 from '../../utils/data2'
 
 
 export default function ApparelPage({product})

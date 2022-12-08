@@ -7,10 +7,10 @@ import {
 } from "@chakra-ui/react";
 // import { useForm } from 'react-hook-form';
 import Cookies from 'js-cookie';
-import CheckoutWizard from '../components/CheckoutWizard';
+import CheckoutWizard from '../../components/CheckoutWizard';
 import Layout from '../components/Layout';
 // import { Store } from '../utils/Store';
-import {saveShippingAddress } from "../redux/cartSlice";
+import {saveShippingAddress } from "../../redux/cartSlice";
 import { useSelector, useDispatch } from 'react-redux'
 import { useRouter } from 'next/router';
 import { Field, Formik, Form} from "formik";

@@ -2,8 +2,8 @@ package git.cgteatejte91.hypeheads.ui.service.User;
 
 import java.util.List;
 
-import git.cgteatejte91.hypeheads.ui.controllers.WebsiteUserUpdateRequest;
 import git.cgteatejte91.hypeheads.ui.model.User.WebsiteUser;
+import git.cgteatejte91.hypeheads.ui.updateprofile.WebsiteUserUpdateRequest;
 
 public interface WebsiteUserDao {
 

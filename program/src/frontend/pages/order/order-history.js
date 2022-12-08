@@ -5,7 +5,7 @@ import React, { useEffect, useReducer } from 'react';
 import Layout from '../components/Layout';
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchRequest, fetchSuccess, fetchFail, payRequest, paySuccess, payFail, payReset,
-  deliverRequest, deliverSuccess, deliverFail, deliverReset, historyfetchRequest, historyfetchSuccess, historyfetchFail} from "../redux/orderSlice";
+  deliverRequest, deliverSuccess, deliverFail, deliverReset, historyfetchRequest, historyfetchSuccess, historyfetchFail} from "../../redux/orderSlice";
 
 function OrderHistoryScreen() {
   const user = useSelector((state) => state.user.user);

@@ -13,9 +13,9 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import git.cgteatejte91.hypeheads.ui.controllers.WebsiteUserUpdateRequest;
 import git.cgteatejte91.hypeheads.ui.model.User.WebsiteUser;
-import git.cgteatejte91.hypeheads.ui.respository.WebsiteUserRepository;
+import git.cgteatejte91.hypeheads.ui.respository.User.WebsiteUserRepository;
+import git.cgteatejte91.hypeheads.ui.updateprofile.WebsiteUserUpdateRequest;
 import lombok.AllArgsConstructor;
 
 @Service

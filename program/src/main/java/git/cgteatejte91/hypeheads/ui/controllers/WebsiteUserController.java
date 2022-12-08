@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RestController;
 import git.cgteatejte91.hypeheads.ui.model.User.WebsiteUser;
 import git.cgteatejte91.hypeheads.ui.model.User.WebsiteUserPermission;
 import git.cgteatejte91.hypeheads.ui.service.User.WebsiteUserService;
+import git.cgteatejte91.hypeheads.ui.updateprofile.WebsiteUserUpdateRequest;
 import lombok.AllArgsConstructor;
 
 @RestController

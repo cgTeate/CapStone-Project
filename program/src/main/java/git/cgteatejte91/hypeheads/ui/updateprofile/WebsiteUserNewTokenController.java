@@ -1,4 +1,4 @@
-package git.cgteatejte91.hypeheads.ui.controllers;
+package git.cgteatejte91.hypeheads.ui.updateprofile;
 
 import static git.cgteatejte91.hypeheads.ui.model.User.WebsiteUserPermission.*;
 

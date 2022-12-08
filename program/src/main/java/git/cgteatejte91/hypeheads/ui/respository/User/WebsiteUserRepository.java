@@ -1,4 +1,4 @@
-package git.cgteatejte91.hypeheads.ui.respository;
+package git.cgteatejte91.hypeheads.ui.respository.User;
 
 import java.util.List;
 import java.util.Optional;
