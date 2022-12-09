@@ -140,7 +140,7 @@ Running the Project on VSCode:
 
 3. Altering IP Addresses
 	-If running in localhost/same computer, the project should work fine and no changes
-		are needed in the classes.
+		are needed in the classes except for removing the "# " in front of each line on the .env file.
 	-If the server is running in a separate computer from the client (highly recommended!),
 		then change "localhost" to the IP Address of the server in the following lines:
 		> .env 	at lines 1 & 3
