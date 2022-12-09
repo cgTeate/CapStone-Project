@@ -19,8 +19,6 @@ Recommended Hardware Configuration:
     -Processor - 3.1 GHz Quad-Core Intel Core i7
     -Memory - 16 GB 2133 MHz LPDDR3
 
-    (list how to open the project, how to run the project)
-
 INSTALL
 ----------------------------------------------------------
 Sources for steps 1 & 2: 
@@ -124,75 +122,95 @@ backend (main) files/folders:
 		Running the website
 ----------------------------------------------------------
 
-Running the Database Script
---------------------------------------
-
-1. Creating the Database
-	-If not already installed, download and set up SQL Server 2017 
-		Management Studio
-	-Open SQL Server Management Studio
-	-Connect with Windows Authentication
-	-Open the Capstone.sql file and execute.
-
-
-
-Setting up the Database/Network: 
---------------------------------------
-
-1. Configure SQL Server Express 
-	-Open SQL Server Management Studio
-	-In Object Explorer, right-click a server and select Properties.
-	-Click the Connections node.
-	-Under Remote server connections, select the Allow remote
-	 connections to this server check box.
-2. Configure SQL Server Configuration Manager
-	-Open SQL Server Configuration Manager
-	-In the Sql Server Network Configuration, right click on TCP/IP and enable it.
-	-To open one port for this connection, Right click on TCP/IP and click Properties
-	-Under the IP Addresses tab, Set the TCP Port to 49171 under the APAII tab.
-	-Reset the SQL Server Manager.
-3. Configure Windows Firewall For Port Connection
-	-Open Windows Firewall, and go to Advance Settings
-	-Under the Actions tab on the left side, Click New Rule...
-	- Set the Rule Type to Port, TCP for Protocol and Ports and type in 49171 for the Specific local ports
-	-Allow the Connection, then leave Domain, Private, and Public checked.
-	-Then name the rule "SQL TCP Connection" or something similar and click Finish.
-4. Connecting to the Database from a different Computer
-	-Open SQL Server Management Studio
-	-Click on Connect
-	-Type in the IP Address and the Port Number in this format - xxx.xxx.xx.x, 49171
-	-Then Connect
-
 Running the Project on VSCode:
 --------------------------------------
 1. Download and Install
-	-If you do not already have a copy, download and install Netbeans IDE 8.2.
+	-If you do not already have a copy, download and install latest version of VSCode.
 
-2. Loading the file to the Projects tab
-	-Click Open Project under the File tab and Load in TheCartel file.
+2. Loading the project folder into VSCode
+	-Click File, Open Folder and Load in the Hype-Heads folder.
+    -Alternative Option
+         Open VSCode
+         Type "CMD + Shift + P" for Mac, "CTRL + Shift + P" for Windows
+         Type Git: Clone
+         Choose Clone from Github
+         Enter Gitub Repository URL
+         Choose local directory to save Github Repository
+         Open Hype-Heads folder
 
-3. Getting the Jars/Libraries Correct 
-	-Right click on the Project and click Properties
-	-Under Libraries, check if the sqldbc42, mail, and activation jar files exist among the 
-		Compile-time Libraries then press OK.
-	-If it doesn't exist, then click Add JAR/Folder and add the three jar files.
-		You should find the jar files in the Program folder under the Jar 
-		Files directory.
-4. Altering IP Addresses
+3. Altering IP Addresses
 	-If running in localhost/same computer, the project should work fine and no changes
 		are needed in the classes.
 	-If the server is running in a separate computer from the client (highly recommended!),
 		then change "localhost" to the IP Address of the server in the following lines:
-		> LoginPanel.java 	at line 61
-		> Register.java 	at line 127
-		> ResetPassPanel.java 	at line 181
-		
-Running the game
---------------------------------------
-1. Run the AuthorizationServer and PrimaryServer first.
+		> .env 	at lines 1 & 3
+		> application.properites 	at lines 5 & 6 (still needs to be edited later on)
 
-2. Run the game by clicking on the green run arrow on the top of Netbeans
-	or by right-clicking StartFrame and hitting Run File.
+Running the Database
+--------------------------------------
+
+1. Creating Docker containers
+	-If not already installed, download and set up Docker Desktop
+	-Open Docker Desktop Dashboard
+	-Open the VSCode Project
+    -Double click on docker-compose.yaml file choose "compose up" option
+    -Docker containers will be created
+    -If docker containers already created or created from the above, either: 
+        Open Docker Desktop Dashboard, find HypeHeads folder, choose "Start" on both containers. Choose "Stop" when not using containers. 
+        Open VSCode Docker Container Explorer Window, double click on each HypeHeads container & choose "start". Choose "stop" when done using application.
+    -Make sure docker containers are running before running anything else.
+    -Once containers are running, mongoexpress UI can be accessed in browser with localhost:8081
+    Warning!
+        Your own product data will need to be created using Postman 
+        You will have to register on the website before you ever log in
+        Data Tables will not display until Backend is ran at least once
+
+Creating Product data with Postman 
+--------------------------------------
+
+1. Download and Install 
+    -If not already installed, download and set up Postman
+
+2. Creating product API request
+    -Open Postman 
+    -Create a new collection called Hype Heads
+    -Double Click on Hype Heads Collection, add new request
+    -Change request to POST
+    -Enter URL: http://localhost:8080/management/api/websiteuser/products (used for now, admin page will be implemented later)
+    -Choose Body, raw, JSON on dropdown
+    -Copy & paste code below into the Body box on Postman, fill out quotes to the right of variable name with desired data (thumbnail is image url)
+        {
+        "category": "Shoes",
+ 	    "productName": "Nike Air Force 1",
+        "brand": "Nike",
+        "styleId": "12356-A",
+        "slug":"Nike Air Force 1",
+        "colorway": "White",
+        "retailPrice": "90.00",
+        "thumbnail": "",
+        "countInStock": 20,
+        "releaseDate": "2022-12-9"
+        }
+    -Click Send, status code 200 OK should show
+    -Repeat Copy & paste step with more data (can only add one product at a time)
+
+Running the Backend
+--------------------------------------
+    -If not already installed, download and set up Maven, Spring Boot, and VSCode
+	-Open VSCode Project
+    -Go to program/src/main/java/git/cgteatejte91/hypheads folder
+    -Run HypeHeadsApplication file, a new VSCode terminal should pop up
+    -Make sure backend is running before frontend
+
+Running the Frontend
+--------------------------------------
+    -If not already installed, download and set up VSCode
+	-Open VSCode Project
+    -Open VSCode terminal, type "cd program/src/frontend"
+    -Type "npm install" to install node_modules folder inside Frontend
+    -Type "npm run dev" to run the frontend in development mode
+    -On your browser, go to localhost:3000 to access client UI
+    -Make sure backend is running before frontend
 
 Warning!
 --------------------------------------
