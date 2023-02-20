@@ -4,7 +4,6 @@ import Cookies from 'js-cookie';
 import { signOut, useSession } from 'next-auth/react';
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
-import { Store } from "../utils/Store";
 // import { Menu } from "antd";
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
 import { Alert, Button, Spinner } from "@chakra-ui/react";

@@ -14,13 +14,21 @@ import Link from "next/link";
 export default function Home({product}) {
     const router = useRouter();
     const searchInputRef = useRef(null)
-    function search(event) 
-    {
+    // function search(event) 
+    // {
+    //     event.preventDefault();
+    //     const term  = searchInputRef.current.value;
+    //     if(!term.trim()) return
+    //     router.push(`/search?term={term}`)
+    // }
+    
+    function search(event) {
         event.preventDefault();
-        const term  = searchInputRef.current.value;
-        if(!term.trim()) return
-        router.push(`/search?term={term}`)
-    }
+        const term = searchInputRef.current.value;
+        if (!term.trim()) return;
+        router.push(`/search?term=${term}`); // interpolate `term` variable
+      }
+      
     const mystyle = {
         color: "black",
         //backgroundColor: "Gray",
@@ -103,6 +111,9 @@ export default function Home({product}) {
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
                 {visibleKicks.map((kick) => (
                     <ProductCard product={kick} key={kick.slug}></ProductCard>
+                ))}
+                {visibleKicks.map((kick, index) => (
+                    <ProductCard product={kick} key={index}></ProductCard>
                 ))}
                 </div>
                 <div className="flex justify-between items-center">
