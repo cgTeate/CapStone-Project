@@ -158,11 +158,11 @@ function Header() {
           {
             isLoading ? (<Spinner />) :
               user ? (
-                <Menu as="div" className="relative inline-block">
+                <Menu as="div" className="relative inline-block z-40">
                   <MenuButton as={Button} className="text-blue-600 mystyle">
                     {"Hi " + user.slice(0, 1).toUpperCase() + user.slice(1, 6)}
                   </MenuButton>
-                  <MenuList className="right-150 w-56 origin-top-right shadow-lg ">
+                  <MenuList className="right-150 w-56 origin-top-right shadow-lg">
 
                     <MenuItem>
                       <Link href="/profile">
@@ -170,9 +170,6 @@ function Header() {
                           Profile
                         </a>
                       </Link>
-                      {/* <DropdownLink className="dropdown-link" href="/profile">
-                      Profile
-                  </DropdownLink> */}
                     </MenuItem>
                     <MenuItem>
                       <Link href="/orderhistory/order-history">
@@ -180,12 +177,6 @@ function Header() {
                           Order History
                         </a>
                       </Link>
-                      {/* <DropdownLink
-                    className="dropdown-link"
-                    href="/order-history"
-                  >
-                    Order History
-                  </DropdownLink> */}
                     </MenuItem>
 
                     <MenuItem>
@@ -196,100 +187,21 @@ function Header() {
                           Logout
                         </a>
                       </Button>
-                      {/* <DropdownLink
-                    className="dropdown-link"
-                    href="#"
-                    onClick={logMeOut}
-                    >
-                    Logout
-                    </DropdownLink> */}
                     </MenuItem>
                   </MenuList>
                 </Menu>
               ) :
-                (<Link href="/login/LoginPage">
+                (<><Link href="/login/LoginPage">
                   <a className="" href="#">
                     <h1 style={mystyle2}>Log In</h1>
                   </a>
-                </Link>
-                )}
-          {/* </a>   */}
-
-          {/* <a className="drop" href="#">
-                {isLoading ? (<Spinner />) :
-                  user ? (
-                    <Menu as="div" className="relative inline-block">
-                      <MenuButton as={Button} className="text-blue-600">
-                        {"Hi " + user}
-                    </MenuButton>
-                    ) :
-                (<Link href="/LoginPage">
-                  <a className="drop" href="#">
-                      Log In
+                </Link><Link href="/registration/RegistrationPage">
+                    <a>
+                      <h1 style={mystyle2}>Register</h1>
                     </a>
-                  </Link>
+                  </Link></>
                 )}
-                </a>
-                  
 
-                 <a className="drop" href="#">
-                  {
-                    user ? (<a
-                      className="dropdown-link"
-                      href="#"
-                      onClick={logMeOut}
-                      >
-                      Logout
-                      </a>) : ""}
-                </a> 
-
-             
-
-           {/* {status === 'loading' ? (
-            'Loading'
-          ) : session?.user ? (
-            <Menu as="div" className="relative inline-block">
-              <Menu.Button className="text-blue-600">
-                {session.user.name}
-              </Menu.Button>
-              <Menu.Items className="absolute right-0 w-56 origin-top-right shadow-lg ">
-                <Menu.Item>
-                  <DropdownLink className="dropdown-link" href="/profile">
-                      Profile
-                  </DropdownLink>
-                </Menu.Item>
-                <Menu.Item>
-                  <DropdownLink
-                    className="dropdown-link"
-                    href="/order-history"
-                  >
-                    Order History
-                  </DropdownLink>
-                </Menu.Item>
-                <Menu.Item>
-                  <a
-                    className="dropdown-link"
-                    href="#"
-                    onClick={logoutClickHandler}
-                    >
-                    Logout
-                    </a>
-                </Menu.Item>
-              </Menu.Items>
-            </Menu>
-          ) : (
-            <Link href="/LoginPage">
-              <a className="p-2">
-              Log In </a>
-            </Link>
-          )}  */}
-
-
-          <Link href="/registration/RegistrationPage">
-            <a>
-              <h1 style={mystyle2}>Register</h1>
-            </a>
-          </Link>
         </div>
       </div>
       {/* <SearchHeaderOptions/> */}
