@@ -11,10 +11,11 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import HypeHeadsLogo from "../images/NewHypeHeadsLogo3.png";
+import KicksPage from "../pages/kicks/KicksPage";
 import { cartReset } from "../redux/cartSlice";
 import { getUserReset } from "../redux/userSlice";
-import DropdownLink from "./DropdownLink"; 
-import HypeHeadsLogo from "../images/NewHypeHeadsLogo3.png";
+import DropdownLink from "./DropdownLink";
 import SideMenu from "./SideMenu";
 // import SearchHeaderOptions from "./SearchHeaderOptions";
 
@@ -35,7 +36,7 @@ function Header() {
     dispatch(getUserReset())
     sessionStorage.removeItem('access_Token');
     localStorage.removeItem('user');
-    router.push("/LoginPage");
+    router.push("/login/LoginPage");
   }
   const mystyle = {
     color: "black",
@@ -126,18 +127,18 @@ function Header() {
               <h1 style={mystyle2}>Home</h1>
             </a>
           </Link>
-          <Link href="/KicksPage">
+          <Link href="/kicks/KicksPage">
             <a>
               <h1 style={mystyle2}>Kicks</h1>
             </a>
           </Link>
-          <Link href="/ApparelPage">
+          <Link href="/apparel/ApparelPage">
             <a>
               <h1 style={mystyle2}>Apparel</h1>
             </a>
           </Link>
                 {/* fix spacing for cart number bubble */}
-          <Link href="/Cart">
+          <Link href="/cart/Cart">
             <a className="p-2 flex">
               <h1 style={mystyle2}>Cart</h1>
               {cartItemsCount > 0 && (
@@ -148,7 +149,7 @@ function Header() {
             </a>
           </Link>
 
-          <Link href="/FAQSPage">
+          <Link href="/faqs/FAQSPage">
             <a>
               <h1 style={mystyle2}>FAQS</h1>
             </a>
@@ -174,7 +175,7 @@ function Header() {
                   </DropdownLink> */}
                     </MenuItem>
                     <MenuItem>
-                      <Link href="/order-history">
+                      <Link href="/orderhistory/order-history">
                         <a className="dropdown-link mystyle" href="#">
                           Order History
                         </a>
@@ -206,7 +207,7 @@ function Header() {
                   </MenuList>
                 </Menu>
               ) :
-                (<Link href="/LoginPage">
+                (<Link href="/login/LoginPage">
                   <a className="" href="#">
                     <h1 style={mystyle2}>Log In</h1>
                   </a>
@@ -284,7 +285,7 @@ function Header() {
           )}  */}
 
 
-          <Link href="/RegistrationPage">
+          <Link href="/registration/RegistrationPage">
             <a>
               <h1 style={mystyle2}>Register</h1>
             </a>

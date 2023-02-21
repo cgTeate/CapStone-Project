@@ -7,7 +7,7 @@ import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import CheckoutWizard from '../components/CheckoutWizard';
-import Layout from '../components/Layout';
+import Layout from '../../layouts/Layout'
 // import { getError } from '../utils/error';
 // import { Store } from '../utils/Store';
 import { getKicks, getAllKicks, getProducts} from '../pages/api/client'

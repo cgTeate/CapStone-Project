@@ -4,7 +4,7 @@ import { toast } from 'react-toastify';
 import { Alert }from "@chakra-ui/react";
 import Cookies from 'js-cookie';
 import CheckoutWizard from '../components/CheckoutWizard';
-import Layout from '../components/Layout';
+import Layout from '../../layouts/Layout'
 import { Store } from '../utils/Store';
 import {savePaymentMethod} from "../redux/cartSlice";
 import { useSelector, useDispatch } from 'react-redux'

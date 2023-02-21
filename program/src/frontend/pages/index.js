@@ -1,15 +1,14 @@
 
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
-import Layout from '../layouts/Layout'
+import Link from "next/link"
+import { useRouter } from 'next/router'
+import { useEffect, useRef, useState } from 'react'
 import ProductCard from '../components/ProductCard'
 import Slider from '../components/Slider'
+import Layout from '../layouts/Layout'
 import { getApparel, getKicks, getKickss } from './api/client'
-import ApparelPage from '../pages/header/ApparelPage'
-import KicksPage from '../pages/header/KicksPage'
-import {useRouter} from 'next/router'
-import {useRef} from 'react'
-import Link from "next/link";
+import ApparelPage from './apparel/ApparelPage'
+import KicksPage from './kicks/KicksPage'
 
 export default function Home({product}) {
     const router = useRouter();
@@ -111,9 +110,6 @@ export default function Home({product}) {
                 <div className="grid grid-cols-1 gap-4 md:grid-cols-3 lg:grid-cols-4">
                 {visibleKicks.map((kick) => (
                     <ProductCard product={kick} key={kick.slug}></ProductCard>
-                ))}
-                {visibleKicks.map((kick, index) => (
-                    <ProductCard product={kick} key={index}></ProductCard>
                 ))}
                 </div>
                 <div className="flex justify-between items-center">

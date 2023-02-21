@@ -151,7 +151,7 @@ if(user){
           <br />
           <div className="mb-4 ">
           Don&apos;t have an account? &nbsp;
-          <Link href={`/RegistrationPage?redirect=${redirect || '/'}`}>Register</Link>
+          <Link href={`/registration/RegistrationPage?redirect=${redirect || '/'}`}>Register</Link>
           </div>
           <Link fontFamily={"Garamond"}>FORGOT PASSWORD</Link>
           <Divider orientation="horizontal" />

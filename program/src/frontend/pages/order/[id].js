@@ -7,7 +7,7 @@ import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useReducer } from 'react';
 import { toast } from 'react-toastify';
-import Layout from '../../components/Layout';
+import Layout from '../../layouts/Layout'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchRequest, fetchSuccess, fetchFail, payRequest, paySuccess, payFail, payReset,
   deliverRequest, deliverSuccess, deliverFail, deliverReset} from "../../redux/orderSlice";
