@@ -3,10 +3,9 @@ import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import { Alert }from "@chakra-ui/react";
 import Cookies from 'js-cookie';
-import CheckoutWizard from '../components/CheckoutWizard';
+import CheckoutWizard from '../../components/CheckoutWizard';
 import Layout from '../../layouts/Layout'
-import { Store } from '../utils/Store';
-import {savePaymentMethod} from "../redux/cartSlice";
+import {savePaymentMethod} from "../../redux/cartSlice";
 import { useSelector, useDispatch } from 'react-redux'
 
 export default function PaymentScreen() {
@@ -37,12 +36,12 @@ export default function PaymentScreen() {
     //   })
     // );
 
-    router.push('/placeorder');
+    router.push('/placeorder/placeorder');
   };
   //TODO: Radio button needs to be reset when afte you go back to shipping page
   useEffect(() => {
     if (!shippingAddress.address) {
-      return router.push('/shipping');
+      return router.push('/shipping/shipping');
     }
     setSelectedPaymentMethod(paymentMethod || '');
   }, [paymentMethod, router, shippingAddress.address]);
@@ -70,7 +69,7 @@ export default function PaymentScreen() {
         ))}
         <div className="mb-4 flex justify-between">
           <button
-            onClick={() => router.push('/shipping')}
+            onClick={() => router.push('/shipping/shipping')}
             type="button"
             className="default-button"
           >

@@ -127,7 +127,7 @@ const updateCartHandler = (item, qty) => {
                   </li>
                   <li>
                     <button
-                      onClick={() => router.push('/shipping')}
+                      onClick={() => router.push('/shipping/shipping')}
                       className="primary-button w-full">
                       Check Out
                     </button>
