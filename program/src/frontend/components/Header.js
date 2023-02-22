@@ -4,7 +4,6 @@ import Cookies from 'js-cookie';
 import { signOut, useSession } from 'next-auth/react';
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
-import { Store } from "../utils/Store";
 // import { Menu } from "antd";
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
 import { Alert, Button, Spinner } from "@chakra-ui/react";
@@ -12,10 +11,11 @@ import dynamic from 'next/dynamic';
 import { useRouter } from 'next/router';
 import { useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import HypeHeadsLogo from "../images/NewHypeHeadsLogo3.png";
+import KicksPage from "../pages/kicks/KicksPage";
 import { cartReset } from "../redux/cartSlice";
 import { getUserReset } from "../redux/userSlice";
-import DropdownLink from "./DropdownLink"; 
-import HypeHeadsLogo from "../images/NewHypeHeadsLogo3.png";
+import DropdownLink from "./DropdownLink";
 import SideMenu from "./SideMenu";
 // import SearchHeaderOptions from "./SearchHeaderOptions";
 
@@ -36,7 +36,7 @@ function Header() {
     dispatch(getUserReset())
     sessionStorage.removeItem('access_Token');
     localStorage.removeItem('user');
-    router.push("/LoginPage");
+    router.push("/login/LoginPage");
   }
   const mystyle = {
     color: "black",
@@ -127,18 +127,18 @@ function Header() {
               <h1 style={mystyle2}>Home</h1>
             </a>
           </Link>
-          <Link href="/KicksPage">
+          <Link href="/kicks/KicksPage">
             <a>
               <h1 style={mystyle2}>Kicks</h1>
             </a>
           </Link>
-          <Link href="/ApparelPage">
+          <Link href="/apparel/ApparelPage">
             <a>
               <h1 style={mystyle2}>Apparel</h1>
             </a>
           </Link>
                 {/* fix spacing for cart number bubble */}
-          <Link href="/Cart">
+          <Link href="/cart/Cart">
             <a className="p-2 flex">
               <h1 style={mystyle2}>Cart</h1>
               {cartItemsCount > 0 && (
@@ -149,7 +149,7 @@ function Header() {
             </a>
           </Link>
 
-          <Link href="/FAQSPage">
+          <Link href="/faqs/FAQSPage">
             <a>
               <h1 style={mystyle2}>FAQS</h1>
             </a>
@@ -158,11 +158,11 @@ function Header() {
           {
             isLoading ? (<Spinner />) :
               user ? (
-                <Menu as="div" className="relative inline-block">
+                <Menu as="div" className="relative inline-block z-40">
                   <MenuButton as={Button} className="text-blue-600 mystyle">
                     {"Hi " + user.slice(0, 1).toUpperCase() + user.slice(1, 6)}
                   </MenuButton>
-                  <MenuList className="right-150 w-56 origin-top-right shadow-lg ">
+                  <MenuList className="right-150 w-56 origin-top-right shadow-lg">
 
                     <MenuItem>
                       <Link href="/profile">
@@ -170,22 +170,13 @@ function Header() {
                           Profile
                         </a>
                       </Link>
-                      {/* <DropdownLink className="dropdown-link" href="/profile">
-                      Profile
-                  </DropdownLink> */}
                     </MenuItem>
                     <MenuItem>
-                      <Link href="/order-history">
+                      <Link href="/orderhistory/order-history">
                         <a className="dropdown-link mystyle" href="#">
                           Order History
                         </a>
                       </Link>
-                      {/* <DropdownLink
-                    className="dropdown-link"
-                    href="/order-history"
-                  >
-                    Order History
-                  </DropdownLink> */}
                     </MenuItem>
 
                     <MenuItem>
@@ -196,100 +187,21 @@ function Header() {
                           Logout
                         </a>
                       </Button>
-                      {/* <DropdownLink
-                    className="dropdown-link"
-                    href="#"
-                    onClick={logMeOut}
-                    >
-                    Logout
-                    </DropdownLink> */}
                     </MenuItem>
                   </MenuList>
                 </Menu>
               ) :
-                (<Link href="/LoginPage">
+                (<><Link href="/login/LoginPage">
                   <a className="" href="#">
                     <h1 style={mystyle2}>Log In</h1>
                   </a>
-                </Link>
-                )}
-          {/* </a>   */}
-
-          {/* <a className="drop" href="#">
-                {isLoading ? (<Spinner />) :
-                  user ? (
-                    <Menu as="div" className="relative inline-block">
-                      <MenuButton as={Button} className="text-blue-600">
-                        {"Hi " + user}
-                    </MenuButton>
-                    ) :
-                (<Link href="/LoginPage">
-                  <a className="drop" href="#">
-                      Log In
+                </Link><Link href="/registration/RegistrationPage">
+                    <a>
+                      <h1 style={mystyle2}>Register</h1>
                     </a>
-                  </Link>
+                  </Link></>
                 )}
-                </a>
-                  
 
-                 <a className="drop" href="#">
-                  {
-                    user ? (<a
-                      className="dropdown-link"
-                      href="#"
-                      onClick={logMeOut}
-                      >
-                      Logout
-                      </a>) : ""}
-                </a> 
-
-             
-
-           {/* {status === 'loading' ? (
-            'Loading'
-          ) : session?.user ? (
-            <Menu as="div" className="relative inline-block">
-              <Menu.Button className="text-blue-600">
-                {session.user.name}
-              </Menu.Button>
-              <Menu.Items className="absolute right-0 w-56 origin-top-right shadow-lg ">
-                <Menu.Item>
-                  <DropdownLink className="dropdown-link" href="/profile">
-                      Profile
-                  </DropdownLink>
-                </Menu.Item>
-                <Menu.Item>
-                  <DropdownLink
-                    className="dropdown-link"
-                    href="/order-history"
-                  >
-                    Order History
-                  </DropdownLink>
-                </Menu.Item>
-                <Menu.Item>
-                  <a
-                    className="dropdown-link"
-                    href="#"
-                    onClick={logoutClickHandler}
-                    >
-                    Logout
-                    </a>
-                </Menu.Item>
-              </Menu.Items>
-            </Menu>
-          ) : (
-            <Link href="/LoginPage">
-              <a className="p-2">
-              Log In </a>
-            </Link>
-          )}  */}
-
-
-          <Link href="/RegistrationPage">
-            <a>
-              <h1 style={mystyle2}>Register</h1>
-            </a>
-          </Link>
         </div>
       </div>
       {/* <SearchHeaderOptions/> */}

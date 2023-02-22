@@ -6,13 +6,13 @@ const url = process.env.NEXT_PUBLIC_SPRINGBOOT_API_URL
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
-import CheckoutWizard from '../components/CheckoutWizard';
-import Layout from '../components/Layout';
+import CheckoutWizard from '../../components/CheckoutWizard';
+import Layout from '../../layouts/Layout'
 // import { getError } from '../utils/error';
 // import { Store } from '../utils/Store';
-import { getKicks, getAllKicks, getProducts} from '../pages/api/client'
+import { getKicks, getAllKicks, getProducts} from '../../pages/api/client'
 import { useSelector, useDispatch } from 'react-redux'
-import { clearCartItems} from "../redux/cartSlice";
+import { clearCartItems} from "../../redux/cartSlice";
 
 export default function PlaceOrderScreen() {
     const cart = useSelector((state) => state.cart);
@@ -37,7 +37,7 @@ export default function PlaceOrderScreen() {
     const router = useRouter();
     useEffect(() => {
         if (!paymentMethod) {
-            router.push('/payment');
+            router.push('/payment/payment');
         }
     }, [paymentMethod, router]);
 
@@ -101,14 +101,14 @@ export default function PlaceOrderScreen() {
                                 {shippingAddress.country}
                             </div>
                             <div>
-                                <Link href="/shipping">Edit</Link>
+                                <Link href="/shipping/shipping">Edit</Link>
                             </div>
                         </div>
                         <div className="card  p-5">
                             <h2 className="mb-2 text-lg">Payment Method</h2>
                             <div>{paymentMethod}</div>
                             <div>
-                                <Link href="/payment">Edit</Link>
+                                <Link href="/payment/payment">Edit</Link>
                             </div>
                         </div>
                         <div className="card overflow-x-auto p-5">
@@ -149,7 +149,7 @@ export default function PlaceOrderScreen() {
                                 </tbody>
                             </table>
                             <div>
-                                <Link href="/Cart">Edit</Link>
+                                <Link href="/cart/Cart">Edit</Link>
                             </div>
                         </div>
                     </div>

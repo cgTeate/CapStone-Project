@@ -4,7 +4,6 @@ import "swiper/css";
 import 'react-toastify/dist/ReactToastify.css';
 import {theme} from '../styles/theme'
 import { ChakraProvider } from '@chakra-ui/react'
-import { StoreProvider } from '../utils/Store'
 import { Provider } from 'react-redux'
 import store from '../redux/store'
 import { SessionProvider, useSession } from 'next-auth/react';

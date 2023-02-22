@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Router, { useRouter } from 'next/router'
 import React, { useContext } from 'react'
 import Header from '../../components/Header'
-import Layout from '../../components/Layout'
+import Layout from '../../layouts/Layout'
 import data from '../../utils/data'
 // import { Store } from '../../utils/Store'
 import {addProduct,addToCart, cartRemoveItem } from "../../redux/cartSlice";

@@ -6,7 +6,7 @@ import { toast } from 'react-toastify';
 // import { getError } from '../utils/error';
 import axios from 'axios';
 const url = process.env.NEXT_PUBLIC_SPRINGBOOT_API_URL
-import Layout from '../components/Layout';
+import Layout from '../layouts/Layout'
 import { useSelector, useDispatch } from 'react-redux'
 import { Field, Formik, Form } from "formik";
 import { loginUser } from "../pages/api/client";

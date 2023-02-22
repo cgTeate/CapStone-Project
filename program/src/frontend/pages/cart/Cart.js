@@ -2,14 +2,14 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from 'next/router';
 // import React, { useContext } from "react";
-import Header from "../components/Header";
+import Header from '../../components/Header'
 // import { Store } from "../utils/Store";
-import Layout from '../components/Layout'
+import Layout from '../../layouts/Layout'
 import { useState, useEffect} from 'react'
 import { toast } from 'react-toastify';
-import { getKicks, getAllKicks, getProducts} from '../pages/api/client'
+import { getKicks, getAllKicks, getProducts} from '../../pages/api/client'
 import { useSelector, useDispatch } from 'react-redux'
-import { cartRemoveItem, addToCart, addToCartFromShoppingCart} from "../redux/cartSlice";
+import { cartRemoveItem, addToCart, addToCartFromShoppingCart} from "../../redux/cartSlice";
 import dynamic from 'next/dynamic'
 
  function CartScreen() {
@@ -127,7 +127,7 @@ const updateCartHandler = (item, qty) => {
                   </li>
                   <li>
                     <button
-                      onClick={() => router.push('/shipping')}
+                      onClick={() => router.push('/shipping/shipping')}
                       className="primary-button w-full">
                       Check Out
                     </button>

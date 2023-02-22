@@ -8,7 +8,7 @@ import {
 // import { useForm } from 'react-hook-form';
 import Cookies from 'js-cookie';
 import CheckoutWizard from '../../components/CheckoutWizard';
-import Layout from '../components/Layout';
+import Layout from '../../layouts/Layout'
 // import { Store } from '../utils/Store';
 import {saveShippingAddress } from "../../redux/cartSlice";
 import { useSelector, useDispatch } from 'react-redux'
@@ -81,7 +81,7 @@ export default function ShippingScreen() {
     //   })
     // );
 
-    router.push('/payment');
+    router.push('/payment/payment');
   };
 
       const postcodeRegExp = /^[0-9]{5}(?:-[0-9]{4})?$/i

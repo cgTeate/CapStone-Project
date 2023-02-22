@@ -166,20 +166,14 @@ export default function RegistrationForm() {
 
                 <FormControl as='fieldset' isRequired>
                 <FormLabel fontFamily="Garamond" as='legend'>Customer or Seller?</FormLabel>
-                <HStack fontFamily="Garamond" spacing='30px'>
-                  <Radio 
-                  id="mgender"
-                  value="CUSTOMER"
-                  variant="filled"
-                  >Customer</Radio>
-
-                  <Radio 
-                  id="mgender"
-                  value="SELLER"
-                  variant="filled"
-                  >Seller</Radio>
-
+                <Field name="usertype">
+                  {({ field }) => (
+                  <HStack fontFamily="Garamond" spacing='30px'>
+                    <Radio {...field} id="cusertype" value="CUSTOMER" variant="filled">Customer</Radio>
+                    <Radio {...field} id="susertype" value="SELLER" variant="filled">Seller</Radio>
                   </HStack>
+                  )}
+                </Field>
                 </FormControl>
         
                 <FormControl isInvalid={!!errors.dob && touched.dob} isRequired>
@@ -215,35 +209,41 @@ export default function RegistrationForm() {
                 </FormControl>
 
                 <FormControl as='fieldset' isRequired>
-                <FormLabel fontFamily="Garamond" as='legend'>Gender</FormLabel>
-                <HStack fontFamily="Garamond" spacing='15px'>
-                {/* <Field as={RadioGroup} 
-                  id="gender"
-                  name="gender"
-                  type="radiogroup"
-                  onChange={handleChange}
-                  value={values.gender}
-                  variant="filled"
-                > */}
-                  <Radio 
-                  id="mgender"
-                  value="MALE"
-                  variant="filled"
-                  >Male </Radio>
-
-                  <Radio 
-                  id="mgender"
-                  value="FEMALE"
-                  // variant="filled"
-                  >Female </Radio>
-
-                  <Radio 
-                  id="mgender"
-                  value="OTHER"
-                  // variant="filled"
-                  >Other </Radio>
+                  <FormLabel fontFamily="Garamond" as='legend'>Gender</FormLabel>
+                  <HStack fontFamily="Garamond" spacing='15px'>
+                    <Field name="gender">
+                      {({ field }) => (
+                    <>
+                    <Radio 
+                      {...field}
+                      id="mgender"
+                      value="MALE"
+                      variant="filled"
+                    >
+                      Male
+                    </Radio>
+                    <Radio 
+                      {...field}
+                      id="fgender"
+                      value="FEMALE"
+                      // variant="filled"
+                    >
+                    Female
+                    </Radio>
+                    <Radio 
+                      {...field}
+                      id="ogender"
+                      value="OTHER"
+                      // variant="filled"
+                    >
+                      Other
+                    </Radio>
+                    </>
+                    )}
+                    </Field>
                   </HStack>
                 </FormControl>
+
 
                 <FormControl isInvalid={!!errors.postcode && touched.postcode} isRequired>
                 <FormLabel fontFamily="Garamond">Current Address</FormLabel>

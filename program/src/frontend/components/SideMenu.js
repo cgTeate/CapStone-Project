@@ -37,10 +37,10 @@ export default function SideMenu() {
     <Link href="/">
     <MenuItem style={mystyle2} icon={<Icon as={HomeIcon}/>}>Home</MenuItem>
     </Link>
-    <Link href="/KicksPage">
+    <Link href="/kicks/KicksPage">
     <MenuItem style={mystyle2}>Kicks</MenuItem>
     </Link>
-    <Link href="/ApparelPage">
+    <Link href="/apparel/ApparelPage">
     <MenuItem style={mystyle2}>Apparel</MenuItem>
     </Link>
     <Link href="/">
@@ -49,16 +49,16 @@ export default function SideMenu() {
     <Link href="/">
     <MenuItem style={mystyle2}>Accessories</MenuItem>
     </Link>
-    <Link href="/Cart">
+    <Link href="/cart/Cart">
     <MenuItem style={mystyle2}>Cart</MenuItem>
     </Link>
-    <Link href="/FAQSPage">
+    <Link href="/faqs/FAQSPage">
     <MenuItem style={mystyle2}>FAQS</MenuItem>
     </Link>
-    <Link href="/RegistrationPage">
+    <Link href="/registration/RegistrationPage">
     <MenuItem style={mystyle2}>Register</MenuItem>
     </Link>
-    <Link href="/LoginPage">
+    <Link href="/login/LoginPage">
     <MenuItem style={mystyle2}>Log In</MenuItem>
     </Link>
   </MenuList>

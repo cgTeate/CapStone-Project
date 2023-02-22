@@ -1,26 +1,33 @@
 
 import Head from 'next/head'
-import { useEffect, useState } from 'react'
-import Layout from '../layouts/Layout'
+import Link from "next/link"
+import { useRouter } from 'next/router'
+import { useEffect, useRef, useState } from 'react'
 import ProductCard from '../components/ProductCard'
 import Slider from '../components/Slider'
+import Layout from '../layouts/Layout'
 import { getApparel, getKicks, getKickss } from './api/client'
-import ApparelPage from '../pages/header/ApparelPage'
-import KicksPage from '../pages/header/KicksPage'
-import {useRouter} from 'next/router'
-import {useRef} from 'react'
-import Link from "next/link";
+import ApparelPage from './apparel/ApparelPage'
+import KicksPage from './kicks/KicksPage'
 
 export default function Home({product}) {
     const router = useRouter();
     const searchInputRef = useRef(null)
-    function search(event) 
-    {
+    // function search(event) 
+    // {
+    //     event.preventDefault();
+    //     const term  = searchInputRef.current.value;
+    //     if(!term.trim()) return
+    //     router.push(`/search?term={term}`)
+    // }
+    
+    function search(event) {
         event.preventDefault();
-        const term  = searchInputRef.current.value;
-        if(!term.trim()) return
-        router.push(`/search?term={term}`)
-    }
+        const term = searchInputRef.current.value;
+        if (!term.trim()) return;
+        router.push(`/search?term=${term}`); // interpolate `term` variable
+      }
+      
     const mystyle = {
         color: "black",
         //backgroundColor: "Gray",

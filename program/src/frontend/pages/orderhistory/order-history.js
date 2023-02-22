@@ -2,7 +2,7 @@ import axios from 'axios';
 const url = process.env.NEXT_PUBLIC_SPRINGBOOT_API_URL
 import Link from 'next/link';
 import React, { useEffect, useReducer } from 'react';
-import Layout from '../components/Layout';
+import Layout from '../../layouts/Layout'
 import { useSelector, useDispatch } from 'react-redux'
 import { fetchRequest, fetchSuccess, fetchFail, payRequest, paySuccess, payFail, payReset,
   deliverRequest, deliverSuccess, deliverFail, deliverReset, historyfetchRequest, historyfetchSuccess, historyfetchFail} from "../../redux/orderSlice";
