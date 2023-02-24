@@ -1,19 +1,17 @@
-import React, { useContext, useEffect } from 'react';
 import {
-  Flex,Heading, Button,Box,Stack,
-  FormControl, FormErrorMessage, FormGroup, FormHelperText, 
-  FormLabel, HStack, Input, Radio, RadioGroup, Select, Tooltip,
-  VStack, Checkbox,Link, ButtonGroup, Spinner, Alert
+  Alert, Box, Button, ButtonGroup, Checkbox, Flex, FormControl, FormErrorMessage, FormGroup, FormHelperText,
+  FormLabel, Heading, HStack, Input, Link, Radio, RadioGroup, Select, Spinner, Stack, Tooltip,
+  VStack
 } from "@chakra-ui/react";
+import React, { useContext, useEffect } from 'react';
 // import { useForm } from 'react-hook-form';
 import Cookies from 'js-cookie';
 import CheckoutWizard from '../../components/CheckoutWizard';
-import Layout from '../../layouts/Layout'
-// import { Store } from '../utils/Store';
-import {saveShippingAddress } from "../../redux/cartSlice";
-import { useSelector, useDispatch } from 'react-redux'
+import Layout from '../../layouts/Layout';
+import { Field, Form, Formik } from "formik";
 import { useRouter } from 'next/router';
-import { Field, Formik, Form} from "formik";
+import { useDispatch, useSelector } from 'react-redux';
+import { saveShippingAddress } from "../../redux/cartSlice";
 
 export default function ShippingScreen() {
   // const {

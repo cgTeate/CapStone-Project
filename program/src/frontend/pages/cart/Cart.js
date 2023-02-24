@@ -1,16 +1,12 @@
-import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from 'next/router';
-// import React, { useContext } from "react";
-import Header from '../../components/Header'
-// import { Store } from "../utils/Store";
-import Layout from '../../layouts/Layout'
-import { useState, useEffect} from 'react'
+import dynamic from 'next/dynamic';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { getKicks, getAllKicks, getProducts} from '../../pages/api/client'
-import { useSelector, useDispatch } from 'react-redux'
-import { cartRemoveItem, addToCart, addToCartFromShoppingCart} from "../../redux/cartSlice";
-import dynamic from 'next/dynamic'
+import Layout from '../../layouts/Layout';
+import { getAllKicks, getKicks, getProducts } from '../../pages/api/client';
+import { addToCart, addToCartFromShoppingCart, cartRemoveItem } from "../../redux/cartSlice";
 
  function CartScreen() {
   const router = useRouter();

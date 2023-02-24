@@ -1,11 +1,10 @@
 import axios from 'axios';
-const url = process.env.NEXT_PUBLIC_SPRINGBOOT_API_URL
 import Link from 'next/link';
 import React, { useEffect, useReducer } from 'react';
-import Layout from '../../layouts/Layout'
-import { useSelector, useDispatch } from 'react-redux'
-import { fetchRequest, fetchSuccess, fetchFail, payRequest, paySuccess, payFail, payReset,
-  deliverRequest, deliverSuccess, deliverFail, deliverReset, historyfetchRequest, historyfetchSuccess, historyfetchFail} from "../../redux/orderSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import Layout from '../../layouts/Layout';
+import { deliverFail, deliverRequest, deliverReset, deliverSuccess, fetchFail, fetchRequest, fetchSuccess, historyfetchFail, historyfetchRequest, historyfetchSuccess, payFail, payRequest, payReset, paySuccess } from "../../redux/orderSlice";
+const url = process.env.NEXT_PUBLIC_SPRINGBOOT_API_URL
 
 function OrderHistoryScreen() {
   const user = useSelector((state) => state.user.user);

@@ -1,23 +1,17 @@
 import {
-  Flex,
+  Alert, Box, Button, ButtonGroup, Checkbox, Flex,
   Heading,
-  Input,
-  Button,
-  Box,
-  Stack,
-  Checkbox,
-  Link,
-  ButtonGroup, Spinner, Alert
+  Input, Link, Spinner, Stack
 } from "@chakra-ui/react";
 import { Divider } from "antd";
-import { Field, Formik, Form } from "formik";
-import { userSchema } from "../Validations/UserValidation";
+import { Field, Form, Formik } from "formik";
+import { useRouter } from 'next/router';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { loginUser } from "../pages/api/client";
-import { loginPending,loginSuccess, loginFail } from "../redux/loginSlice";
-import { useSelector, useDispatch } from 'react-redux'
-import { useRouter } from 'next/router'
-import {getUserProfile} from '../redux/userAction'
-import { useState, useEffect} from 'react'
+import { loginFail, loginPending, loginSuccess } from "../redux/loginSlice";
+import { getUserProfile } from '../redux/userAction';
+import { userSchema } from "../Validations/UserValidation";
 
 export default function login() {
   const {isLoading, isAuth, error} = useSelector((state) => state.login);
@@ -153,7 +147,7 @@ if(user){
           Don&apos;t have an account? &nbsp;
           <Link href={`/registration/RegistrationPage?redirect=${redirect || '/'}`}>Register</Link>
           </div>
-          <Link fontFamily={"Garamond"}>FORGOT PASSWORD</Link>
+          {/* <Link fontFamily={"Garamond"}>FORGOT PASSWORD</Link> */}
           <Divider orientation="horizontal" />
         </Box>
       </Flex>

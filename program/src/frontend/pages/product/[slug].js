@@ -1,16 +1,13 @@
-import { Image,  } from 'antd'
+import { Image } from 'antd'
 import Head from 'next/head'
 import Link from 'next/link'
 import Router, { useRouter } from 'next/router'
 import React, { useContext } from 'react'
-import Header from '../../components/Header'
 import Layout from '../../layouts/Layout'
-import data from '../../utils/data'
-// import { Store } from '../../utils/Store'
-import {addProduct,addToCart, cartRemoveItem } from "../../redux/cartSlice";
-import { useSelector, useDispatch } from 'react-redux'
-import { useState, useEffect} from 'react'
-import { getKicks, getAllKicks, getProducts} from '../api/client'
+import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { addProduct, addToCart, cartRemoveItem } from "../../redux/cartSlice"
+import { getAllKicks, getKicks, getProducts } from '../api/client'
 
 
 export default function ProductScreen() {
