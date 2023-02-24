@@ -1,10 +1,8 @@
 import { MagnifyingGlassIcon, PlusCircleIcon } from "@heroicons/react/24/outline";
-//import { signOut, useSession } from 'next-auth/react';
 import Cookies from 'js-cookie';
 import { signOut, useSession } from 'next-auth/react';
 import Link from "next/link";
 import { useContext, useEffect, useState } from "react";
-// import { Menu } from "antd";
 import { Menu, MenuButton, MenuItem, MenuList } from "@chakra-ui/menu";
 import { Alert, Button, Spinner } from "@chakra-ui/react";
 import dynamic from 'next/dynamic';

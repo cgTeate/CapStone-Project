@@ -126,7 +126,7 @@ export default function Home({product}) {
                     </p>
                     <span className="cursor-pointer mystyle2" onClick={kicksNextPageHandler}>Next</span>
                 </div>
-                <Link href="/KicksPage">
+                <Link href="kicks/KicksPage">
                     <a>
                     <h1 style={mystyle2}>View More</h1>
                     </a>
@@ -154,7 +154,7 @@ export default function Home({product}) {
                     </p>
                     <span className="cursor-pointer mystyle2" onClick={apparelsNextPageHandler}>Next</span>
                 </div>
-                <Link href="/ApparelPage">
+                <Link href="apparel/ApparelPage">
                     <a>
                      <h1 style={mystyle2}>View More</h1>
                     </a>

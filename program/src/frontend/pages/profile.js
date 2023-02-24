@@ -1,16 +1,16 @@
-import React, { useEffect, useRef } from 'react';
+import { Button, FormControl, FormErrorMessage, FormLabel, Input, VStack } from "@chakra-ui/react";
 import { signIn, useSession } from 'next-auth/react';
-import {FormControl,FormErrorMessage,FormLabel,Input, VStack, Button} from "@chakra-ui/react";
+import React, { useEffect, useRef } from 'react';
 // import { useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 // import { getError } from '../utils/error';
 import axios from 'axios';
-const url = process.env.NEXT_PUBLIC_SPRINGBOOT_API_URL
-import Layout from '../layouts/Layout'
-import { useSelector, useDispatch } from 'react-redux'
-import { Field, Formik, Form } from "formik";
+import { Field, Form, Formik } from "formik";
+import { useDispatch, useSelector } from 'react-redux';
+import Layout from '../layouts/Layout';
 import { loginUser } from "../pages/api/client";
-import { loginPending,loginSuccess, loginFail } from "../redux/loginSlice";
+import { loginFail, loginPending, loginSuccess } from "../redux/loginSlice";
+const url = process.env.NEXT_PUBLIC_SPRINGBOOT_API_URL
 
 export default function ProfileScreen() {
   const user = useSelector((state) => state.user.user);

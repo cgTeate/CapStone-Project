@@ -1,16 +1,12 @@
-import React from 'react';
 import {
   Box,
   Button,
-  Checkbox,
-  Heading,
-  Flex,
-  Link,
-  FormControl,
-  FormErrorMessage, FormGroup, FormHelperText, FormLabel, HStack, Input, Radio, RadioGroup, Select, Tooltip, VStack, Textarea
+  Checkbox, Flex, FormControl,
+  FormErrorMessage, FormGroup, FormHelperText, FormLabel, Heading, HStack, Input, Link, Radio, RadioGroup, Select, Textarea, Tooltip, VStack
 } from "@chakra-ui/react";
-import { useRouter } from 'next/router'
-import { Field, Formik, Form } from 'formik';
+import { Field, Form, Formik } from 'formik';
+import { useRouter } from 'next/router';
+import React from 'react';
 import { registerUser } from "../pages/api/client";
 
 export default function RegistrationForm() {
@@ -98,13 +94,14 @@ export default function RegistrationForm() {
         Registration Form
         </Heading>
      <Flex bg="gray.100" align="bottom" justify="center" h="100vh">
-      <Box bg="white" p={6} rounded="md" w={64}>
+      <Box bg="white" p={6} rounded="md" w={1000}>
         <Formik
           initialValues={initialValues}
           onSubmit={onSubmit}
         >
           {({ handleChange, handleSubmit, errors, touched, values}) => (
             <form onSubmit={handleSubmit}>
+              <div className="grid-cols-3 justify-between items-center p-5">
               <VStack spacing={4} align="flex-start">
                 <FormControl isRequired>
                   <FormLabel fontFamily="Garamond" htmlFor="firstname">First Name</FormLabel>
@@ -163,7 +160,8 @@ export default function RegistrationForm() {
                   />
                   <FormErrorMessage>{errors.password}</FormErrorMessage>
                 </FormControl>
-
+                </VStack>
+                <VStack spacing={4} align="flex-start">
                 <FormControl as='fieldset' isRequired>
                 <FormLabel fontFamily="Garamond" as='legend'>Customer or Seller?</FormLabel>
                 <Field name="usertype">
@@ -243,8 +241,8 @@ export default function RegistrationForm() {
                     </Field>
                   </HStack>
                 </FormControl>
-
-
+                </VStack>
+                <VStack spacing={4} align="flex-start">
                 <FormControl isInvalid={!!errors.postcode && touched.postcode} isRequired>
                 <FormLabel fontFamily="Garamond">Current Address</FormLabel>
 
@@ -290,15 +288,18 @@ export default function RegistrationForm() {
                 />
                 <FormErrorMessage>{errors.postcode}</FormErrorMessage>
                 </FormControl>
-              
+                </VStack>
+                <VStack spacing={4} align="flex-start">
                 <Button type="submit" fontFamily="Garamond" colorScheme="green" w="full" size='sm'>
                   Register
                 </Button>
               </VStack>
+              </div>
+              
             </form>
           )}
         </Formik>
-        <div fontFamily="Garamond"className="mb-4 ">
+        <div fontFamily="Garamond"className="mb-4 p-5">
           Don&apos;t have an account? &nbsp;
           <Link href={`/RegistrationPage?redirect=${redirect || '/'}`}>Register</Link>
           </div>

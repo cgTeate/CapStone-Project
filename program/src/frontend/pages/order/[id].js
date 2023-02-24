@@ -1,16 +1,14 @@
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js';
 import axios from 'axios';
-const url = process.env.NEXT_PUBLIC_SPRINGBOOT_API_URL
-import { useSession } from 'next-auth/react';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 import { useEffect, useReducer } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import Layout from '../../layouts/Layout'
-import { useSelector, useDispatch } from 'react-redux'
-import { fetchRequest, fetchSuccess, fetchFail, payRequest, paySuccess, payFail, payReset,
-  deliverRequest, deliverSuccess, deliverFail, deliverReset} from "../../redux/orderSlice";
+import Layout from '../../layouts/Layout';
+import { deliverFail, deliverRequest, deliverReset, deliverSuccess, fetchFail, fetchRequest, fetchSuccess, payFail, payRequest, payReset, paySuccess } from "../../redux/orderSlice";
+const url = process.env.NEXT_PUBLIC_SPRINGBOOT_API_URL
 
 function OrderScreen() {
     const [{ isPending }, paypalDispatch] = usePayPalScriptReducer();

@@ -2,17 +2,17 @@ import axios from 'axios';
 import Cookies from 'js-cookie';
 import Image from 'next/image';
 import Link from 'next/link';
-const url = process.env.NEXT_PUBLIC_SPRINGBOOT_API_URL
 import { useRouter } from 'next/router';
 import React, { useContext, useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import CheckoutWizard from '../../components/CheckoutWizard';
-import Layout from '../../layouts/Layout'
+import Layout from '../../layouts/Layout';
+const url = process.env.NEXT_PUBLIC_SPRINGBOOT_API_URL
 // import { getError } from '../utils/error';
 // import { Store } from '../utils/Store';
-import { getKicks, getAllKicks, getProducts} from '../../pages/api/client'
-import { useSelector, useDispatch } from 'react-redux'
-import { clearCartItems} from "../../redux/cartSlice";
+import { useDispatch, useSelector } from 'react-redux';
+import { getAllKicks, getKicks, getProducts } from '../../pages/api/client';
+import { clearCartItems } from "../../redux/cartSlice";
 
 export default function PlaceOrderScreen() {
     const cart = useSelector((state) => state.cart);

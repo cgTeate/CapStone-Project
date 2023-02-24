@@ -1,12 +1,12 @@
 
+import { Image } from 'antd';
 import React from "react";
 import { Fade } from "react-slideshow-image";
 import 'react-slideshow-image/dist/styles.css';
-import { Image } from 'antd';
-import { Swiper, SwiperSlide } from "swiper/react";
+import { EffectCoverflow, Pagination } from "swiper";
 import "swiper/css/effect-coverflow";
 import "swiper/css/pagination";
-import { EffectCoverflow, Pagination } from "swiper";
+import { Swiper, SwiperSlide } from "swiper/react";
 
 const trendingfadeImages = [
   "https://cdn.discordapp.com/attachments/917547212475621456/1046210226883403796/IMG_6088.JPG",
