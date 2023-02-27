@@ -6,6 +6,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.data.mongodb.core.MongoOperations;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -27,7 +28,7 @@ public class WebsiteUserService implements WebsiteUserDao, UserDetailsService{
     private final BCryptPasswordEncoder bCryptPasswordEncoder;
     private final static String USER_NOT_FOUND_MSG =
             "user with email %s not found";
-
+    // TODO: used MongoRepository instead of DAOAuthenticationProvider
     @Override
     public UserDetails loadUserByUsername(String username)
             throws UsernameNotFoundException {

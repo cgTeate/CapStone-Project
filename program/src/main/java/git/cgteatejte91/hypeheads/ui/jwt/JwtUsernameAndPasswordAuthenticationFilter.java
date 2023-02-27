@@ -24,12 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.time.LocalDate;
 import java.util.Date;
-
-/**
- * @author Get Arrays (https://www.getarrays.io/)
- * @version 1.0
- * @since 7/10/2021
- */
 @Slf4j
 public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager; // trying to pull this down with the bean
@@ -51,7 +45,7 @@ public class JwtUsernameAndPasswordAuthenticationFilter extends UsernamePassword
         // UsernamePasswordAuthenticationToken authenticationToken = new UsernamePasswordAuthenticationToken(email, password);
         // return authenticationManager.authenticate(authenticationToken);
         ObjectMapper objectMapper = new ObjectMapper();
-        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES);
+        objectMapper.disable(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES); //ignores any unknown properties in the JSON payload, authentication can fail if not disabled
 
         try {
         UserNameAndPasswordAuthenticationRequest authenticationRequest = objectMapper.readValue(request.getInputStream(), UserNameAndPasswordAuthenticationRequest.class);

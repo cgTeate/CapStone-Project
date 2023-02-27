@@ -46,7 +46,7 @@ public class JwtTokenVerifier extends OncePerRequestFilter {
         }
 
         String token = authorizationHeader.replace(jwtConfig.getTokenPrefix(), "");
-
+        // parse token, get the username and authorities, 
         try {
             Jws<Claims> claimsJws = Jwts.parser()
                     .setSigningKey(secretKey)
