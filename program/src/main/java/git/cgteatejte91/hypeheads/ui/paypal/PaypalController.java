@@ -11,7 +11,7 @@ public class PaypalController {
 
     @Autowired
     PaypalConfig paypalConfig;
-    PaypalService service;
+    // PaypalService service;
 
     //return paypal client ID if user is authenticated
     @GetMapping
